@@ -11,7 +11,8 @@ import json
 
 from tornado.options import define, options, parse_command_line
 import commandConfig
-
+import queue
+import GameControlThread
 from threading import Thread
 define("port", default=8888, help="run on the given port", type=int)
 
@@ -21,7 +22,11 @@ clientById = {}
 idByClient = {}
 
 votingOptions =["Mob", "Majority Vote"]
+controlInputQueue = queue.Queue()
+controlOutputQueue = queue.Queue()
 
+gameControl = GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue)
+gameControl.start()
 class IndexHandler(tornado.web.RequestHandler):
   @tornado.web.asynchronous
   def get(self):
@@ -30,6 +35,7 @@ class IndexHandler(tornado.web.RequestHandler):
     return True
 
 class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
+    
     
   def open(self, *args):
     global clientId
@@ -47,6 +53,8 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
     #KeyCtl.test()
     print (json.loads(message)['message'])
     print (idByClient[self] )
+    if json.loads(message)['type']=='chatMsg' or json.loads(message)['type'] == 'keystroke':
+        controlInputQueue.put(message)
     
     for client in clients:
           client.write_message(message)
