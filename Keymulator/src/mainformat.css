@@ -1,0 +1,19 @@
+#sides{
+margin:0;
+}
+
+.chatroom {
+width: 100%;
+height: 40em;
+overflow: scroll;
+font-family: Arial;
+float:right;
+}
+
+.player{
+	width:385px;
+	overflow:hidden;
+}
+.clear {
+clear:right;
+}

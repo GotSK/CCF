@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Collaborative Crowd Gameplay</title>
+   <link rel="stylesheet" type="text/css" href="{{ static_url("mainformat.css") }}">
+	<script type="text/javascript" src="{{ static_url("jwplayer/jwplayer.js") }}"></script>
+	<script type="text/javascript">jwplayer.key="D4xugHr4utMLk64ayWaj/Alg3pM5onwAxMWyGA==";</script>
+	    <script type="text/javascript">
+	      var ws;
+	      var direct = false;
+	      function createChatEntry(username, message) {
+	        var entry = document.createElement("div");
+	        entry.class = "chat_entry";
+	        
+	        var dom_uname = document.createElement("span");
+	        dom_uname.class = "chat_username";
+	        dom_uname.innerHTML = username+": ";
+	        entry.appendChild(dom_uname);
+	        
+	        var dom_msg = document.createElement("span");
+	        dom_msg.class = "chat_message";
+	        dom_msg.innerHTML = message;
+	        entry.appendChild(dom_msg);
+	        
+	        return entry;
+	      }
+	      
+	      function switchInputType(button){
+	    	  direct = !direct;
+	    	  if (direct){
+	    		  button.value = "Direct";
+	    	  } else {
+	    		  button.value = "Chat  ";
+	    	  }
+	      }
+	      
+	      
+	      function addVoteOption(vo){
+	    	  var votebox = document.getElementById("votebox");
+	    	  votebox.options[votebox.options.length] = new Option(vo, vo);
+	      }
+	      function openWS(chatMessageContainer) {
+	        ws = new WebSocket("ws://" + window.location.host + "/ws?Id=123456789");
+	        
+	        ws.onmessage = function(e) {
+	          var data = JSON.parse(e.data);
+	          
+	          switch(data.type){
+	          	case "chatMsg":
+	          		chatMessageContainer.appendChild(createChatEntry(data.author, data.message));
+	          		break;
+	          	case "keystroke":
+	          		;
+	          		break;
+	          	case "voteOption":
+	          		addVoteOption(data.message);
+	          		break;
+	          	default:
+	          		;
+	          }
+	          if (!data.keystroke){
+	          	
+	          }
+	        };
+	        ws.onclose = function(e) {
+	          openWS(messageContainer);
+	        };
+	      }
+	      
+	      function code(e) {
+	          e = e || window.event;
+	          return(e.keyCode || e.which);
+	      }
+	      
+	      function sendMessage() {
+	        var data = {type: "chatMsg", 
+	        			author: document.getElementById("username").value,
+	                    message: document.getElementById("message").value };
+	        
+	        if(data.author && data.message) {
+	          ws.send(JSON.stringify(data));
+	        }
+	      }
+	      
+	      function sendKeystroke(k) {
+	    	  var data = { type: "keystroke", 
+	    			  		author: document.getElementById("username").value,
+	    			  		message: k}
+	    	  if(data.author && data.message) {
+	              ws.send(JSON.stringify(data));
+	            }	  
+	      }
+	      
+	      function sendVote(vote) {
+	    	  var data = { type: "vote", 
+	    			  		author: document.getElementById("username").value,
+	    			  		message: vote}
+	    	  
+	    	  if(data.author && data.message) {
+	              ws.send(JSON.stringify(data));
+	            }
+	            	  
+	      }
+	      
+	      window.onload = function() {
+	     	  
+	    	  
+	        var chatMessageContainer = document.getElementById("chat");
+	        if("WebSocket" in window) {
+	          chatMessageContainer.appendChild(createChatEntry("[SYSTEM]", "WebSocket is supported by your browser!"));
+	          chatMessageContainer.appendChild(createChatEntry("[SYSTEM]", "Pick a username before you start."));
+	          openWS(chatMessageContainer);
+	        }
+	        else {
+	          chatMessageContainer.appendChild(createChatEntry("[SYSTEM]", "WebSocket is NOT supported by your browser!"));
+	        }
+	        //var directArea = document.getElementById("directInput");
+	      document.onkeyup = function(e){
+	    	  if(direct){
+	       			var key = code(e);
+	                sendKeystroke(key);
+	                //ws.send(JSON.stringify(key));
+	                // do something with key
+	    	  		}
+	            };
+	
+	      }
+	    </script>
+  	</head>
+ 
+ <body>
+ 		<!--  style="width: 50%; height: 40em; overflow: scroll; font-family: Arial; float:right" -->
+
+
+    <div id='wrapper2'>
+    <div id='wrapper' style="float:right; width:60%">
+	    <div class="chatroom" id="chat" ></div>
+	    <div id="input_area">
+	        <div class="clear"></div>
+	      <input id="username" type="text" placeholder="Your username" style="display: block; width: 200px;float:right"></input>
+	      <div class="clear"></div>
+	      <textarea id="message" placeholder="Your message" style="display: block; width: 400px;float:right"></textarea>
+	      <div class="clear"></div>
+	      <button onclick="sendMessage()" style="display: block;float:right" type="button">Send</button>
+	      <input type="button" id="switchButton" onclick="switchInputType(this)" style="display: block;float:right" value="Chat  "></input>
+	    </div>
+	</div>
+	</div>
+	<div class="player" id="myElement" >Loading...</div>
+	<script type="text/javascript">
+	    jwplayer("myElement").setup({
+	        file: "rtmp://192.168.178.20/live/flv:test",
+	        height: 570,
+	        width: 385
+
+	    });
+	</script>
+	
+  <form>
+  <p>
+    <select id="votebox" name="Vote" size="8" onChange="sendVote(this.options[this.selectedIndex].value)">
+    </select>
+  </p>
+</form>
+	
+	
+    
+  </body>
+</html>
