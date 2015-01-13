@@ -150,13 +150,14 @@
 	<div class="player" id="myElement" >Loading...</div>
 	<script type="text/javascript">
 	    jwplayer("myElement").setup({
-	        file: "rtmp://192.168.178.20/live/flv:test",
+	        file: "rtmp://192.168.0.101/live/flv:test",
 	        height: 570,
 	        width: 385
 
 	    });
 	</script>
-	
+	<!-- file: "rtmp://192.168.178.33/live/flv:test", Laptop KURANES  -->
+	<!-- file: "rtmp://192.168.178.20/live/flv:test", Desktop MIDGARD -->
   <form>
   <p>
     <select id="votebox" name="Vote" size="8" onChange="sendVote(this.options[this.selectedIndex].value)">
