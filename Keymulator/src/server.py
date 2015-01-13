@@ -15,6 +15,16 @@ import queue
 import GameControlThread
 from threading import Thread
 define("port", default=8888, help="run on the given port", type=int)
+#Websocketkommunikation
+#Aggregationsmechanismen finalisieren
+#Lag auf 0 reduzieren
+#Backend gamification
+
+#für 16.02
+
+#GUI 23.02
+#30.02 konzept für mouse input
+
 
 clientId = 0
 clients = []
