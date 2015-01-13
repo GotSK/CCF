@@ -24,9 +24,15 @@ idByClient = {}
 votingOptions =["Mob", "Majority Vote"]
 controlInputQueue = queue.Queue()
 controlOutputQueue = queue.Queue()
+clientUpdateQueue = queue.Queue()
 
-gameControl = GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue)
+gameControl = GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, clientUpdateQueue)
 gameControl.start()
+
+def updateClientsGameControl():
+    clientUpdateQueue.put(clients)
+    gameControl.updateClients()
+    
 class IndexHandler(tornado.web.RequestHandler):
   @tornado.web.asynchronous
   def get(self):
@@ -44,6 +50,7 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
     clientById[clientId] = self
     idByClient[self] = clientId
     clientId += 1
+    updateClientsGameControl()
     
     for vote in votingOptions:
         self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'}))
@@ -61,6 +68,7 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
         
   def on_close(self):
       clients.remove(self)
+      updateClientsGameControl()
   def check_origin(self, origin):
     return True
 

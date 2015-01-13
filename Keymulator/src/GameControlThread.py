@@ -9,17 +9,27 @@ import win32ui
 
 class GameControlThread(threading.Thread):
 
-    def __init__(self, inputQ, outputQ):
+    def __init__(self, inputQ, outputQ, clientQ):
         super(GameControlThread, self).__init__()
         self.inputQ = inputQ
         self.outputQ = outputQ
+        self.clientQ = clientQ
         self.stoprequest = threading.Event()
+        self.updaterequest = threading.Event()
+        self.clients = []
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
 
     def run(self):
         aggregator = CrowdAggregator.MajorityVoteCrowdAggregator(10000)
         dueTime = aggregator.getTimeWindow() + self.currentTimeMillisec() 
         while not self.stoprequest.isSet():
+            if self.updaterequest.isSet():
+                try:
+                    self.clients = self.clientQ.get(False)
+                except queue.Empty:
+                    print("Tried to access/get from empty client queue.")
+                finally:
+                    self.updaterequest.clear()
             #time is up
             if self.currentTimeMillisec() >= dueTime:
                 try:
@@ -31,7 +41,9 @@ class GameControlThread(threading.Thread):
                     pass
                 result = aggregator.getVoteResult()
                 if result is not None:
-                    print('vote result is '+ result)
+                    #print('vote result is '+ result)
+                    for client in self.clients:
+                        client.write_message(json.dumps({'type':'chatMsg', 'message':'vote result is '+ result, 'author':'[SYSTEM]'}))
                     self.executeCommandMessage(result)
                 else: 
                     print('No participants in this vote')
@@ -49,6 +61,9 @@ class GameControlThread(threading.Thread):
     def join(self, timeout=None):
         self.stoprequest.set()
         super(GameControlThread, self).join(timeout)
+    
+    def updateClients(self):
+        self.updaterequest.set()
 
     def executeMessage(self, message):
         sm = json.loads(message)['message']
