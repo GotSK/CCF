@@ -4,7 +4,7 @@
 import os, time
 import threading, queue
 import json
-import commandConfig, KeyCtl, keyConfig, CrowdAggregator
+import config, KeyCtl, CrowdAggregator
 import win32ui
 
 class GameControlThread(threading.Thread):
@@ -34,7 +34,7 @@ class GameControlThread(threading.Thread):
             if self.currentTimeMillisec() >= dueTime:
                 try:
                     jmessage = self.inputQ.get(True, max(float((dueTime - self.currentTimeMillisec())/1000), 0.001))
-                    if json.loads(jmessage)['message'] in commandConfig.commands.keys():
+                    if json.loads(jmessage)['message'] in config.commands.keys():
                         aggregator.addVote(json.loads(jmessage)['message'], json.loads(jmessage)['author'])
 
                 except queue.Empty:
@@ -52,7 +52,7 @@ class GameControlThread(threading.Thread):
             else: 
                 try:
                     jmessage = self.inputQ.get(True, float((dueTime - self.currentTimeMillisec())/1000))
-                    if json.loads(jmessage)['message'] in commandConfig.commands.keys():
+                    if json.loads(jmessage)['message'] in config.commands.keys():
                         aggregator.addVote(json.loads(jmessage)['message'], json.loads(jmessage)['author'])
                         print('added  ' + json.loads(jmessage)['message'] + ' by ' + json.loads(jmessage)['author'] + '  to vote' )
                 except queue.Empty:
@@ -67,13 +67,13 @@ class GameControlThread(threading.Thread):
 
     def executeMessage(self, message):
         sm = json.loads(message)['message']
-        if sm in commandConfig.commands.keys():
-            KeyCtl.sendImmediateKeystroke(commandConfig.commands[sm])
+        if sm in config.commands.keys():
+            KeyCtl.sendImmediateKeystroke(config.commands[sm])
             
     def executeCommandMessage(self, cm):
-        if cm in commandConfig.commands.keys():
+        if cm in config.commands.keys():
             try:
-                KeyCtl.sendImmediateKeystroke(commandConfig.commands[cm])
+                KeyCtl.sendImmediateKeystroke(config.commands[cm])
             except win32ui.error:
                 print ('Failed to select focus window!')            
             

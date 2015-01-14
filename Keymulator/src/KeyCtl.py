@@ -3,7 +3,7 @@
 '''
 @author: Christian
 '''
-import keyConfig
+import config
 
 import ctypes as ct
 
@@ -165,8 +165,8 @@ t_straight = (
 def sendImmediateKeystroke(keystroke):
     i_interval = 0.5
     t_stroke = (
-                (keyConfig.inputMap[keystroke],0),
-                (keyConfig.inputMap[keystroke],2),
+                (config.inputMap[keystroke],0),
+                (config.inputMap[keystroke],2),
     )
     l_keys = []
     l_keys.extend(t_stroke)

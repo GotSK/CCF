@@ -12,20 +12,20 @@ import os
 import json
 
 from tornado.options import define, options, parse_command_line
-import commandConfig
+import config
 import queue
 import GameControlThread
 from threading import Thread
 define("port", default=8888, help="run on the given port", type=int)
-#Websocketkommunikation
+#Websocketkommunikation <- done
 #Aggregationsmechanismen finalisieren
-#Lag auf 0 reduzieren
 #Backend gamification
+#Lag auf 0 reduzieren <- done, 1,5s muss zunÃ¤chst reichen
 
-#für 16.02
+#fï¿½r 16.02
 
 #GUI 23.02
-#30.02 konzept für mouse input
+#30.02 konzept fï¿½r mouse input
 
 clientId = 0
 clients = []
