@@ -38,7 +38,7 @@ class BasicCrowdAggregator():
         self.ballot = {}
         self.usersVoted = {}
     
-class MajorityVoteCrowdAggregator(BasicCrowdAggregator):      
+class MajorityVoteCrowdAggregator(BasicCrowdAggregator):
     def getVoteResult(self):
         if not self.ballot:
             return None
@@ -51,7 +51,7 @@ class CrowdWeightedVoteAggregator(BasicCrowdAggregator):
     #compliant decision yields baseMod * [percentage of winning vote] weight gain 
     #non compliant decision yields baseMod * ([percentage of winning vote] - [percentage of users vote]) weight loss
     
-    def __init__(self, tWindow, baseMod = 1, maxWeight = 10, minWeight = 0, initialWeight = 1):
+    def __init__(self, tWindow, baseMod = 1, maxWeight = 3, minWeight = 0, initialWeight = 1):
         super(CrowdWeightedVoteAggregator, self).__init__(tWindow)
         self.maxWeight = maxWeight
         self.baseMod = baseMod
@@ -86,8 +86,10 @@ class CrowdWeightedVoteAggregator(BasicCrowdAggregator):
         result = random.choice(resultlist)
         
         percentages = {k: round(float(self.ballot[k]/sum(list(self.ballot.values()))),3) for k in self.ballot.keys()}
+        
         self.updateWeights(percentages, resultlist)
         self.reset()
+        
         return result
     
     def reset(self):
@@ -102,4 +104,11 @@ class CrowdWeightedVoteAggregator(BasicCrowdAggregator):
                 else:
                     self.weightByUsername[user] = max(self.minWeight, self.weightByUsername[user] - (self.baseMod * (percentages[winners[0]] - percentages[self.usersVoted])) )
         
+class ActiveAggregator(BasicCrowdAggregator):
+    def __init__(self, tWindow, activeUsers = []):
+        super(ActiveAggregator,self).__init__(tWindow)
+        self.activeUsers = activeUsers
+        self.leader = None 
+        if self.activeUsers:
+            self.leader = random.choice(self.activeUsers)
     
