@@ -20,7 +20,7 @@ class GameControlThread(threading.Thread):
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
 
     def run(self):
-        aggregator = CrowdAggregator.MajorityVoteCrowdAggregator(10000)
+        aggregator = CrowdAggregator.MajorityVoteCrowdAggregator(3000)
         dueTime = aggregator.getTimeWindow() + self.currentTimeMillisec() 
         while not self.stoprequest.isSet():
             if self.updaterequest.isSet():
