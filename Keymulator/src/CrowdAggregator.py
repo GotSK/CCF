@@ -6,7 +6,8 @@ Created on 05.01.2015
 import random
 
 class BasicCrowdAggregator():
-    def __init__(self, tWindow):
+    def __init__(self, tWindow, db):
+        self.db = db
         self.timeWindow = tWindow
         self.usersVoted = {}
         self.ballot = {}
@@ -103,12 +104,92 @@ class CrowdWeightedVoteAggregator(BasicCrowdAggregator):
                     self.weightByUsername[user] = min(self.maxWeight, self.weightByUsername[user] + (self.baseMod * percentages[self.usersVoted]))
                 else:
                     self.weightByUsername[user] = max(self.minWeight, self.weightByUsername[user] - (self.baseMod * (percentages[winners[0]] - percentages[self.usersVoted])) )
-        
+
 class ActiveAggregator(BasicCrowdAggregator):
     def __init__(self, tWindow, activeUsers = []):
         super(ActiveAggregator,self).__init__(tWindow)
         self.activeUsers = activeUsers
         self.leader = None 
+
+    
+    def addVote(self, vote, username):
+        if username not in self.activeUsers:
+            self.activeUsers.append(username)
+        BasicCrowdAggregator.addVote(self, vote, username)
+    
+    def getVoteResult(self):
+        result = None
+        while(result is None and len(self.activeUsers)>0):
+            if self.leader in self.usersVoted.keys():
+                result = self.usersVoted[self.leader]
+            else:
+                self.activeUsers.remove(self.leader)
+                self.setNewRandomLeader()
+        self.reset()
+        return result
+                
+    def setNewRandomLeader(self):
         if self.activeUsers:
             self.leader = random.choice(self.activeUsers)
+        else:
+            self.leader = None
+
+class LeaderAggregator(CrowdWeightedVoteAggregator):
+    def __init__(self, tWindow, baseMod=1, maxWeight=3, minWeight=0, initialWeight=1, activeUsers = []):
+        CrowdWeightedVoteAggregator.__init__(self, tWindow, baseMod=baseMod, maxWeight=maxWeight, minWeight=minWeight, initialWeight=initialWeight)
+        self.activeUsers = activeUsers
+        self.leader = None
+    def addVote(self, vote, username):
+        if username not in self.activeUsers:
+            self.activeUsers.append(username)
+        CrowdWeightedVoteAggregator.addVote(self, vote, username)
     
+    def getVoteResult(self):
+        if not self.ballot:
+            return None
+        
+        result = None
+        
+        while(result is None and len(self.activeUsers)>0):
+            if self.leader in self.usersVoted.keys():
+                result = self.usersVoted[self.leader]
+            else:
+                self.activeUsers.remove(self.leader)
+                self.setNewRandomLeader()
+        
+        percentages = {k: round(float(self.ballot[k]/sum(list(self.ballot.values()))),3) for k in self.ballot.keys()}
+        resultlist = [x for x in self.ballot.keys() if self.test(x, self.ballot)]
+        
+        self.updateWeights(percentages, resultlist)
+        self.reset()
+        
+        return result
+    
+    def setNewRandomLeader(self):
+        if self.activeUsers:
+            leaderCandidates = [x for x in self.activeUsers if self.test(x, self.weightByUsername)]
+            self.leader = random.choice(leaderCandidates)
+        else:
+            self.leader = None
+              
+class ExpertiseWeightedVote(CrowdWeightedVoteAggregator):        
+        def __init__(self, tWindow, baseMod=1, maxWeight=3, minWeight=0, initialWeight=1, repFactor = 0.1):
+            self.repFactor = repFactor
+            CrowdWeightedVoteAggregator.__init__(self, tWindow, baseMod=baseMod, maxWeight=maxWeight, minWeight=minWeight, initialWeight=initialWeight)
+            for username in self.db.userByName.keys():
+                self.weightByUsername[username] = min(max(self.minWeight, self.db.getReputationByName(username) * self.repFactor), self.maxWeight)
+        def updateWeights(self, percentages, winners):
+            for username in self.db.userByName.keys():
+                self.weightByUsername[username] = min(max(self.minWeight, self.db.getReputationByName(username) * self.repFactor), self.maxWeight)
+                
+class ProletarianAggregator(CrowdWeightedVoteAggregator):
+        def __init__(self, tWindow, baseMod=1, maxWeight=3, minWeight=0, initialWeight=1, repFactor = 0.1, minRep = 1):
+            self.repFactor = repFactor
+            self.minRep = minRep
+            CrowdWeightedVoteAggregator.__init__(self, tWindow, baseMod=baseMod, maxWeight=maxWeight, minWeight=minWeight, initialWeight=initialWeight)
+            for username in self.db.userByName.keys():
+                if self.db.getReputationByName(username) >= self.minRep:
+                    self.weightByUsername[username] = min(max(self.minWeight, self.maxWeight - self.db.getReputationByName(username) * self.repFactor), self.maxWeight)
+        def updateWeights(self, percentages, winners):
+            for username in self.db.userByName.keys():
+                self.weightByUsername[username] = min(max(self.minWeight, self.db.getReputationByName(username) * self.repFactor), self.maxWeight)
