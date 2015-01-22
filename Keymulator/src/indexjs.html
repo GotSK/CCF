@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title>Collaborative Crowd Gameplay</title>
+    <link rel="stylesheet" type="text/css" href="{{ static_url("main.css") }}">
+	<script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+	
+	<script>
+	ws = new WebSocket("ws://" + window.location.host + "/ws?Id=123456789");
+	function ChatCtrl($scope) {
+    	
+        $scope.msgs = [];
+        $scope.inputText = "";
+        $scope.author = "Jane Doe #" + Math.floor((Math.random() * 100) + 1);
+
+
+        /** posting chat text to server */
+        $scope.submitMsg = function () {
+        	ws.send(JSON.stringify(	{ message: $scope.inputText, author: $scope.author, time: (new Date()).toUTCString(), type:"chatMsg"} ));
+            $scope.inputText = "";
+        };
+
+        /** handle incoming messages: add to messages array */
+        ws.onmessage = function (msg) {
+            $scope.$apply(function () { $scope.msgs.push(JSON.parse(msg.data)); });
+        };
+
+    }
+	</script>
+  	</head>
+ 
+ <body>
+ 		<!--  style="width: 50%; height: 40em; overflow: scroll; font-family: Arial; float:right" -->
+	<!-- http://www.gilesthomas.com/2013/02/a-super-simple-chat-app-with-angularjs-sockjs-and-node-js/ -->
+
+<div ng-controller="ChatCtrl">
+    <div id="header">
+        Your Name: <input type="text" name="author" id="userField" value="John Doe"
+          ng-model="author" />
+    </div>
+
+    <div id="chat">
+        <div class=" msg" ng-repeat="msg in msgs | limitTo:-10"
+        ng-class="msg.author !== author ? 'others' : ''"
+        data-ng-show="hidden == false" data-ng-hide="hidden == true"
+        data-ng-animate="'fadeIn'"><br/>
+            <strong>{{!msg.author}} [{{!msg.time}}]: </strong>{{!msg.message}}<br/>
+        </div>
+    </div>
+
+    <div id="footer">
+        <form ng-submit="submitMsg()">
+            Say something: <input type="text" name="chat" id="textField"
+              ng-model="inputText" />
+            <input type="button" id="saySomething" value="Submit"
+              ng-click="submitMsg()" />
+        </form>
+    </div>
+</div>
+
+
+
+<!--  
+	<div class="player" id="myElement" >Loading...</div>
+	<script type="text/javascript">
+	    jwplayer("myElement").setup({
+	        file: "rtmp://192.168.0.101/live/flv:test",
+	        height: 570,
+	        width: 385
+
+	    });
+	</script>
+	<!-- file: "rtmp://192.168.178.33/live/flv:test", Laptop KURANES  -->
+	<!-- file: "rtmp://192.168.178.20/live/flv:test", Desktop MIDGARD -->
+
+	
+	
+    
+  </body>
+</html>

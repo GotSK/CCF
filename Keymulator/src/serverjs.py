@@ -70,10 +70,6 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
   def on_message(self, message):        
     print (message)
     #KeyCtl.test()
-    print (json.loads(message)['message'])
-    print (idByClient[self] )
-    if json.loads(message)['type']=='chatMsg' or json.loads(message)['type'] == 'keystroke':
-        controlInputQueue.put(message)
     
     for client in clients:
           client.write_message(message)

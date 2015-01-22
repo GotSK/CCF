@@ -9,8 +9,9 @@ import win32ui
 
 class GameControlThread(threading.Thread):
 
-    def __init__(self, inputQ, outputQ, clientQ):
+    def __init__(self, inputQ, outputQ, clientQ, db):
         super(GameControlThread, self).__init__()
+        self.db = db
         self.inputQ = inputQ
         self.outputQ = outputQ
         self.clientQ = clientQ
@@ -20,7 +21,7 @@ class GameControlThread(threading.Thread):
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
 
     def run(self):
-        aggregator = CrowdAggregator.MajorityVoteCrowdAggregator(10000)
+        aggregator = CrowdAggregator.MajorityVoteCrowdAggregator(10000, self.db)
         dueTime = aggregator.getTimeWindow() + self.currentTimeMillisec() 
         while not self.stoprequest.isSet():
             if self.updaterequest.isSet():
