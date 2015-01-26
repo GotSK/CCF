@@ -1,0 +1,36 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+            <a class="navbar-brand" href="#/">CCG</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#/contact">Shop</a>
+                </li>
+                <li><a href="#/contact">Log</a>
+                </li>
+  				<li><p><div class="text-center"><a href class="btn btn-warning" ng-controller="ChatCtrl">Influence  <span class="badge">{{influence}}</span></a></p></div>
+                </li>
+                <li><p><div class="text-center"><a href class="btn btn-info" ng-controller="ChatCtrl">Reputation  <span class="badge">{{reputation}}</span></a></p></div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li> <a ng-controller="ChatCtrl" ng-show="author">{{author}}</a>
+                </li>
+                <li><p><div class="text-center"><a href class="btn btn-primary btn-sm" ng-click="showComplex()" ng-controller="ChatCtrl">Set User</a></p></div>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>

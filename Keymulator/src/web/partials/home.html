@@ -1,0 +1,108 @@
+<div class="section-colored" ng-controller="ChatCtrl">
+
+    <div class="container">
+
+        <div class="row">        
+            <div class="col-md-4">
+				<embed
+				    id="tv"
+				    name="tv"
+				    type="application/x-vlc-plugin"
+				    pluginspage="http://www.videolan.org" version="VideoLAN.VLCPlugin.2"
+				    width=386 height=578
+				    autoplay="yes"
+				    enablejavascript="true"
+				    target="http://192.168.178.20:8080"
+				    align=center 
+				    style="padding-right: 15px"
+				    />
+				<!--  target="http://192.168.1.188:8080" -->
+            </div>
+            <div class="col-md-4">
+
+				<div class="row">
+                	<div>
+               			<!--  <div class="form-group col-lg-4"><input type="text" name="author" class="form-control" id="userField" value="Username" ng-model="author" /></div>-->
+	                    <div class="clearfix"></div>
+	                    <div class="panel panel-default" style="min-height: 578px; max-height: 578px;overflow-y: scroll;">
+		                    <div class="panel-body" ng-repeat="msg in msgs | limitTo:-20"
+						        ng-class="msg.author !== author ? 'others' : ''"
+						        data-ng-show="hidden == false" data-ng-hide="hidden == true"
+						        data-ng-animate="'fadeIn'" style="padding-left: 15px; padding-right: 5px; padding-top: 2px; padding-bottom: 2px;">
+		                        <strong>{{msg.author}}:</strong> {{msg.message}}<button type="button" class="btn btn-success btn-xs pull-right" ng-click="upvoteMsg(msg)" ng-disabled="upvotedAuthors.indexOf(msg.author) > -1">+</button>
+		                    </div>
+	                	</div>
+
+				        <form ng-submit="submitMsg()"  class="form-horizontal pull-right">
+							<input type="text" name="chat" id="textField" ng-model="inputText" />
+                        	<button type="submit" class="btn btn-primary">Submit</button>
+				        </form>
+
+                    </div>
+                    <!--  
+                    <div class="form-group col-lg-8">
+                        <label for="input4">Message</label>
+                        <textarea name="contact_message" class="form-control" rows="6" id="input4"></textarea>
+                    </div>
+					-->
+                    
+                </div>
+            </div>
+           	<div class="col-md-4">
+	                <div class="panel panel-default">
+	                    <div class="panel-heading">
+	                        <h4><i ng-model="currentMode" class="fa fa-fw fa-compass"></i>{{currentMode}}</h4>
+	                    </div>
+	                    <div class="panel-body">
+	                    <select ng-options="o for o in voteOptions" ng-model="userVoted"><option value=''>-- chose gamemode --</option></select>
+	                    <button ng-click="submitVote()" class="btn btn-primary">Vote!</button>
+	                    
+	                    </div>
+
+	                </div>
+	            </div>
+	            <div class="col-md-4">
+	                <div class="panel panel-default">
+	                    <div class="panel-heading">
+	                        <h4><i ng-model="currentMode" class="fa fa-fw fa-compass"></i>{{currentMode}}</h4>
+	                    </div>
+	                    <div class="panel-body">
+	                    <select ng-options="o for o in voteOptions" ng-model="userVoted"><option value=''>-- chose gamemode --</option></select>
+	                    <button ng-click="submitVote()" class="btn btn-primary">Vote!</button>
+	                    
+	                    </div>
+
+	                </div>
+	            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.section-colored -->
+
+<div class="section" >
+    <div class="container">
+
+        <div class="row">
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.section -->
+
+<div class="container">
+
+    <div class="row well">
+        
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->

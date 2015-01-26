@@ -9,7 +9,7 @@ import win32ui
 
 class GameControlThread(threading.Thread):
 
-    def __init__(self, inputQ, outputQ, clientQ, db):
+    def __init__(self, inputQ, outputQ, clientQ, db, modes):
         super(GameControlThread, self).__init__()
         self.db = db
         self.inputQ = inputQ
@@ -19,6 +19,8 @@ class GameControlThread(threading.Thread):
         self.updaterequest = threading.Event()
         self.clients = []
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
+        self.modes = modes
+        self.currentMode = modes[1]
 
     def run(self):
         aggregator = CrowdAggregator.MajorityVoteCrowdAggregator(10000, self.db)
@@ -45,8 +47,11 @@ class GameControlThread(threading.Thread):
                     #print('vote result is '+ result)
                     for client in self.clients:
                         client.write_message(json.dumps({'type':'chatMsg', 'message':'vote result is '+ result, 'author':'[SYSTEM]'}))
+                        client.write_message(json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'}))
                     self.executeCommandMessage(result)
-                else: 
+                else:
+                    for client in self.clients:
+                        client.write_message(json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'})) 
                     print('No participants in this vote')
                     
                 dueTime = aggregator.getTimeWindow() + self.currentTimeMillisec()
