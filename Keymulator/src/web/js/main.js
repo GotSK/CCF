@@ -52,7 +52,7 @@ app.factory( 'UserService', function() {
 
 	  var currentUser = {
 			username: "J. Doe #" + Math.floor((Math.random() * 100) + 1),
-	  		influence: 0,
+	  		influence: 3,
 	  		reputation: 5,
 	  		achievements: [],
 	  		availableItems:[item1, item2, item3, item4] ,
@@ -70,7 +70,7 @@ app.factory( 'UserService', function() {
  * Controls all other Pages
  */
 app.controller('PageCtrl', function (/* $scope, $location, $http */) {
-  console.log("Page Controller reporting for duty.");
+  //console.log("Page Controller reporting for duty.");
 
   // Activates the Carousel
   $('.carousel').carousel({
@@ -113,10 +113,10 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	
     	$scope.sendDirectInput = function($event) {
     		if ($scope.directInput){
-    			console.log(event)
+    			//console.log(event)
     			if ($scope.userCommand == null){
     				$scope.userCommand = String.fromCharCode($event.keyCode);
-    				console.log(String.fromCharCode($event.keyCode));
+    				//console.log(String.fromCharCode($event.keyCode));
     			}
     			UserService.ws.send(JSON.stringify(	{ message: String($event.which), author: UserService.username, time: (new Date()).toUTCString(), type:"keystroke"} ));
     		}
@@ -153,10 +153,10 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         		
     	      });
     	    });
-        	console.log(init)
+        	//console.log(init)
         	if (!init){
 
-        		console.log(UserService.userFeatured)
+        		//console.log(UserService.userFeatured)
         		init = true;
         		UserService.ws.send(JSON.stringify(	{ message: "", author: UserService.username, time: (new Date()).toUTCString(), type:"voteRequest"} ));
         	}
@@ -169,12 +169,13 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
       	      windowClass: 'right-modal',
       	      inputs: {
       	        title: "Shop 'til you drop!",
-      	        items: UserService.availableItems
+      	        items: UserService.availableItems,
+      	        influence: UserService.influence
       	      }
       	    }).then(function(modal) {
       	      modal.element.modal();
       	      modal.close.then(function(result) {
-      	    	  console.log(result.chosen);
+      	    	  //console.log(result.chosen);
       	    	  if(result.chosen){
       	    		  	UserService.ws.send(JSON.stringify(	{ message: JSON.stringify(result.chosen), author: UserService.username, time: (new Date()).toUTCString(), type:"purchase"} ));
               	    	UserService.boughtItems.push(result.chosen);
@@ -200,7 +201,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         		if (JSON.parse(msg.data).type == "commandResult"){
         			$scope.userCommand = null;
         		}
-        		console.log(msg);
+        		//console.log(msg);
         		//console.log("Featured: "+ $scope.featuredUser + " with message " + $scope.featuredmsg.message + " || In User Service: " + UserService.userFeatured + " || This author: " + msg.data.author);
         		//console.log(msg.data.author == UserService.userFeatured);
         	} 
@@ -263,10 +264,11 @@ app.controller('ComplexController', ['$scope', '$element', 'title', 'close',
 }]);
 
 //Shop
-app.controller('ShopController', ['$scope', '$element', 'title', 'items', 'close',
-                                 	function($scope, $element, title, items, close) {
+app.controller('ShopController', ['$scope', '$element', 'title', 'items', 'influence', 'close',
+                                 	function($scope, $element, title, items, influence, close) {
                                  		$scope.items = items;
                                  		$scope.title = title;
+                                 		$scope.influence = influence;
                                  		$scope.chosen = null
                                  		// This close function doesn't need to use jQuery or bootstrap, because
                                  		// the button has the 'data-dismiss' attribute.

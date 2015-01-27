@@ -68,14 +68,17 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
     #KeyCtl.test()
     print (json.loads(message)['message'])
     print ("Client ID:" + str(idByClient[self]) )
-    if json.loads(message)['type']=='chatMsg' or json.loads(message)['type'] == 'keystroke':
+    if json.loads(message)['type'] in ['chatMsg', 'keystroke', 'purchase'] :
         jmessage = json.loads(message)
         controlInputQueue.put(jmessage)
     elif json.loads(message)['type']=='voteRequest':
         for vote in votingOptions:
-              self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'}))
-    for client in clients:
-          client.write_message(message)
+            self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'})) 
+    
+    
+    if json.loads(message)['type']=='chatMsg' or json.loads(message)['type']=='featureUser':
+        for client in clients:
+            client.write_message(message)
           
         
   def on_close(self):

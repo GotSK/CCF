@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">{{title}}</h4>
+        <h4 class="modal-title">{{title}}{{influence}}</h4>
       </div>
       <div class="modal-body">
         <div class="container">
@@ -21,7 +21,7 @@
 		                <ul class="list-group">
 		                	<li class="list-group-item"><h3>{{item.cost}}</h3> Influence
 		                    </li>
-		                    <li class="list-group-item"><a class="btn btn-primary" ng-click="close(item)" data-dismiss="modal">Buy Item!</a>
+		                    <li class="list-group-item"><a class="btn btn-primary" ng-click="close(item)" ng-disabled="influence < item.cost" data-dismiss="modal">Buy Item!</a>
 		                    </li>
 		                </ul>
 		            </div>
@@ -41,7 +41,7 @@
 		                <ul class="list-group">
 		                	<li class="list-group-item"><h3>{{item.cost}}</h3> Influence
 		                    </li>
-		                    <li class="list-group-item"><a class="btn btn-primary" ng-click="close(item)" data-dismiss="modal">Buy Item!</a>
+		                    <li class="list-group-item"><a class="btn btn-primary" ng-click="close(item)" ng-disabled="influence < item.cost" data-dismiss="modal">Buy Item!</a>
 		                    </li>
 		                </ul>
 		            </div>

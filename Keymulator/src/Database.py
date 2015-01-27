@@ -1,6 +1,7 @@
 '''
 @author: Christian
 '''
+import config, Item
 class UserAlreadyExistsError(Exception):
 
     def __init__(self, username):
@@ -22,13 +23,14 @@ class NoSuchUserError(Exception):
         return str(self.msg)
     
     __repr__ = __str__
-
+    
 class User():
     
     def __init__(self, name, reputation, influence):
         self.name = name
         self.reputation = reputation
         self.influence = influence
+        self.items = []
     
     def modifyInfluence(self, mod):
         self.influence += mod
@@ -42,16 +44,27 @@ class User():
     def setReputation(self, rep):
         self.reputation = rep
 
+    def addItem(self, item):
+        self.items.append(item)
+        
+    def removeItem(self, item):
+        self.items.remove(item)
+
 class Database():
-    def __init__(self, initRep = 0, initInfl = 0):
+    def __init__(self, initRep = 0, initInfl = 0, items = config.availableItems):
         #replace this with an actual DB / table
         self.users = []
         #redundand
         self.userByName = {}
         
+        self.availableItems = items
         self.log = []
         self.initialReputation = initRep
         self.initialInfluence = initInfl
+        
+    def userPurchase(self, username, item):
+        self.userByName[username].modifyInfluence(-item.cost)
+        self.userByName[username].addItem(item)
 
     def addUser(self, username, initRep = None, initInfl = None):
         if username in self.userByName.keys():
