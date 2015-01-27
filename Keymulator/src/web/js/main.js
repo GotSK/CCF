@@ -25,15 +25,45 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 app.factory( 'UserService', function() {
+	//fixed items for testing purposes:
+	var item1 = {
+			name: "Item1",
+			cost: 1,
+			description:"Description 1"
+	};
+	var item2 = {
+			name: "Item2",
+			cost: 2,
+			description:"Description 2"
+	};
+	var item3 = {
+			name: "Item3",
+			cost: 3,
+			description:"Description 3"
+	};
+	var item4 = {
+			name: "Item4",
+			cost: 4,
+			description:"Description 4"
+	};
+	
+	
+	// ------------
+
 	  var currentUser = {
 			username: "J. Doe #" + Math.floor((Math.random() * 100) + 1),
 	  		influence: 0,
 	  		reputation: 5,
 	  		achievements: [],
+	  		availableItems:[item1, item2, item3, item4] ,
+	  		boughtItems:[],
+	  		userFeatured: null,
 	  		ws: new WebSocket("ws://" + window.location.host + "/ws?Id=123456789")
+			
 	  };
 	  return currentUser;
 	});
+
 
 
 /**
@@ -56,24 +86,50 @@ app.controller('PageCtrl', function (/* $scope, $location, $http */) {
   //Controls the chat
 app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         $scope.msgs = [];
+        $scope.featuredUser = UserService.featuredUser;
+        $scope.featuredmsg = null;
         $scope.inputText = "";
         $scope.author = UserService.username;
         $scope.upvotedAuthors = [];
         $scope.influence = UserService.influence;
-        $scope.influence = UserService.reputation;
+        $scope.reputation = UserService.reputation;
     	$scope.voteOptions = [];
     	$scope.userVoted = null;
     	$scope.currentMode = null;
-    	
+    	$scope.directInput = false;
+    	$scope.userCommand = null;
         //console.log("checkin " + $scope.author);
         var init = false;
+        
+    	$scope.activateDirectInputMode = function(){
+    		console.log("direct input activated")
+    		$scope.directInput = true;
+
+    	}
+    	$scope.deactivateDirectInputMode = function(){
+    		console.log("direct input deactivated")
+    		$scope.directInput = false;
+    	}
+    	
+    	$scope.sendDirectInput = function($event) {
+    		if ($scope.directInput){
+    			console.log(event)
+    			if ($scope.userCommand == null){
+    				$scope.userCommand = String.fromCharCode($event.keyCode);
+    				console.log(String.fromCharCode($event.keyCode));
+    			}
+    			UserService.ws.send(JSON.stringify(	{ message: String($event.which), author: UserService.username, time: (new Date()).toUTCString(), type:"keystroke"} ));
+    		}
+    		
+    	}
+    	
         $scope.submitVote = function () {
         	UserService.ws.send(JSON.stringify(	{ message: $scope.userVoted, author: UserService.username, time: (new Date()).toUTCString(), type:"modeVote"} ));
         };
         
         /** posting chat text to server */
         $scope.submitMsg = function () {
-        	console.log($scope.voteOptions);
+        	//console.log($scope.voteOptions);
         	UserService.ws.send(JSON.stringify(	{ message: $scope.inputText, author: UserService.username, time: (new Date()).toUTCString(), type:"chatMsg"} ));
             $scope.inputText = "";
         };
@@ -90,14 +146,43 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	      modal.element.modal();
     	      modal.close.then(function(result) {
     	    	UserService.username = result.name;
+    	    	
+        		//always feature yourself next after introduction- remove this later
+        		//UserService.userFeatured = UserService.username;
+        		UserService.ws.send(JSON.stringify(	{ message: UserService.username, author: UserService.username, time: (new Date()).toUTCString(), type:"featureUser"} ));
+        		
     	      });
     	    });
         	console.log(init)
         	if (!init){
+
+        		console.log(UserService.userFeatured)
         		init = true;
         		UserService.ws.send(JSON.stringify(	{ message: "", author: UserService.username, time: (new Date()).toUTCString(), type:"voteRequest"} ));
         	}
     	  };
+    	  
+        $scope.showShop = function() {
+      	    ModalService.showModal({
+      	      templateUrl: "web/partials/shop.html",
+      	      controller: "ShopController",
+      	      windowClass: 'right-modal',
+      	      inputs: {
+      	        title: "Shop 'til you drop!",
+      	        items: UserService.availableItems
+      	      }
+      	    }).then(function(modal) {
+      	      modal.element.modal();
+      	      modal.close.then(function(result) {
+      	    	  console.log(result.chosen);
+      	    	  if(result.chosen){
+      	    		  	UserService.ws.send(JSON.stringify(	{ message: JSON.stringify(result.chosen), author: UserService.username, time: (new Date()).toUTCString(), type:"purchase"} ));
+              	    	UserService.boughtItems.push(result.chosen);
+      	    	  }
+
+      	      });
+      	    });
+      	  };
     	  
     	$scope.upvoteMsg = function (msg) {
           	UserService.ws.send(JSON.stringify(	{ message: msg.author, author: UserService.username, time: (new Date()).toUTCString(), type:"upvoteMsg"} ));
@@ -107,12 +192,25 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         /** handle incoming messages: add to messages array */
         UserService.ws.onmessage = function (msg) {
         	$scope.$apply(function (){
-        	if (JSON.parse(msg.data).type == "chatMsg" ){
-        		$scope.msgs.push(JSON.parse(msg.data));} 
+        	if (JSON.parse(msg.data).type == "chatMsg" || JSON.parse(msg.data).type == "commandResult" ){
+        		$scope.msgs.push(JSON.parse(msg.data));
+        		if(JSON.parse(msg.data).author == UserService.userFeatured){
+        			$scope.featuredmsg = JSON.parse(msg.data);
+        		}
+        		if (JSON.parse(msg.data).type == "commandResult"){
+        			$scope.userCommand = null;
+        		}
+        		console.log(msg);
+        		//console.log("Featured: "+ $scope.featuredUser + " with message " + $scope.featuredmsg.message + " || In User Service: " + UserService.userFeatured + " || This author: " + msg.data.author);
+        		//console.log(msg.data.author == UserService.userFeatured);
+        	} 
+
             else if (JSON.parse(msg.data).type == "voteOption"){
             	$scope.voteOptions.push(JSON.parse(msg.data).message);}
             else if(JSON.parse(msg.data).type == "modeResult"){
             	$scope.currentMode = JSON.parse(msg.data).message;}
+        	else if(JSON.parse(msg.data).type == "featureUser"){
+        		UserService.userFeatured = JSON.parse(msg.data).message;}
                    	
         	})};
         
@@ -128,11 +226,16 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         	  // handle it here:
         	  $scope.reputation = reputation;
         	});
+        $scope.$watch( function () { return UserService.userFeatured; }, function ( usr ) {
+      	  // handle it here:
+      	  $scope.featuredUser = usr;
+      	});
         
 
     });
 
-//Modal Controller
+//Modal Controllers
+//Username Menu
 app.controller('ComplexController', ['$scope', '$element', 'title', 'close',
 	function($scope, $element, title, close) {
 		$scope.name = null;
@@ -158,3 +261,28 @@ app.controller('ComplexController', ['$scope', '$element', 'title', 'close',
 			}, 500); // close, but give 500ms for bootstrap to animate
 		};
 }]);
+
+//Shop
+app.controller('ShopController', ['$scope', '$element', 'title', 'items', 'close',
+                                 	function($scope, $element, title, items, close) {
+                                 		$scope.items = items;
+                                 		$scope.title = title;
+                                 		$scope.chosen = null
+                                 		// This close function doesn't need to use jQuery or bootstrap, because
+                                 		// the button has the 'data-dismiss' attribute.
+                                 		$scope.close = function(item) {
+                                 			close({
+                                 			chosen: item,
+                                 			}, 500); // close, but give 500ms for bootstrap to animate
+                                 			};
+                                 			// This cancel function must use the bootstrap, 'modal' function because
+                                 			// the doesn't have the 'data-dismiss' attribute.
+                                 			$scope.cancel = function(item) {
+                                 			// Manually hide the modal.
+                                 			$element.modal('hide');
+                                 			// Now call close, returning control to the caller.
+                                 			close({
+                                 			chosen: item,
+                                 			}, 500); // close, but give 500ms for bootstrap to animate
+                                 		};
+                                 }]);

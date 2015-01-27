@@ -14,6 +14,15 @@ commands = {
             '68':'d'
             }
 
+
+commandsToControl = {
+                     'w':'Up',
+                     'a':'Left',
+                     's':'Down',
+                     'd':'Right'
+                     
+                     }
+
 inputMap = {
             'w': 0x57,
             'd':0x44,

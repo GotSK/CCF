@@ -37,8 +37,9 @@ class GameControlThread(threading.Thread):
             if self.currentTimeMillisec() >= dueTime:
                 try:
                     jmessage = self.inputQ.get(True, max(float((dueTime - self.currentTimeMillisec())/1000), 0.001))
-                    if json.loads(jmessage)['message'] in config.commands.keys():
-                        aggregator.addVote(json.loads(jmessage)['message'], json.loads(jmessage)['author'])
+                    if jmessage['message'] in config.commands.keys():
+                        jmessage['message'] = config.commands[jmessage['message']]
+                        aggregator.addVote(jmessage['message'], jmessage['author'])
 
                 except queue.Empty:
                     pass
@@ -46,7 +47,7 @@ class GameControlThread(threading.Thread):
                 if result is not None:
                     #print('vote result is '+ result)
                     for client in self.clients:
-                        client.write_message(json.dumps({'type':'chatMsg', 'message':'vote result is '+ result, 'author':'[SYSTEM]'}))
+                        client.write_message(json.dumps({'type':'commandResult', 'message':'vote result is '+ result, 'author':'[SYSTEM]'}))
                         client.write_message(json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'}))
                     self.executeCommandMessage(result)
                 else:
@@ -58,9 +59,10 @@ class GameControlThread(threading.Thread):
             else: 
                 try:
                     jmessage = self.inputQ.get(True, float((dueTime - self.currentTimeMillisec())/1000))
-                    if json.loads(jmessage)['message'] in config.commands.keys():
-                        aggregator.addVote(json.loads(jmessage)['message'], json.loads(jmessage)['author'])
-                        print('added  ' + json.loads(jmessage)['message'] + ' by ' + json.loads(jmessage)['author'] + '  to vote' )
+                    if jmessage['message'] in config.commands.keys():
+                        jmessage['message'] = config.commands[jmessage['message']]
+                        aggregator.addVote(jmessage['message'], jmessage['author'])
+                        print('added  ' + jmessage['message'] + ' by ' + jmessage['author'] + '  to vote' )
                 except queue.Empty:
                     continue
 
@@ -77,9 +79,9 @@ class GameControlThread(threading.Thread):
             KeyCtl.sendImmediateKeystroke(config.commands[sm])
             
     def executeCommandMessage(self, cm):
-        if cm in config.commands.keys():
+        if cm in config.inputMap.keys():
             try:
-                KeyCtl.sendImmediateKeystroke(config.commands[cm])
+                KeyCtl.sendImmediateKeystroke(cm)
             except win32ui.error:
                 print ('Failed to select focus window!')            
             

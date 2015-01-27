@@ -14,9 +14,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="#/contact">Shop</a>
-                </li>
-                <li><a href="#/contact">Log</a>
+                <li><a href ng-click="showShop()" ng-controller="ChatCtrl">Shop</a>
                 </li>
   				<li><p><div class="text-center"><a href class="btn btn-warning" ng-controller="ChatCtrl">Influence  <span class="badge">{{influence}}</span></a></p></div>
                 </li>
@@ -27,6 +25,8 @@
                 <li> <a ng-controller="ChatCtrl" ng-show="author">{{author}}</a>
                 </li>
                 <li><p><div class="text-center"><a href class="btn btn-primary btn-sm" ng-click="showComplex()" ng-controller="ChatCtrl">Set User</a></p></div>
+                </li>
+                <li><a href="#/contact">Log</a>
                 </li>
             </ul>
         </div>

@@ -1,4 +1,4 @@
-<div class="section-colored" ng-controller="ChatCtrl">
+<div class="section-colored" ng-controller="ChatCtrl" ng-keyup=>
 
     <div class="container">
 
@@ -9,12 +9,11 @@
 				    name="tv"
 				    type="application/x-vlc-plugin"
 				    pluginspage="http://www.videolan.org" version="VideoLAN.VLCPlugin.2"
-				    width=386 height=578
+				    width=386 height=571
 				    autoplay="yes"
 				    enablejavascript="true"
 				    target="http://192.168.178.20:8080"
-				    align=center 
-				    style="padding-right: 15px"
+				    windowless="true"
 				    />
 				<!--  target="http://192.168.1.188:8080" -->
             </div>
@@ -24,12 +23,12 @@
                 	<div>
                			<!--  <div class="form-group col-lg-4"><input type="text" name="author" class="form-control" id="userField" value="Username" ng-model="author" /></div>-->
 	                    <div class="clearfix"></div>
-	                    <div class="panel panel-default" style="min-height: 578px; max-height: 578px;overflow-y: scroll;">
+	                    <div class="panel panel-default" style="min-height: 571px; max-height: 571px;overflow-y: scroll;">
 		                    <div class="panel-body" ng-repeat="msg in msgs | limitTo:-20"
 						        ng-class="msg.author !== author ? 'others' : ''"
 						        data-ng-show="hidden == false" data-ng-hide="hidden == true"
 						        data-ng-animate="'fadeIn'" style="padding-left: 15px; padding-right: 5px; padding-top: 2px; padding-bottom: 2px;">
-		                        <strong>{{msg.author}}:</strong> {{msg.message}}<button type="button" class="btn btn-success btn-xs pull-right" ng-click="upvoteMsg(msg)" ng-disabled="upvotedAuthors.indexOf(msg.author) > -1">+</button>
+		                        <strong>{{msg.author}}:</strong> {{msg.message}}<button type="button" class="btn btn-success btn-xs pull-right" ng-click="upvoteMsg(msg)" ng-disabled="upvotedAuthors.indexOf(msg.author) > -1 || msg.author == author || msg.author == '[SYSTEM]'" ng-show="msg.author !== author && msg.author !== '[SYSTEM]'">+</button>
 		                    </div>
 	                	</div>
 
@@ -61,14 +60,29 @@
 
 	                </div>
 	            </div>
+	             <div class="col-md-4">
+	                <div class="panel panel-default">
+	                    <div class="panel-heading">
+	                        <h4><i ng-model="currentMode" class="fa fa-eye"></i>  Focus Window: <span ng-show="featuredUser" class="label label-default">{{featuredUser}}</span></h4>
+	                    </div>
+	                    <div class="panel-body">
+		                    <div class="panel-body" 
+						        data-ng-show="hidden == false" data-ng-hide="hidden == true"
+						        data-ng-animate="'fadeIn'" style="padding-left: 15px; padding-right: 5px; padding-top: 2px; padding-bottom: 2px;">
+		                        <strong ng-show="featuredmsg">{{featuredmsg.author}}:</strong> {{featuredmsg.message}}<button type="button" class="btn btn-success btn-xs pull-right" ng-click="upvoteMsg(featuredmsg)" ng-disabled="upvotedAuthors.indexOf(featuredmsg.author) > -1 || featuredmsg.author == author || featuredmsg.author == '[SYSTEM]'" ng-show="featuredmsg.author !== author && featuredmsg.author !== '[SYSTEM]' && featuredmsg">+</button>
+		                    </div>
+	                    </div>
+
+	                </div>
+	            </div>
 	            <div class="col-md-4">
 	                <div class="panel panel-default">
 	                    <div class="panel-heading">
-	                        <h4><i ng-model="currentMode" class="fa fa-fw fa-compass"></i>{{currentMode}}</h4>
+	                        <h4><i ng-model="currentMode" class="fa fa-keyboard-o"></i>  Direct Input Vote: {{userCommand}} <span class="label label-success pull-right" ng-show="directInput">active</span></h4>
 	                    </div>
 	                    <div class="panel-body">
-	                    <select ng-options="o for o in voteOptions" ng-model="userVoted"><option value=''>-- chose gamemode --</option></select>
-	                    <button ng-click="submitVote()" class="btn btn-primary">Vote!</button>
+						<input type="text" name="Direct Input" value="Click here for Direct Input" readonly="readonly" ng-keyup="sendDirectInput($event)" ng-focus="activateDirectInputMode()" ng-blur="deactivateDirectInputMode()" class="form-control input-normal"/>
+	                    
 	                    
 	                    </div>
 
