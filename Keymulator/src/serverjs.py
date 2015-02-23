@@ -14,7 +14,8 @@ from Database import Database
 from tornado.options import define, options, parse_command_line
 import config
 import queue
-import GameControlThread
+import entities.CommunicationThread
+import entities.GameControlThread
 from threading import Thread
 define("port", default=8888, help="run on the given port", type=int)
 
@@ -26,16 +27,29 @@ clientById = {}
 idByClient = {}
 
 votingOptions =["Mob", "Majority Vote", "Crowd Weighted Vote", "Active", "Leader", "Expertise Weighted Vote", "Proletarian"]
-controlInputQueue = queue.Queue()
-controlOutputQueue = queue.Queue()
-clientUpdateQueue = queue.Queue()
 
-gameControl = GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, clientUpdateQueue, Database(), votingOptions)
+#initialize queues
+clientUpdateQueue = queue.Queue()
+communicationInputQueue = queue.Queue()
+communicationOutputQueue = queue.Queue()
+pManagementInputQueue = queue.Queue()
+pManagementOutputQueue = queue.Queue()
+loggingInputQueue = queue.Queue()
+loggingOutputQueue = queue.Queue()
+controlInputQueue = queue.Queue()
+controlOutputQueue = communicationInputQueue
+
+#initialize and start thread entities
+communication = entities.CommunicationThread.CommunicationThread(communicationInputQueue, communicationOutputQueue, clientUpdateQueue, controlInputQueue, pManagementInputQueue, loggingInputQueue)
+gameControl = entities.GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, Database(), votingOptions)
+
+
 gameControl.start()
+communication.start()
 
 def updateClientsGameControl():
     clientUpdateQueue.put(clients)
-    gameControl.updateClients()
+    communication.updateClients()
     
 class IndexHandler(tornado.web.RequestHandler):
   @tornado.web.asynchronous
@@ -68,15 +82,13 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
     #KeyCtl.test()
     print (json.loads(message)['message'])
     print ("Client ID:" + str(idByClient[self]) )
-    if json.loads(message)['type'] in ['chatMsg', 'keystroke', 'purchase'] :
-        jmessage = json.loads(message)
-        controlInputQueue.put(jmessage)
-    elif json.loads(message)['type']=='voteRequest':
+    if json.loads(message)['type']=='voteRequest':
         for vote in votingOptions:
-            self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'})) 
+            self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'}))         
+    else:
+        communicationInputQueue.put(message)
     
-    
-    if json.loads(message)['type']=='chatMsg' or json.loads(message)['type']=='featureUser':
+    if json.loads(message)['type']=='chatMsg':
         for client in clients:
             client.write_message(message)
           

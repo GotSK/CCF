@@ -3,6 +3,8 @@ Created on 05.01.2015
 
 @author: Christian
 '''
+
+#GAME CONTROLS
 import Item
 commands = {
             '!u':'w',
@@ -31,4 +33,42 @@ inputMap = {
             'a':0x41
             }
 
+#JSON IDENTIFIERS
+"""
+        SERVERJS:
+        From:
+        [all messages]
+        To:
+        nothing
+        
+        GAME CONTROL THREAD:
+        From:
+        result
+        To:
+        modeVote
+        keystroke
+        command
+        
+        PLAYER MANAGEMENT THREAD:
+        From:
+        update
+        To:
+        newUser
+        updateRequest
+        upvote
+        buy
+        
+        LOGGING THREAD
+        
+"""
+
+fromGameCtl = ['modeResult', 'commandResult' ]
+fromPlayerMng = ['update']
+
+toServer = []
+toGameCtl = ['modeVote', 'keystroke', 'command', 'chatMsg']
+toPlayerMng = ['newUser', 'updateRequest', 'upvote', 'buy']
+toBroadcast = ['commandResult', 'modeResult', 'featureUser']
+
+#SHOP
 availableItems = [Item.Item("Item1",1),Item.Item("Item2",2),Item.Item("Item3",3),Item.Item("Item4",4)]
