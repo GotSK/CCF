@@ -171,7 +171,7 @@ class LeaderAggregator(CrowdWeightedVoteAggregator):
             self.leader = random.choice(leaderCandidates)
         else:
             self.leader = None
-              
+#TODO: add db synchronization
 class ExpertiseWeightedVote(CrowdWeightedVoteAggregator):        
         def __init__(self, tWindow, baseMod=1, maxWeight=3, minWeight=0, initialWeight=1, repFactor = 0.1):
             self.repFactor = repFactor

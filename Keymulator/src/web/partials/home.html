@@ -1,3 +1,4 @@
+
 <div class="section-colored" ng-controller="ChatCtrl" ng-keyup=>
 
     <div class="container">
@@ -24,8 +25,8 @@
                 	<div>
                			<!--  <div class="form-group col-lg-4"><input type="text" name="author" class="form-control" id="userField" value="Username" ng-model="author" /></div>-->
 	                    <div class="clearfix"></div>
-	                    <div class="panel panel-default" style="min-height: 571px; max-height: 571px;overflow-y: scroll;">
-		                    <div class="panel-body" ng-repeat="msg in msgs | limitTo:-20"
+	                    <div class="panel panel-default" style="min-height: 571px; max-height: 571px;overflow-y: scroll;" scroll-glue>
+		                    <div class="panel-body" ng-repeat="msg in msgs "
 						        ng-class="msg.author !== author ? 'others' : ''"
 						        data-ng-show="hidden == false" data-ng-hide="hidden == true"
 						        data-ng-animate="'fadeIn'" style="padding-left: 15px; padding-right: 5px; padding-top: 2px; padding-bottom: 2px;">
@@ -35,7 +36,7 @@
 
 				        <form ng-submit="submitMsg()"  class="form-horizontal pull-right">
 							<input type="text" name="chat" id="textField" ng-model="inputText" />
-                        	<button type="submit" class="btn btn-primary">Submit</button>
+                        	<button type="submit" class="btn btn-primary" popover="I appeared on mouse enter!" popover-trigger="mouseenter">Submit</button>
 				        </form>
 
                     </div>
@@ -60,23 +61,10 @@
 
 	                </div>
 	        </div>
-           	<div class="col-md-4">
+	        <div class="col-md-4">
 	                <div class="panel panel-default">
 	                    <div class="panel-heading">
-	                        <h4><i ng-model="currentMode" class="fa fa-fw fa-compass"></i>{{currentMode}}</h4>
-	                    </div>
-	                    <div class="panel-body">
-	                    <select ng-options="o for o in voteOptions" ng-model="userVoted"><option value=''>-- chose gamemode --</option></select>
-	                    <button ng-click="submitVote()" class="btn btn-primary">Vote!</button>
-	                    
-	                    </div>
-
-	                </div>
-	            </div>
-	             <div class="col-md-4">
-	                <div class="panel panel-default">
-	                    <div class="panel-heading">
-	                        <h4><i ng-model="currentMode" class="fa fa-eye"></i>  Focus Window: <span ng-show="featuredUser" class="label label-default">{{featuredUser}}</span></h4>
+	                        <h4><i ng-model="currentMode" class="fa fa-eye"></i>  All Eyes On: <span ng-show="featuredUser" class="label label-default">{{featuredUser}}</span></h4>
 	                    </div>
 	                    <div class="panel-body">
 		                    <div class="panel-body" 
@@ -87,21 +75,50 @@
 	                    </div>
 
 	                </div>
-	            </div>
-	            
+	            </div>	            
 	            <div class="col-md-4">
+				        <div class="panel-group" id="accordion">
+			        <div class="panel panel-default">
+			            <div class="panel-heading">
+							<h4 data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne"><i ng-model="currentMode" class="fa fa-keyboard-o"></i>  <a>Direct Input Vote: {{userCommand}} </a><span class="label label-success pull-right" ng-show="directInput">active</span></h4>	                   	
+			            </div>
+			            <div id="collapseOne" class="panel-collapse collapse in">
+			                <div class="panel-body">
+			                    <input type="text" name="Direct Input" value="Click here for Direct Input" readonly="readonly" ng-keyup="sendDirectInput($event)" ng-focus="activateDirectInputMode()" ng-blur="deactivateDirectInputMode()" class="form-control input-normal"/>
+	                    	</div>
+			            </div>
+			        </div>
 	                <div class="panel panel-default">
 	                    <div class="panel-heading">
-	                        <h4><i ng-model="currentMode" class="fa fa-keyboard-o"></i>  Direct Input Vote: {{userCommand}} <span class="label label-success pull-right" ng-show="directInput">active</span></h4>
+	                        <h4 data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree"><i ng-model="currentMode" class="fa fa-fw fa-compass"></i><a>Current Mode: {{currentMode}}</a></h4>
 	                    </div>
-	                    <div class="panel-body">
-						<input type="text" name="Direct Input" value="Click here for Direct Input" readonly="readonly" ng-keyup="sendDirectInput($event)" ng-focus="activateDirectInputMode()" ng-blur="deactivateDirectInputMode()" class="form-control input-normal"/>
-	                    
-	                    
+	                    <div id="collapseThree" class="panel-collapse collapse">
+		                    <div class="panel-body">
+			                    <select ng-options="o for o in voteOptions" ng-model="userVoted"><option value=''>-- chose gamemode --</option></select>
+			                    <button ng-click="submitVote()" class="btn btn-primary">Vote!</button>
+	                    	</div>
 	                    </div>
 
 	                </div>
-	            </div>
+	                <div class="panel panel-default">
+			            <div class="panel-heading">
+
+			            <h4 data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo"><i class="fa fa-fw fa-tasks"></i><a>Notifications </a><span class="badge">{{alerts.length}}</span></h4>
+
+			            </div>
+			            <div id="collapseTwo" class="panel-collapse collapse">
+			                <div class="panel-body">
+			                    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+    		</div>
+    
+
+	            
+
+	            
         </div>
         <!-- /.row -->
 

@@ -9,18 +9,18 @@ import win32ui
 
 class GameControlThread(threading.Thread):
 
-    def __init__(self, inputQ, outputQ, db, modes):
+    def __init__(self, inputQ, outputQ, modes, db):
         super(GameControlThread, self).__init__()
         self.db = db
         self.inputQ = inputQ
         self.outputQ = outputQ
         self.stoprequest = threading.Event()
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
-        self.modes = modes
-        self.currentMode = modes[1]
+        self.modeClasses = modes
+        self.currentMode = config.votingOptions[1]
 
     def run(self):
-        aggregator = CrowdAggregator.MajorityVoteCrowdAggregator(10000, self.db)
+        aggregator = self.modeClasses[self.currentMode](config.modeTimeValues[self.currentMode], self.db)
         dueTime = aggregator.getTimeWindow() + self.currentTimeMillisec() 
         while not self.stoprequest.isSet():
             #time is up
@@ -36,14 +36,15 @@ class GameControlThread(threading.Thread):
                     pass
                 #handle the result
                 result = aggregator.getVoteResult()
+                #think about message reduction
                 #if ppl participated, boradcast the command vote result + mode vote result, then execute command 
                 if result is not None:
-                    self.outputQ.put(json.dumps({'type':'commandResult', 'message':'vote result is '+ result, 'author':'[SYSTEM]'}))
-                    self.outputQ.put(json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'}))
+                    self.outputQ.put([-1,json.dumps({'type':'commandResult', 'message':'vote result is '+ config.commandsToControl[result], 'author':'[SYSTEM]'})])
+                    self.outputQ.put([-1,json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'})])
                     self.executeCommandMessage(result)
                 #else just broadcast mode vote result
                 else:
-                    self.outputQ.put(json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'}))
+                    self.outputQ.put([-1,json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'})])
                     print('No participants in this vote')
                     
                 dueTime = aggregator.getTimeWindow() + self.currentTimeMillisec()
