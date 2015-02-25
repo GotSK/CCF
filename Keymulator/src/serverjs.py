@@ -24,8 +24,6 @@ from CrowdAggregator import MajorityVoteCrowdAggregator,\
     ExpertiseWeightedVote, ProletarianAggregator
 define("port", default=8888, help="run on the given port", type=int)
 
-#30.02 konzept f�r mouse input
-
 clientId = 0
 clients = []
 clientById = {}
@@ -44,6 +42,7 @@ pManagementOutputQueue = communicationInputQueue
 loggingInputQueue = queue.Queue()
 loggingOutputQueue = queue.Queue()
 
+modeVotingQueue = queue.Queue()
 controlInputQueue = queue.Queue()
 controlOutputQueue = communicationInputQueue
 #initialize database
@@ -52,8 +51,8 @@ controlOutputQueue = communicationInputQueue
 db = Database(50, 5)
 
 #initialize and start thread entities
-communication = entities.CommunicationThread.CommunicationThread(communicationInputQueue, communicationOutputQueue, clientUpdateQueue, controlInputQueue, pManagementInputQueue, loggingInputQueue)
-gameControl = entities.GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, modeClasses, db)
+communication = entities.CommunicationThread.CommunicationThread(communicationInputQueue, communicationOutputQueue, clientUpdateQueue, controlInputQueue, pManagementInputQueue, loggingInputQueue, modeVotingQueue)
+gameControl = entities.GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, modeVotingQueue, modeClasses, db)
 playerManagement = entities.PlayerManagementThread.PlayerManagementThread(pManagementInputQueue, pManagementOutputQueue, db)
 
 gameControl.start()

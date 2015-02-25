@@ -1,7 +1,7 @@
 '''
 @author: Christian
 '''
-import os, time
+import os, time, random
 import threading, queue
 import json
 import config, KeyCtl, CrowdAggregator
@@ -9,11 +9,12 @@ import win32ui
 
 class GameControlThread(threading.Thread):
 
-    def __init__(self, inputQ, outputQ, modes, db):
+    def __init__(self, inputQ, outputQ, modeQ, modes, db):
         super(GameControlThread, self).__init__()
         self.db = db
         self.inputQ = inputQ
         self.outputQ = outputQ
+        self.modeQ = modeQ
         self.stoprequest = threading.Event()
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
         self.modeClasses = modes
@@ -21,10 +22,12 @@ class GameControlThread(threading.Thread):
 
     def run(self):
         aggregator = self.modeClasses[self.currentMode](config.modeTimeValues[self.currentMode], self.db)
-        dueTime = aggregator.getTimeWindow() + self.currentTimeMillisec() 
+        dueTime = aggregator.getTimeWindow() + self.currentTimeMillisec()
+        #print("initialization complete, entering while", aggregator) 
         while not self.stoprequest.isSet():
             #time is up
             if self.currentTimeMillisec() >= dueTime:
+                #print('time is up')
                 try:
                     #get last minute input
                     jmessage = self.inputQ.get(True, max(float((dueTime - self.currentTimeMillisec())/1000), 0.001))
@@ -36,8 +39,21 @@ class GameControlThread(threading.Thread):
                     pass
                 #handle the result
                 result = aggregator.getVoteResult()
+                #after result has been determined, check for change in desired game mode
+                try:
+                    modelist = self.modeQ.get(False)
+                    #print('should not happen')
+                    if not self.currentMode in modelist:
+                        print('chosing randomly from', modelist)
+                        self.currentMode = random.choice(modelist)
+                        aggregator = self.modeClasses[self.currentMode](config.modeTimeValues[self.currentMode], self.db)
+                        self.outputQ.put([-1,json.dumps({'type':'commandResult', 'message':'New game Mode beginning next round: '+ self.currentMode, 'author':'[SYSTEM]'})])
+                        #print()
+                except queue.Empty:
+                    pass
+                
                 #think about message reduction
-                #if ppl participated, boradcast the command vote result + mode vote result, then execute command 
+                #if ppl participated, broadcast the command vote result + mode vote result, then execute command 
                 if result is not None:
                     self.outputQ.put([-1,json.dumps({'type':'commandResult', 'message':'vote result is '+ config.commandsToControl[result], 'author':'[SYSTEM]'})])
                     self.outputQ.put([-1,json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'})])

@@ -78,7 +78,7 @@ inputMap = {
 
 
 toServer = []
-toGameCtl = ['modeVote', 'keystroke', 'command', 'chatMsg']
+toGameCtl = ['keystroke', 'command', 'chatMsg']
 toPlayerMng = ['newUser', 'changeUser', 'updateRequest', 'upvoteMsg', 'purchase']
 toBroadcast = ['commandResult', 'modeResult', 'featureUser', 'updateAll']
 toClient = ['updateUser']

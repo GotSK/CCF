@@ -10,7 +10,7 @@ import win32ui
 
 class CommunicationThread(threading.Thread):
 
-    def __init__(self, inputQ, outputQ, clientQ, outputGameCtlQ, outputPlayerMngQ, outputLoggingQ):
+    def __init__(self, inputQ, outputQ, clientQ, outputGameCtlQ, outputPlayerMngQ, outputLoggingQ, modeVotingQ):
         super(CommunicationThread, self).__init__()
         #Arguments 
         self.inputQ = inputQ
@@ -19,6 +19,7 @@ class CommunicationThread(threading.Thread):
         self.outputGameCtlQ = outputGameCtlQ
         self.outputPlayerMngQ = outputPlayerMngQ
         self.outputLoggingQ = outputLoggingQ
+        self.modeVotingQ = modeVotingQ
         
         #Other class variables
         self.stoprequest = threading.Event()
@@ -28,7 +29,10 @@ class CommunicationThread(threading.Thread):
         self.clientById = {}
         self.idByClient = {}
         self.clientByUsername = {}
+        self.modeVoteByUsername = {}
+        self.modeBallot = {key: 0 for key in config.votingOptions}
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
+        self.test = lambda x,y: y[x] == y[max(iter(y.keys()), key=(lambda key: y[key]) )]  
 
 
     def run(self):
@@ -47,6 +51,11 @@ class CommunicationThread(threading.Thread):
                     if jmessage['type'] in ['newUser']:
                         self.clientByUsername[jmessage['author']] = self.clientById[authorId]
                     elif jmessage['type'] in ['changeUser']:
+                        if jmessage['author'] in self.modeVoteByUsername.keys():
+                            votebuffer = self.modeVoteByUsername[jmessage['author']]
+                            self.modeVoteByUsername.pop(jmessage['author'], None)
+                            self.modeVoteByUsername[jmessage['message']] = votebuffer
+                        
                         self.clientByUsername.pop(jmessage['author'], None)
                         self.clientByUsername[jmessage['message']] = self.clientById[authorId]
                     elif jmessage['type'] in ['upvoteMsg']:
@@ -63,11 +72,20 @@ class CommunicationThread(threading.Thread):
                 elif jmessage['type'] in config.toClient:
                     client = self.clientById[authorId]
                     client.write_message(jmessage)
+                elif jmessage['type'] in ['modeVote']:
+                    if jmessage['author'] in self.modeVoteByUsername.keys():
+                        self.modeBallot[self.modeVoteByUsername[jmessage['author']]] -= 1
+                    self.modeVoteByUsername[jmessage['author']] = jmessage['message']
+                    self.modeBallot[jmessage['message']] += 1
+                    self.getModeVotingWinner()
                 else:
                     print("ERROR: No such message type provided") 
                                 
             except queue.Empty:
                 continue
+
+    def getModeVotingWinner(self):
+        self.modeVotingQ.put([x for x in self.modeBallot.keys() if self.test(x, self.modeBallot)])
 
     def join(self, timeout=None):
         self.stoprequest.set()
