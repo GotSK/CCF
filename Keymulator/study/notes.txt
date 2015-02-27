@@ -9,5 +9,5 @@
 6. debriefing
 7. pizza
 
-
+Title: Analyzing crowd interaction within (the context of) a collaborative gaming scenario.
   

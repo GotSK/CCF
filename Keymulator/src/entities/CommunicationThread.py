@@ -41,9 +41,12 @@ class CommunicationThread(threading.Thread):
  
             try:
                 message = self.inputQ.get(True)
-                self.__updateSelf__()                       
+                self.__updateSelf__()
+                self.outputLoggingQ.put(message)                       
                 authorId = message[0]
                 jmessage = json.loads(message[1])
+                
+                
 
                 if jmessage['type'] in config.toGameCtl:
                     self.outputGameCtlQ.put(jmessage)
@@ -61,7 +64,11 @@ class CommunicationThread(threading.Thread):
                     elif jmessage['type'] in ['upvoteMsg']:
                         #replace the original author id with the upvote-target id
                         authorId = self.idByClient[self.clientByUsername[jmessage['message']]]
-                    self.outputPlayerMngQ.put([authorId, jmessage])
+                    
+                    if jmessage['type'] not in config.dataAppended:
+                        self.outputPlayerMngQ.put([authorId, jmessage])
+                    else: 
+                        self.outputPlayerMngQ.put([authorId, jmessage, [self.clientByUsername, self.idByClient]])
                     #debug
                     #print("Registered Users: ", self.clientByUsername)
                 elif jmessage['type'] in config.toServer:

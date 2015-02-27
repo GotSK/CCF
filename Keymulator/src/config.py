@@ -3,8 +3,11 @@ Created on 05.01.2015
 
 @author: Christian
 '''
+import os
+
 #PLAYER INTERACTION
 upvoteModifier = 5
+upvotesPerCycle = 1
 
 #GAME MODEs
 votingOptions =["Mob", "Majority Vote", "Crowd Weighted Vote", "Active", "Leader", "Expertise Weighted Vote", "Proletarian"]
@@ -80,9 +83,18 @@ inputMap = {
 toServer = []
 toGameCtl = ['keystroke', 'command', 'chatMsg']
 toPlayerMng = ['newUser', 'changeUser', 'updateRequest', 'upvoteMsg', 'purchase']
-toBroadcast = ['commandResult', 'modeResult', 'featureUser', 'updateAll']
+dataAppended = ['purchase']
+toBroadcast = ['commandResult', 'modeResult', 'featureUser', 'updateAll', 'refreshUpvotes']
 toClient = ['updateUser']
 
 #SHOP
 #deprecated! item objects are generated on demand. this should just be a list for the angular app
-availableItems = [Item.Item("Item1",1),Item.Item("Item2",2),Item.Item("Item3",3),Item.Item("Item4",4)]
+#availableItems = [Item.Item("Item1",1),Item.Item("Item2",2),Item.Item("Item3",3),Item.Item("Item4",4)]
+#-----------------
+availableItems = []
+itemObjectDict = {'Repay':Item.RepayItem, 'Spotlight':Item.StatusItem}
+
+
+
+#LOG FILE
+DATA_OUTPUT = os.path.abspath(os.path.join(os.path.dirname(__file__), 'jsonLog.txt'))

@@ -17,6 +17,7 @@ import queue
 import entities.CommunicationThread
 import entities.GameControlThread
 import entities.PlayerManagementThread
+import entities.LoggingThread
 import CrowdAggregator
 from threading import Thread
 from CrowdAggregator import MajorityVoteCrowdAggregator,\
@@ -40,7 +41,7 @@ pManagementInputQueue = queue.Queue()
 pManagementOutputQueue = communicationInputQueue
 
 loggingInputQueue = queue.Queue()
-loggingOutputQueue = queue.Queue()
+loggingOutputQueue = communicationInputQueue
 
 modeVotingQueue = queue.Queue()
 controlInputQueue = queue.Queue()
@@ -54,10 +55,12 @@ db = Database(50, 5)
 communication = entities.CommunicationThread.CommunicationThread(communicationInputQueue, communicationOutputQueue, clientUpdateQueue, controlInputQueue, pManagementInputQueue, loggingInputQueue, modeVotingQueue)
 gameControl = entities.GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, modeVotingQueue, modeClasses, db)
 playerManagement = entities.PlayerManagementThread.PlayerManagementThread(pManagementInputQueue, pManagementOutputQueue, db)
+logging = entities.LoggingThread.LoggingThread(loggingInputQueue, loggingOutputQueue)
 
 gameControl.start()
 communication.start()
 playerManagement.start()
+logging.start()
 
 def updateClientsGameControl():
     clientUpdateQueue.put([clients, clientById, idByClient])
@@ -95,6 +98,7 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
     #print ("Client ID:" + str(idByClient[self]) )
     if json.loads(message)['type']=='voteRequest':
         print ('Not for communication thread:', message)
+        self.write_message(json.dumps({'type':'refreshUpvotes', 'message':config.upvotesPerCycle, 'author':'[SYSTEM]'}))
         for vote in config.votingOptions:
             self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'}))         
     else:

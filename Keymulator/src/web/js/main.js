@@ -37,14 +37,14 @@ app.factory( 'UserService', function() {
 			description:"Description 2"
 	};
 	var item3 = {
-			name: "Item3",
+			name: "Spotlight",
 			cost: 3,
-			description:"Description 3"
+			description:"Put yourself in the spotlight. On purchase you and your actions will be featured in the 'All Eyes On' window."
 	};
 	var item4 = {
-			name: "Item4",
+			name: "Repay",
 			cost: 4,
-			description:"Description 4"
+			description:"Be generous! \n Share your hard earned influence with the crowd. The cost of this item will be evenly distributed among your fellow gamers."
 	};
 	
 	
@@ -58,8 +58,8 @@ app.factory( 'UserService', function() {
 	  		availableItems:[item1, item2, item3, item4] ,
 	  		boughtItems:[],
 	  		userFeatured: null,
-	  		ws: new WebSocket("ws://" + window.location.host + "/ws?Id=123456789")
-			
+	  		ws: new WebSocket("ws://" + window.location.host + "/ws?Id=123456789"),
+	  		upvotesLeft: 0
 	  };
 	  return currentUser;
 	});
@@ -91,6 +91,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         $scope.inputText = "";
         $scope.author = UserService.username;
         $scope.upvotedAuthors = [];
+        $scope.upvotesLeft = UserService.upvotesLeft;
         $scope.influence = UserService.influence;
         $scope.reputation = UserService.reputation;
     	$scope.voteOptions = [];
@@ -164,7 +165,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	    	  	
             		//always feature yourself next after introduction- remove this later
             		//UserService.userFeatured = UserService.username;
-            		UserService.ws.send(JSON.stringify(	{ message: UserService.username, author: UserService.username, time: (new Date()).toUTCString(), type:"featureUser"} ));
+            		//UserService.ws.send(JSON.stringify(	{ message: UserService.username, author: UserService.username, time: (new Date()).toUTCString(), type:"featureUser"} ));
     	    	  	
     	    	  }
 
@@ -206,6 +207,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	$scope.upvoteMsg = function (msg) {
           	UserService.ws.send(JSON.stringify(	{ message: msg.author, author: UserService.username, time: (new Date()).toUTCString(), type:"upvoteMsg"} ));
           	$scope.upvotedAuthors.push(msg.author);
+          	UserService.upvotesLeft = UserService.upvotesLeft-1;
           };
         $scope.addAlert = function(alert) {
         	    $scope.alerts.push({type: alert.type, msg: alert.message});
@@ -218,6 +220,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         /** handle incoming messages: add to messages array */
         UserService.ws.onmessage = function (msg) {
         	$scope.$apply(function (){
+        		
         	if (JSON.parse(msg.data).type == "chatMsg" || JSON.parse(msg.data).type == "commandResult" ){
         		$scope.msgs.push(JSON.parse(msg.data));
         		if(JSON.parse(msg.data).author == UserService.userFeatured){
@@ -241,9 +244,14 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         		UserService.influence = JSON.parse(msg.data).influence;
         		UserService.reputation = JSON.parse(msg.data).reputation;
         	}
-        	else if (JSON.parse(msg.data).type == "alertUser" || JSON.parse(msg.data).type == "alertAll")
-        		$scope.addAlert(JSON.parse(msg.data))
+        	else if (JSON.parse(msg.data).type == "alertUser" || JSON.parse(msg.data).type == "alertAll"){
+        		$scope.addAlert(JSON.parse(msg.data));
+        	}
+        	else if (JSON.parse(msg.data).type == "refreshUpvotes"){
+        		UserService.upvotesLeft = JSON.parse(msg.data).message;
+        		$scope.upvotedAuthors = [];}       	
         	})};
+        	
         
         $scope.$watch( function () { return UserService.username; }, function ( username ) {
         	  // handle it here:
@@ -260,6 +268,11 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         $scope.$watch( function () { return UserService.userFeatured; }, function ( usr ) {
       	  // handle it here:
       	  $scope.featuredUser = usr;
+      	});
+        
+        $scope.$watch( function () { return UserService.upvotesLeft; }, function ( upvotesLeft ) {
+      	  // handle it here:
+      	  $scope.upvotesLeft = upvotesLeft;
       	});
         
 
