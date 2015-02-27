@@ -84,7 +84,7 @@ toServer = []
 toGameCtl = ['keystroke', 'command', 'chatMsg']
 toPlayerMng = ['newUser', 'changeUser', 'updateRequest', 'upvoteMsg', 'purchase']
 dataAppended = ['purchase']
-toBroadcast = ['commandResult', 'modeResult', 'featureUser', 'updateAll', 'refreshUpvotes']
+toBroadcast = ['commandResult', 'modeResult', 'featureUser', 'updateAll', 'refreshUpvotes', 'setAgenda']
 toClient = ['updateUser']
 
 #SHOP
@@ -92,7 +92,7 @@ toClient = ['updateUser']
 #availableItems = [Item.Item("Item1",1),Item.Item("Item2",2),Item.Item("Item3",3),Item.Item("Item4",4)]
 #-----------------
 availableItems = []
-itemObjectDict = {'Repay':Item.RepayItem, 'Spotlight':Item.StatusItem}
+itemObjectDict = {'Repay':Item.RepayItem, 'Spotlight':Item.StatusItem, 'Agenda':Item.AgendaItem}
 
 
 

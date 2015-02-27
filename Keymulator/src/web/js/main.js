@@ -27,9 +27,9 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.factory( 'UserService', function() {
 	//fixed items for testing purposes:
 	var item1 = {
-			name: "Item1",
+			name: "Agenda",
 			cost: 1,
-			description:"Description 1"
+			description:"Type your description here!"
 	};
 	var item2 = {
 			name: "Item2",
@@ -55,7 +55,7 @@ app.factory( 'UserService', function() {
 	  		influence: 0,
 	  		reputation: 0,
 	  		achievements: [],
-	  		availableItems:[item1, item2, item3, item4] ,
+	  		availableItems:[item3, item4, item1] ,
 	  		boughtItems:[],
 	  		userFeatured: null,
 	  		ws: new WebSocket("ws://" + window.location.host + "/ws?Id=123456789"),

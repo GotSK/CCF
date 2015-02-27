@@ -41,7 +41,7 @@
 
 				        <form ng-submit="submitMsg()"  class="form-horizontal pull-right">
 							<input type="text" name="chat" id="textField" ng-model="inputText" />
-                        	<button type="submit" class="btn btn-primary" popover="I appeared on mouse enter!" popover-trigger="mouseenter">Submit</button>
+                        	<button type="submit" class="btn btn-primary">Submit</button>
 				        </form>
 
                     </div>
@@ -57,7 +57,7 @@
            	<div class="col-md-4">
 	                <div class="panel panel-default">
 	                    <div class="panel-heading">
-	                        <h4><i ng-model="currentMode" class="fa fa-users"></i>  Agenda </h4>
+	                        <h4><i ng-model="currentMode" class="fa fa-users"></i>Agenda   <i class="fa fa-question pull-right" popover="This is the current goal of your group." ></i></h4>
 	                    </div>
 	                    <div class="panel-body">
 	                    Short natural language description. <br>
@@ -69,7 +69,7 @@
 	        <div class="col-md-4">
 	                <div class="panel panel-default">
 	                    <div class="panel-heading">
-	                        <h4><i ng-model="currentMode" class="fa fa-eye"></i>  All Eyes On: <span ng-show="featuredUser" class="label label-default">{{featuredUser}}</span><i class="fa fa-question pull-right"></i>
+	                        <h4><i ng-model="currentMode" class="fa fa-eye"></i>  All Eyes On: <span ng-show="featuredUser" class="label label-default">{{featuredUser}}</span><i class="fa fa-question pull-right" popover="This window highlights the actions of one specific user"></i>
 </h4>
 	                    </div>
 	                    <div class="panel-body">
@@ -86,17 +86,29 @@
 				        <div class="panel-group" id="accordion">
 			        <div class="panel panel-default">
 			            <div class="panel-heading">
-							<h4 data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne"><i ng-model="currentMode" class="fa fa-keyboard-o"></i>  <a>Direct Input Vote: {{userCommand}} </a><span class="label label-success pull-right" ng-show="directInput">active</span></h4>	                   	
+							<h4 data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne"><i ng-model="currentMode" class="fa fa-keyboard-o"></i>  <a>Direct Input Vote: {{userCommand}} </a><span class="label label-success pull-right" ng-show="directInput">active</span><i class="fa fa-question pull-right" popover="Don't want to type? Vote directly by pressing the desired key" popover-trigger="mouseenter"></i></h4>	                   	
 			            </div>
 			            <div id="collapseOne" class="panel-collapse collapse in">
 			                <div class="panel-body">
-			                    <input type="text" name="Direct Input" value="Click here for Direct Input" readonly="readonly" ng-keyup="sendDirectInput($event)" ng-focus="activateDirectInputMode()" ng-blur="deactivateDirectInputMode()" class="form-control input-normal"/>
-	                    	</div>
+			                    <input type="text" name="Direct Input" value="Click here to activate Direct Input" readonly="readonly" ng-keyup="sendDirectInput($event)" ng-focus="activateDirectInputMode()" ng-blur="deactivateDirectInputMode()" class="form-control input-normal"/>
+	                    	
+		                    	<button type="button" class="btn btn-warning text-center" data-toggle="modal" data-target="#myModal">Keys</button>
+	
+								<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								        <div class="modal-body">
+								            <img src="web/pic/buttons.png" class="img-responsive">
+								        </div>
+								    </div>
+								  </div>
+								</div>
+							</div>
 			            </div>
 			        </div>
 	                <div class="panel panel-default">
 	                    <div class="panel-heading">
-	                        <h4 data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree"><i ng-model="currentMode" class="fa fa-fw fa-compass"></i><a>Current Mode: {{currentMode}}</a></h4>
+	                        <h4 data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree"><i ng-model="currentMode" class="fa fa-fw fa-compass"></i><a>Current Mode: {{currentMode}}</a><i class="fa fa-question pull-right" popover="Vote for your favorite game mode" popover-trigger="mouseenter"></i></h4>
 	                    </div>
 	                    <div id="collapseThree" class="panel-collapse collapse">
 		                    <div class="panel-body">
@@ -109,7 +121,7 @@
 	                <div class="panel panel-default">
 			            <div class="panel-heading">
 
-			            <h4 data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo"><i class="fa fa-fw fa-tasks"></i><a>Notifications </a><span class="badge">{{alerts.length}}</span></h4>
+			            <h4 data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo"><i class="fa fa-fw fa-tasks"></i><a>Notifications </a><span class="badge">{{alerts.length}}</span><i class="fa fa-question pull-right" popover="Any important messages specifically for you will arrive here" popover-trigger="mouseenter"></i></h4>
 
 			            </div>
 			            <div id="collapseTwo" class="panel-collapse collapse">

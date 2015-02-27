@@ -3,20 +3,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">{{title}}{{influence}}</h4>
+        <h4 class="modal-title">{{title}}</h4>
       </div>
       <div class="modal-body">
         <div class="container">
 		
 		    <div class="row">
 		
-		        <div class="col-sm-3" ng-repeat="item in items.slice(0,3)" ng-model="item">
+		        <div class="col-sm-3" ng-repeat="item in items.slice(0,2)" ng-model="item">
 		            <div class="panel panel-default text-center">
 		                <div class="panel-heading">
 		                    <strong>{{item.name}}</strong>
 		                </div>
 		                <div class="panel-body">
-		                    {{item.description}}
+						{{item.description}}
+		                    
 		                </div>
 		                <ul class="list-group">
 		                	<li class="list-group-item"><h3>{{item.cost}}</h3> Influence
@@ -30,13 +31,15 @@
 		    
 		    <div class="row">
 		
-		        <div class="col-sm-3" ng-repeat="item in items.slice(3,6)" ng-model="item">
+		        <div class="col-sm-3" ng-repeat="item in items.slice(2,6)" ng-model="item">
 		            <div class="panel panel-default text-center">
 		                <div class="panel-heading">
 		                    <strong>{{item.name}}</strong>
 		                </div>
 		                <div class="panel-body">
-		                    {{item.description}}
+		                <textarea class="form-control" rows="3" ng-model="item.description">
+		                </textarea>
+       					 
 		                </div>
 		                <ul class="list-group">
 		                	<li class="list-group-item"><h3>{{item.cost}}</h3> Influence

@@ -86,7 +86,10 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
     clientId += 1
     updateClientsGameControl()
     self.write_message(json.dumps({'type':'chatMsg', 'message':"Welcome! Please select your Username before you start.", 'author':'[SYSTEM]'}))
-    
+    self.write_message(json.dumps({'type':'chatMsg', 'message':"The following chat commands are available:", 'author':'[SYSTEM]'}))
+    for c in config.commands.keys():
+        if '!' in c:
+            self.write_message(json.dumps({'type':'chatMsg', 'message':c + ' --> ' + config.commandsToControl[config.commands[c]], 'author':'[SYSTEM]'})) 
     """
     Transmitting the voting options on startup does not work at this point apparently
     for vote in votingOptions:

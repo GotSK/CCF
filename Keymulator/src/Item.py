@@ -38,3 +38,9 @@ class StatusItem(Item):
     def useItem(self, dataList):
         self.pmt.outputQ.put([dataList[1][dataList[0][self.ownerName]], json.dumps({ 'message':self.ownerName, 'author': '[SYSTEM]', 'type':"featureUser"})] )
 
+
+class AgendaItem(Item):
+    
+    def useItem(self, dataList):
+        self.pmt.outputQ.put([dataList[1][dataList[0][self.ownerName]], json.dumps({ 'message':self.name, 'author': '[SYSTEM]', 'type':"setAgenda"})] )
+    
