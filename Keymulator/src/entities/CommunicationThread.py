@@ -115,8 +115,3 @@ class CommunicationThread(threading.Thread):
                 finally:
                     self.updaterequest.clear()
        
-            
-            
-            
-
-            
