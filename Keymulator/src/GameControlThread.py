@@ -23,7 +23,7 @@ class GameControlThread(threading.Thread):
         self.currentMode = modes[1]
 
     def run(self):
-        aggregator = CrowdAggregator.MajorityVoteCrowdAggregator(1000, self.db)
+        aggregator = CrowdAggregator.MajorityVoteCrowdAggregator(3000, self.db)
         dueTime = aggregator.getTimeWindow() + self.currentTimeMillisec() 
         while not self.stoprequest.isSet():
             if self.updaterequest.isSet():
