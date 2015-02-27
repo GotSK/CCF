@@ -1,11 +1,25 @@
 2 UI stages (with and without gamification/aggregation systems)
-4 gameplay states (each 2 simple, 2 advanced -> refer to crude analysis)
+1. stage: simplified. Only Mob/MajorityVote/Active; no gamification items, no focus window
+2. stage: full interface, all modes
+ 
+4 gameplay states (each 2 simple, 2 advanced) -> refer to "Rock tunnel" + "Spinning hell"
 
 1. intro -> everybody gets a pokemon emulator and plays for some minutes (10?)
 2. "play as you see fit" play from gamestates (simple1, advanced1) 15 minutes for each with simplified UI
 3. "play as you see fit" play from gamestates (simple2, advanced2) 15 minutes for each with full UI
-4. questionaire
+
+4. questionaire (maybe questionaires in between?)
+demographics, experience, general attitude towards multi-user games
+self evaluation of progress, enjoyability, participation (for each stage)
+
+-> likert questions regarding gamification elements and game modes in regard to progress, enjoyability, participation ("The agenda option was helpful in achieving progress")
+-> likert questions regarding those elements in respect to "play how you want" (selbstbestimmung der crowd)
+ 
+ attitude (change) questions relating to our interface
+ 
+
 (5. two selected interviews ?)
+
 6. debriefing
 7. pizza
 
