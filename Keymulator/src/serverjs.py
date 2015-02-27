@@ -14,28 +14,54 @@ from Database import Database
 from tornado.options import define, options, parse_command_line
 import config
 import queue
-import GameControlThread
+import entities.CommunicationThread
+import entities.GameControlThread
+import entities.PlayerManagementThread
+import CrowdAggregator
 from threading import Thread
+from CrowdAggregator import MajorityVoteCrowdAggregator,\
+    CrowdWeightedVoteAggregator, ActiveAggregator, LeaderAggregator,\
+    ExpertiseWeightedVote, ProletarianAggregator
 define("port", default=8888, help="run on the given port", type=int)
-
-#30.02 konzept f�r mouse input
 
 clientId = 0
 clients = []
 clientById = {}
 idByClient = {}
 
-votingOptions =["Mob", "Majority Vote", "Crowd Weighted Vote", "Active", "Leader", "Expertise Weighted Vote", "Proletarian"]
-controlInputQueue = queue.Queue()
-controlOutputQueue = queue.Queue()
-clientUpdateQueue = queue.Queue()
+modeClasses = {"Mob":MajorityVoteCrowdAggregator, "Majority Vote":MajorityVoteCrowdAggregator, "Crowd Weighted Vote":CrowdWeightedVoteAggregator, "Active":ActiveAggregator, "Leader":LeaderAggregator, "Expertise Weighted Vote":ExpertiseWeightedVote, "Proletarian":ProletarianAggregator}
 
-gameControl = GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, clientUpdateQueue, Database(), votingOptions)
+#initialize queues
+clientUpdateQueue = queue.Queue()
+communicationInputQueue = queue.Queue()
+communicationOutputQueue = queue.Queue()
+
+pManagementInputQueue = queue.Queue()
+pManagementOutputQueue = communicationInputQueue
+
+loggingInputQueue = queue.Queue()
+loggingOutputQueue = queue.Queue()
+
+modeVotingQueue = queue.Queue()
+controlInputQueue = queue.Queue()
+controlOutputQueue = communicationInputQueue
+#initialize database
+
+#modified start values for rep and influence for testing purposes
+db = Database(50, 5)
+
+#initialize and start thread entities
+communication = entities.CommunicationThread.CommunicationThread(communicationInputQueue, communicationOutputQueue, clientUpdateQueue, controlInputQueue, pManagementInputQueue, loggingInputQueue, modeVotingQueue)
+gameControl = entities.GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, modeVotingQueue, modeClasses, db)
+playerManagement = entities.PlayerManagementThread.PlayerManagementThread(pManagementInputQueue, pManagementOutputQueue, db)
+
 gameControl.start()
+communication.start()
+playerManagement.start()
 
 def updateClientsGameControl():
-    clientUpdateQueue.put(clients)
-    gameControl.updateClients()
+    clientUpdateQueue.put([clients, clientById, idByClient])
+    communication.updateClients()
     
 class IndexHandler(tornado.web.RequestHandler):
   @tornado.web.asynchronous
@@ -63,20 +89,19 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
     for vote in votingOptions:
         self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'}))
     """
-  def on_message(self, message):        
-    print (message)
+  def on_message(self, message):
     #KeyCtl.test()
-    print (json.loads(message)['message'])
-    print ("Client ID:" + str(idByClient[self]) )
-    if json.loads(message)['type'] in ['chatMsg', 'keystroke', 'purchase'] :
-        jmessage = json.loads(message)
-        controlInputQueue.put(jmessage)
-    elif json.loads(message)['type']=='voteRequest':
-        for vote in votingOptions:
-            self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'})) 
+    #print (json.loads(message)['message'])
+    #print ("Client ID:" + str(idByClient[self]) )
+    if json.loads(message)['type']=='voteRequest':
+        print ('Not for communication thread:', message)
+        for vote in config.votingOptions:
+            self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'}))         
+    else:
+        print ('Communication thread:', message)
+        communicationInputQueue.put([idByClient[self],message])
     
-    
-    if json.loads(message)['type']=='chatMsg' or json.loads(message)['type']=='featureUser':
+    if json.loads(message)['type']=='chatMsg':
         for client in clients:
             client.write_message(message)
           

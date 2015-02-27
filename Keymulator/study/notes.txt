@@ -1,0 +1,13 @@
+2 UI stages (with and without gamification/aggregation systems)
+4 gameplay states (each 2 simple, 2 advanced -> refer to crude analysis)
+
+1. intro -> everybody gets a pokemon emulator and plays for some minutes (10?)
+2. "play as you see fit" play from gamestates (simple1, advanced1) 15 minutes for each with simplified UI
+3. "play as you see fit" play from gamestates (simple2, advanced2) 15 minutes for each with full UI
+4. questionaire
+(5. two selected interviews ?)
+6. debriefing
+7. pizza
+
+
+  

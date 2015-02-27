@@ -1,7 +1,7 @@
 /**
  * Main AngularJS Web Application
  */
-var app = angular.module('tutorialWebApp', ['ngRoute','angularModalService']);
+var app = angular.module('collaborativeWebApp', ['ngRoute','angularModalService','ui.bootstrap','luegg.directives']);
 
 //author = "J. Doe #" + Math.floor((Math.random() * 100) + 1);
 /**
@@ -52,8 +52,8 @@ app.factory( 'UserService', function() {
 
 	  var currentUser = {
 			username: "J. Doe #" + Math.floor((Math.random() * 100) + 1),
-	  		influence: 3,
-	  		reputation: 5,
+	  		influence: 0,
+	  		reputation: 0,
 	  		achievements: [],
 	  		availableItems:[item1, item2, item3, item4] ,
 	  		boughtItems:[],
@@ -98,8 +98,14 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	$scope.currentMode = null;
     	$scope.directInput = false;
     	$scope.userCommand = null;
+    	
+    	$scope.alerts = [
+    	                   { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
+    	                   { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+    	                 ];
         //console.log("checkin " + $scope.author);
         var init = false;
+        var initialUsername = true;
         
     	$scope.activateDirectInputMode = function(){
     		console.log("direct input activated")
@@ -145,11 +151,23 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	    }).then(function(modal) {
     	      modal.element.modal();
     	      modal.close.then(function(result) {
-    	    	UserService.username = result.name;
-    	    	
-        		//always feature yourself next after introduction- remove this later
-        		//UserService.userFeatured = UserService.username;
-        		UserService.ws.send(JSON.stringify(	{ message: UserService.username, author: UserService.username, time: (new Date()).toUTCString(), type:"featureUser"} ));
+    	    	  if (result.name !== null){
+      	    	  	if (!initialUsername){
+    	    	  		UserService.ws.send(JSON.stringify(	{ message: result.name, author: UserService.username, time: (new Date()).toUTCString(), type:"changeUser"} ));
+    	    	  		UserService.username = result.name;
+    	    	  	} else {
+    	    	  		UserService.username = result.name;
+    	    	  		UserService.ws.send(JSON.stringify(	{ message: UserService.username, author: UserService.username, time: (new Date()).toUTCString(), type:"newUser"} ));
+    	    	  		initialUsername = false;
+    	    	  	}
+    	    	  	
+    	    	  	
+            		//always feature yourself next after introduction- remove this later
+            		//UserService.userFeatured = UserService.username;
+            		UserService.ws.send(JSON.stringify(	{ message: UserService.username, author: UserService.username, time: (new Date()).toUTCString(), type:"featureUser"} ));
+    	    	  	
+    	    	  }
+
         		
     	      });
     	    });
@@ -189,6 +207,13 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
           	UserService.ws.send(JSON.stringify(	{ message: msg.author, author: UserService.username, time: (new Date()).toUTCString(), type:"upvoteMsg"} ));
           	$scope.upvotedAuthors.push(msg.author);
           };
+        $scope.addAlert = function(alert) {
+        	    $scope.alerts.push({type: alert.type, msg: alert.message});
+        	  };
+
+        $scope.closeAlert = function(index) {
+        	    $scope.alerts.splice(index, 1);
+        	  };
           
         /** handle incoming messages: add to messages array */
         UserService.ws.onmessage = function (msg) {
@@ -212,7 +237,12 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
             	$scope.currentMode = JSON.parse(msg.data).message;}
         	else if(JSON.parse(msg.data).type == "featureUser"){
         		UserService.userFeatured = JSON.parse(msg.data).message;}
-                   	
+        	else if (JSON.parse(msg.data).type == "updateUser"){
+        		UserService.influence = JSON.parse(msg.data).influence;
+        		UserService.reputation = JSON.parse(msg.data).reputation;
+        	}
+        	else if (JSON.parse(msg.data).type == "alertUser" || JSON.parse(msg.data).type == "alertAll")
+        		$scope.addAlert(JSON.parse(msg.data))
         	})};
         
         $scope.$watch( function () { return UserService.username; }, function ( username ) {
@@ -252,12 +282,12 @@ app.controller('ComplexController', ['$scope', '$element', 'title', 'close',
 			};
 			// This cancel function must use the bootstrap, 'modal' function because
 			// the doesn't have the 'data-dismiss' attribute.
-			$scope.cancel = function() {
+		$scope.cancel = function() {
 			// Manually hide the modal.
 			$element.modal('hide');
 			// Now call close, returning control to the caller.
 			close({
-			name: $scope.name,
+			name: null,
 			age: $scope.age
 			}, 500); // close, but give 500ms for bootstrap to animate
 		};
@@ -288,3 +318,5 @@ app.controller('ShopController', ['$scope', '$element', 'title', 'items', 'influ
                                  			}, 500); // close, but give 500ms for bootstrap to animate
                                  		};
                                  }]);
+
+

@@ -14,7 +14,7 @@ from Database import Database
 from tornado.options import define, options, parse_command_line
 import config
 import queue
-import GameControlThread
+import entities.GameControlThread
 from threading import Thread
 define("port", default=8888, help="run on the given port", type=int)
 #Websocketkommunikation <- done
@@ -37,7 +37,7 @@ controlInputQueue = queue.Queue()
 controlOutputQueue = queue.Queue()
 clientUpdateQueue = queue.Queue()
 
-gameControl = GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, clientUpdateQueue, Database())
+gameControl = entities.GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, clientUpdateQueue, Database())
 gameControl.start()
 
 def updateClientsGameControl():
