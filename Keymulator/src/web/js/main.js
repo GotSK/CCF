@@ -59,6 +59,7 @@ app.factory( 'UserService', function() {
 	  		boughtItems:[],
 	  		userFeatured: null,
 	  		ws: new WebSocket("ws://" + window.location.host + "/ws?Id=123456789"),
+	  		gamification : false,
 	  		upvotesLeft: 0
 	  };
 	  return currentUser;
@@ -99,6 +100,8 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	$scope.currentMode = null;
     	$scope.directInput = false;
     	$scope.userCommand = null;
+    	
+    	$scope.gamification = false;
     	
     	$scope.latestAlert = [{ type: 'success', msg: 'Congratulations! You have received your 50th upvote!' }]
     	$scope.alerts = [
@@ -179,6 +182,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         		//console.log(UserService.userFeatured)
         		init = true;
         		UserService.ws.send(JSON.stringify(	{ message: "", author: UserService.username, time: (new Date()).toUTCString(), type:"voteRequest"} ));
+        		UserService.ws.send(JSON.stringify(	{ message: "", author: UserService.username, time: (new Date()).toUTCString(), type:"gamificationRequest"} ));
         	}
     	  };
     	  
@@ -243,7 +247,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         /** handle incoming messages: add to messages array */
         UserService.ws.onmessage = function (msg) {
         	$scope.$apply(function (){
-        		console.log(msg);
+        		//console.log(msg);
         	if (JSON.parse(msg.data).type == "chatMsg" || JSON.parse(msg.data).type == "commandResult" ){
         		$scope.msgs.push(JSON.parse(msg.data));
         		if(JSON.parse(msg.data).author == UserService.userFeatured){
@@ -258,10 +262,11 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         	} 
 
             else if (JSON.parse(msg.data).type == "voteOption"){
-            	console.log("wtf vote");
-            	$scope.voteOptions.push(JSON.parse(msg.data).message);
-            	console.log($scope.voteOptions);}
-        		
+            	$scope.voteOptions.push(JSON.parse(msg.data).message);}
+            else if (JSON.parse(msg.data).type == "enableGamification"){
+            	UserService.gamification = true;
+            	console.log($scope.gamification);}
+      	
             else if(JSON.parse(msg.data).type == "modeResult"){
             	$scope.currentMode = JSON.parse(msg.data).message;}
         	else if(JSON.parse(msg.data).type == "featureUser"){
@@ -300,6 +305,11 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
       	  // handle it here:
       	  $scope.upvotesLeft = upvotesLeft;
       	});
+        
+        $scope.$watch( function () { return UserService.gamification; }, function ( gamification ) {
+        	  // handle it here:
+        	  $scope.gamification = gamification;
+        	});
         
 
     });

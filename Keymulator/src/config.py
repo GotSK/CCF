@@ -4,6 +4,8 @@ Created on 05.01.2015
 @author: Christian
 '''
 import os
+#GAMIFICATION
+gamification = True
 
 #PLAYER INTERACTION
 upvoteModifier = 5

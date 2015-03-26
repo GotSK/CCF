@@ -32,7 +32,7 @@
 <![endif]-->
 
 <!-- Our Website Content Goes Here -->
-<div ng-include='"{{ static_url("web/templates/header.html")}}"'></div>
+<div ng-controller="ChatCtrl" ng-include='"{{ static_url("web/templates/header.html")}}"'></div>
 <div ng-view></div>
 
 <!-- Vendor: Javascripts -->

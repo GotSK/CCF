@@ -8,29 +8,34 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-            <a class="navbar-brand" href="#/">CCG</a>
+            <a class="navbar-brand">CCG</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href ng-click="showShop()" ng-controller="ChatCtrl">Shop</a>
+                <li><a href ng-click="showShop()" >Shop</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            	<li><a ng-controller="ChatCtrl">Influence  <span class="badge">{{influence}}</span></a>
+                <li> <a  ng-show="author">{{author}}</a>
                 </li>
-                <li><a ng-controller="ChatCtrl" >Reputation  <span class="badge">{{reputation}}</span></a>
+                <li><p><div class="text-center"><a href class="btn btn-primary btn-sm" ng-click="showComplex()" >Set User</a></p></div>
                 </li>
-                <li><a ng-controller="ChatCtrl" >Remaining Upvotes  <span class="badge">{{upvotesLeft}}</span></a>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-show="gamification" >
+            	<li ><a>Influence  <span class="badge">{{influence}}</span></a>
                 </li>
-                <li> <a ng-controller="ChatCtrl" ng-show="author">{{author}}</a>
+                <li ><a>Reputation  <span class="badge">{{reputation}}</span></a>
                 </li>
-                <li><p><div class="text-center"><a href class="btn btn-primary btn-sm" ng-click="showComplex()" ng-controller="ChatCtrl">Set User</a></p></div>
+                <li ><a >Remaining Upvotes  <span class="badge">{{upvotesLeft}}</span></a>
                 </li>
+            
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
+ 
 </nav>
+

@@ -107,7 +107,10 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
         print ('Not for communication thread:', message)
         self.write_message(json.dumps({'type':'refreshUpvotes', 'message':config.upvotesPerCycle, 'author':'[SYSTEM]'}))
         for vote in config.votingOptions:
-            self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'}))         
+            self.write_message(json.dumps({'type':'voteOption', 'message':vote, 'author':'[SYSTEM]'}))
+    elif json.loads(message)['type']=='gamificationRequest':
+        if config.gamification:
+            self.write_message(json.dumps({'type':'enableGamification', 'message':'', 'author':'[SYSTEM]'}))
     else:
         print ('Communication thread:', message)
         communicationInputQueue.put([idByClient[self],message])
