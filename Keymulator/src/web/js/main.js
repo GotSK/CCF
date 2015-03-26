@@ -101,6 +101,12 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	$scope.directInput = false;
     	$scope.userCommand = null;
     	
+    	$scope.agendaVoted = true;
+    	$scope.agendaText = "There is no current agenda";
+    	$scope.agendaSuccessScore = 0;
+    	$scope.agendaFailScore = 0;
+    	$scope.agendaDenyScore = 0;
+    	
     	$scope.gamification = false;
     	
     	$scope.latestAlert = [{ type: 'success', msg: 'Congratulations! You have received your 50th upvote!' }]
@@ -111,6 +117,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         //console.log("checkin " + $scope.author);
         var init = false;
         var initialUsername = true;
+       
         
     	$scope.activateDirectInputMode = function(){
     		console.log("direct input activated")
@@ -233,6 +240,36 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
           	$scope.upvotedAuthors.push(msg.author);
           	UserService.upvotesLeft = UserService.upvotesLeft-1;
           };
+          
+      	$scope.agendaSuccess = function () {
+          	UserService.ws.send(JSON.stringify(	{ message: "agendaSuccess", author: UserService.username, time: (new Date()).toUTCString(), type:"agendaSuccess"} ));
+          	$scope.agendaVoted = true;
+          };
+      	$scope.agendaFail = function () {
+          	UserService.ws.send(JSON.stringify(	{ message: "agendaFail", author: UserService.username, time: (new Date()).toUTCString(), type:"agendaFail"} ));
+          	$scope.agendaVoted = true;
+          };
+      	$scope.agendaDeny = function () {
+          	UserService.ws.send(JSON.stringify(	{ message: "agendaDeny", author: UserService.username, time: (new Date()).toUTCString(), type:"agendaDeny"} ));
+          	$scope.agendaVoted = true;
+          };
+          
+        $scope.setAgenda = function (agenda){
+        	$scope.agendaVoted = false;
+        	$scope.agendaText = agenda.text;
+        	$scope.agendaSuccessScore = 0;
+        	$scope.agendaFailScore = 0;
+        	$scope.agendaDenyScore = 0;
+        }
+        $scope.finishAgenda = function (){
+        	$scope.agendaVoted = true;
+        	$scope.agendaText = "There is no current agenda";
+        	$scope.agendaSuccessScore = 0;
+        	$scope.agendaFailScore = 0;
+        	$scope.agendaDenyScore = 0;
+        } 
+        
+          
         $scope.addAlert = function(alert) {
         	    $scope.alerts.push({type: alert.type, msg: alert.message});
         	  };
@@ -266,7 +303,10 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
             else if (JSON.parse(msg.data).type == "enableGamification"){
             	UserService.gamification = true;
             	console.log($scope.gamification);}
-      	
+        	
+            else if(JSON.parse(msg.data).type == "newAgenda"){
+            	$scope.agendaVoted = ;}
+        	
             else if(JSON.parse(msg.data).type == "modeResult"){
             	$scope.currentMode = JSON.parse(msg.data).message;}
         	else if(JSON.parse(msg.data).type == "featureUser"){

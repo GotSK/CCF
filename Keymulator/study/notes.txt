@@ -18,11 +18,19 @@ self evaluation of progress, enjoyability, participation (for each stage)
  attitude (change) questions relating to our interface
  
 
-(5. two selected interviews ?)
+(5. short interviews, overall impression ?)
 
 6. debriefing
 7. pizza
 
-Title: Analyzing crowd interaction within (the context of) a collaborative gaming scenario.
-  
+Title: Analyzing crowd interaction within (the context of) a collaborative gaming scenario. 
 
+
+
+Tour/overlay, Entfernung der Hilfsbuttons etc. 
+Notifications über Menü (neue Meldungen popup, notification history mit dialog ("dont read again" option)
+Tutorial zur Visualisierung (interaktiv/video) der Aggregationsmechanismen
+  
+Kapitel zum bericht der daten (Mockup Auswertung)
+
+finished thesis umtl homepage
