@@ -100,6 +100,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	$scope.directInput = false;
     	$scope.userCommand = null;
     	
+    	$scope.latestAlert = [{ type: 'success', msg: 'Congratulations! You have received your 50th upvote!' }]
     	$scope.alerts = [
     	                   { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
     	                   { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
@@ -203,6 +204,25 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
       	      });
       	    });
       	  };
+      	  
+      	  $scope.showNotifications = function() {
+        	    ModalService.showModal({
+            	      templateUrl: "web/partials/notifications.html",
+            	      controller: "NotificationController",
+            	      windowClass: 'right-modal',
+            	      inputs: {
+            	        title: "Recent Notifications",
+            	        items: $scope.alerts
+            	      }
+            	    }).then(function(modal) {
+            	      modal.element.modal();
+            	      modal.close.then(function(result) {
+            	    	  //console.log(result.chosen);
+            	    	  $scope.alerts = result.alerts;
+            	    	  });
+
+            	      });
+            	    };
     	  
     	$scope.upvoteMsg = function (msg) {
           	UserService.ws.send(JSON.stringify(	{ message: msg.author, author: UserService.username, time: (new Date()).toUTCString(), type:"upvoteMsg"} ));
@@ -216,11 +236,14 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         $scope.closeAlert = function(index) {
         	    $scope.alerts.splice(index, 1);
         	  };
+        $scope.dismissAlert = function(){
+        	$scope.latestAlert = [];
+        }
           
         /** handle incoming messages: add to messages array */
         UserService.ws.onmessage = function (msg) {
         	$scope.$apply(function (){
-        		
+        		console.log(msg);
         	if (JSON.parse(msg.data).type == "chatMsg" || JSON.parse(msg.data).type == "commandResult" ){
         		$scope.msgs.push(JSON.parse(msg.data));
         		if(JSON.parse(msg.data).author == UserService.userFeatured){
@@ -235,7 +258,10 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         	} 
 
             else if (JSON.parse(msg.data).type == "voteOption"){
-            	$scope.voteOptions.push(JSON.parse(msg.data).message);}
+            	console.log("wtf vote");
+            	$scope.voteOptions.push(JSON.parse(msg.data).message);
+            	console.log($scope.voteOptions);}
+        		
             else if(JSON.parse(msg.data).type == "modeResult"){
             	$scope.currentMode = JSON.parse(msg.data).message;}
         	else if(JSON.parse(msg.data).type == "featureUser"){
@@ -313,6 +339,9 @@ app.controller('ShopController', ['$scope', '$element', 'title', 'items', 'influ
                                  		$scope.title = title;
                                  		$scope.influence = influence;
                                  		$scope.chosen = null
+                                        $scope.closeAlert = function(index) {
+                                    	    $scope.alerts.splice(index, 1);
+                                    	  };
                                  		// This close function doesn't need to use jQuery or bootstrap, because
                                  		// the button has the 'data-dismiss' attribute.
                                  		$scope.close = function(item) {
@@ -332,4 +361,44 @@ app.controller('ShopController', ['$scope', '$element', 'title', 'items', 'influ
                                  		};
                                  }]);
 
+app.controller('NotificationController', ['$scope', '$element', 'title', 'items', 'close',
+                               	function($scope, $element, title, items, close) {
+                               		$scope.alerts = items;
+                               		$scope.title = title;
+                               		// This close function doesn't need to use jQuery or bootstrap, because
+                               		// the button has the 'data-dismiss' attribute.
+                               		$scope.close = function() {
+                               			close({
+                               			alerts: $scope.alerts,
+                               			}, 500); // close, but give 500ms for bootstrap to animate
+                               			};
+                               			// This cancel function must use the bootstrap, 'modal' function because
+                               			// the doesn't have the 'data-dismiss' attribute.
+                               			$scope.cancel = function(item) {
+                               			// Manually hide the modal.
+                               			$element.modal('hide');
+                               			// Now call close, returning control to the caller.
+                               			close({
+                               			alerts: $scope.alerts,
+                               			}, 500); // close, but give 500ms for bootstrap to animate
+                               		};
+                               }]);
 
+app.controller('ProgressDemoCtrl', function ($scope) {
+	var types = ['success', 'warning', 'danger', 'info'];
+	  $scope.max = 200;
+	  $scope.stacked = [{
+	          value: 15,
+	          type: types[0]
+	        }, 
+	        {
+	            value: 20,
+	            type: types[2]
+	          },
+	          {
+	              value:17,
+	              type: types[1]
+	            }];
+	          
+
+	});
