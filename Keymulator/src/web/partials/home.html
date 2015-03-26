@@ -60,11 +60,11 @@
 	                        <h4><i ng-model="currentMode" class="fa fa-users"></i>  Agenda  </h4>
 	                    </div>
 	                    <div class="panel-body">
-	                    <b>Pikachu auf LvL 10 bringen, bevor wir die Arena betreten.</b><br>
-		                    <div ng-controller="ProgressDemoCtrl">
-		                    <progress><bar ng-repeat="bar in stacked track by $index" value="bar.value" type="{{bar.type}}"><span ng-hide="bar.value < 5">{{bar.value}}%</span></bar></progress>
-		                    <button type="button" class="btn btn-success btn-xs"><i class="fa fa-thumbs-up"></i></button>  <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-thumbs-down"></i></button><button type="button" class="btn btn-warning btn-xs pull-right">deny</button>
-		                    </div>
+	                    <b>{{agendaText}}</b><br>
+		                   <!--   <div ng-controller="ProgressDemoCtrl"> -->
+		                    <progress ng-show="agendaSet"><bar ng-repeat="bar in stacked track by $index" value="bar.value" type="{{bar.type}}"><span >{{bar.value}}%</span></bar></progress> <!-- ng-hide="bar.value < 5" -->
+		                    <button ng-click="agendaSuccess()" ng-hide="agendaVoted" type="button" class="btn btn-success btn-xs"><i class="fa fa-thumbs-up"></i></button>  <button ng-click="agendaFail()" ng-hide="agendaVoted" type="button" class="btn btn-danger btn-xs"><i class="fa fa-thumbs-down"></i></button><button ng-click="agendaDeny()" ng-hide="agendaVoted" type="button" class="btn btn-warning btn-xs pull-right">deny</button>
+		                    <!-- </div> -->
 		                    
 	                    </div>
 

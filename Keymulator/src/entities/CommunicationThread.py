@@ -31,6 +31,7 @@ class CommunicationThread(threading.Thread):
         self.clientByUsername = {}
         self.modeVoteByUsername = {}
         self.modeBallot = {key: 0 for key in config.votingOptions}
+        
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
         self.test = lambda x,y: y[x] == y[max(iter(y.keys()), key=(lambda key: y[key]) )]  
 
@@ -80,11 +81,12 @@ class CommunicationThread(threading.Thread):
                     client = self.clientById[authorId]
                     client.write_message(jmessage)
                 elif jmessage['type'] in ['modeVote']:
-                    if jmessage['author'] in self.modeVoteByUsername.keys():
-                        self.modeBallot[self.modeVoteByUsername[jmessage['author']]] -= 1
-                    self.modeVoteByUsername[jmessage['author']] = jmessage['message']
-                    self.modeBallot[jmessage['message']] += 1
-                    self.getModeVotingWinner()
+                    if jmessage['message'] is not None:
+                        if jmessage['author'] in self.modeVoteByUsername.keys():
+                            self.modeBallot[self.modeVoteByUsername[jmessage['author']]] -= 1
+                        self.modeVoteByUsername[jmessage['author']] = jmessage['message']
+                        self.modeBallot[jmessage['message']] += 1
+                        self.getModeVotingWinner()
                 else:
                     print("ERROR: No such message type provided") 
                                 

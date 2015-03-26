@@ -4,8 +4,12 @@ Created on 05.01.2015
 @author: Christian
 '''
 import os
-#GAMIFICATION
+#GAMIFICATION SWITCH
 gamification = True
+
+#ITEMS
+maxAgendaDuration = 10000
+agendaFinishQuota = 0.6
 
 #PLAYER INTERACTION
 upvoteModifier = 5
@@ -84,9 +88,9 @@ inputMap = {
 
 toServer = []
 toGameCtl = ['keystroke', 'command', 'chatMsg']
-toPlayerMng = ['newUser', 'changeUser', 'updateRequest', 'upvoteMsg', 'purchase']
-dataAppended = ['purchase']
-toBroadcast = ['commandResult', 'modeResult', 'featureUser', 'updateAll', 'refreshUpvotes', 'setAgenda']
+toPlayerMng = ['newUser', 'changeUser', 'updateRequest', 'upvoteMsg', 'purchase', 'agendaSuccess', 'agendaDeny', 'agendaFail']
+dataAppended = ['purchase', 'agendaSuccess', 'agendaDeny', 'agendaFail']
+toBroadcast = ['commandResult', 'modeResult', 'featureUser', 'updateAll', 'refreshUpvotes', 'setAgenda', 'updateAgenda', 'finishAgenda']
 toClient = ['updateUser']
 
 #SHOP

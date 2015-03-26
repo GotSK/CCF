@@ -5,10 +5,11 @@
 import random
 import json
 class Item():
-    def __init__(self, name, cost,  ownerName, pmt):
+    def __init__(self, name, cost,  ownerName, description, pmt):
         self.name = name
         self.cost = cost
         self.pmt = pmt
+        self.description = description
         self.ownerName = ownerName
         
     def useItem(self, dataList):
@@ -42,5 +43,10 @@ class StatusItem(Item):
 class AgendaItem(Item):
     
     def useItem(self, dataList):
-        self.pmt.outputQ.put([dataList[1][dataList[0][self.ownerName]], json.dumps({ 'message':self.name, 'author': '[SYSTEM]', 'type':"setAgenda"})] )
-    
+        if not self.pmt.agendaSet:
+            self.pmt.agendaSet = True
+            agenda = {'success':0, 'fail':0, 'deny':0, 'text':self.description}
+            self.pmt.outputQ.put([dataList[1][dataList[0][self.ownerName]], json.dumps({ 'message':json.dumps(agenda), 'author': '[SYSTEM]', 'type':"setAgenda"})] )
+        else:
+            #TODO include alert here
+            self.pmt.db.userRefund(self.ownerName, self)

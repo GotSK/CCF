@@ -86,6 +86,8 @@ app.controller('PageCtrl', function (/* $scope, $location, $http */) {
 
   //Controls the chat
 app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
+		var types = ['success', 'warning', 'danger', 'info'];
+		
         $scope.msgs = [];
         $scope.featuredUser = UserService.featuredUser;
         $scope.featuredmsg = null;
@@ -106,6 +108,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	$scope.agendaSuccessScore = 0;
     	$scope.agendaFailScore = 0;
     	$scope.agendaDenyScore = 0;
+    	$scope.agendaSet = false;
     	
     	$scope.gamification = false;
     	
@@ -115,6 +118,20 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	                   { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
     	                 ];
         //console.log("checkin " + $scope.author);
+    	
+    	 $scope.stacked = [{
+	          value: 0,
+	          type: types[0]
+	        }, 
+	        {
+	            value: 0,
+	            type: types[2]
+	          },
+	          {
+	              value:0,
+	              type: types[1]
+	            }];
+    	
         var init = false;
         var initialUsername = true;
        
@@ -241,6 +258,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
           	UserService.upvotesLeft = UserService.upvotesLeft-1;
           };
           
+          
       	$scope.agendaSuccess = function () {
           	UserService.ws.send(JSON.stringify(	{ message: "agendaSuccess", author: UserService.username, time: (new Date()).toUTCString(), type:"agendaSuccess"} ));
           	$scope.agendaVoted = true;
@@ -260,14 +278,29 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         	$scope.agendaSuccessScore = 0;
         	$scope.agendaFailScore = 0;
         	$scope.agendaDenyScore = 0;
-        }
+        	$scope.agendaSet = true;
+        };
+        
+        $scope.updateAgenda = function (agenda){
+        	$scope.agendaSuccessScore = agenda.success;
+        	$scope.agendaFailScore = agenda.fail;
+        	$scope.agendaDenyScore = agenda.deny;
+        	$scope.stacked[0].value = agenda.success;
+        	$scope.stacked[1].value = agenda.fail;
+        	$scope.stacked[2].value = agenda.deny;
+        };
+        
         $scope.finishAgenda = function (){
         	$scope.agendaVoted = true;
         	$scope.agendaText = "There is no current agenda";
         	$scope.agendaSuccessScore = 0;
         	$scope.agendaFailScore = 0;
         	$scope.agendaDenyScore = 0;
-        } 
+        	$scope.stacked[0].value = 0;
+        	$scope.stacked[1].value = 0;
+        	$scope.stacked[2].value = 0;
+        	$scope.agendaSet = false;
+        } ;
         
           
         $scope.addAlert = function(alert) {
@@ -304,8 +337,13 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
             	UserService.gamification = true;
             	console.log($scope.gamification);}
         	
-            else if(JSON.parse(msg.data).type == "newAgenda"){
-            	$scope.agendaVoted = ;}
+            else if(JSON.parse(msg.data).type == "setAgenda"){
+            	$scope.setAgenda(JSON.parse(JSON.parse(msg.data).message)) ;}
+            else if(JSON.parse(msg.data).type == "updateAgenda"){
+            	$scope.updateAgenda(JSON.parse(JSON.parse(msg.data).message)) ;}
+            else if(JSON.parse(msg.data).type == "finishAgenda"){
+            	$scope.finishAgenda() ;
+            	$scope.msgs.push(JSON.parse(msg.data));}        	
         	
             else if(JSON.parse(msg.data).type == "modeResult"){
             	$scope.currentMode = JSON.parse(msg.data).message;}

@@ -65,6 +65,10 @@ class Database():
     def userPurchase(self, username, item):
         self.userByName[username].modifyInfluence(-item.cost)
         self.userByName[username].addItem(item)
+    
+    def userRefund(self, username, item):
+        self.userByName[username].modifyInfluence(item.cost)
+        self.userByName[username].removeItem(item)
 
     def addUser(self, username, initRep = None, initInfl = None):
         if username in self.userByName.keys():
