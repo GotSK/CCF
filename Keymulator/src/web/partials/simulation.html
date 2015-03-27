@@ -1,0 +1,85 @@
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <small>Voting Simulation</small>
+            </h1>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    <div class="row" ng-controller="SimulationCtrl">
+
+        <div class="col-sm-8">
+            <h3>Wählen Sie den Spielmodus (Aggregator):</h3>
+
+            <p>			        <select ng-options="o for o in modeOptions" ng-model="userVoted"><option value=''>-- Modus --</option></select>
+			                    <button ng-click="submitMode()" class="btn btn-primary">OK</button></p>
+
+            <h3>{{currentMode}} Abstimmung:</h3>
+            <form role="form" method="POST" action="#">
+                <div class="row">
+                    <div class="form-group col-lg-4">
+                        <label for="input1">User 1</label>
+                        <select ng-options="o for o in votingOptions" ng-model="votes[0]" class="form-control" id="input1"><option></option></select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="w1">Gewicht</label>
+                        <input ng-disabled="currentMode !== 'Crowd Weighted Vote'" ng-model="weights[0]" ng-init="w1=1" class="form-control" id="w1">
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-lg-4">
+                        <label for="input2">User 2</label>
+                        <select ng-options="o for o in votingOptions" ng-model="votes[1]" class="form-control" id="input2"><option></option></select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="w2">Gewicht</label>
+                        <input ng-disabled="currentMode !== 'Crowd Weighted Vote'" ng-model="weights[1]" ng-init="w2=1" class="form-control" id="w2">
+                    </div>
+                    <div class="clearfix"></div>
+                    
+                    <div class="form-group col-lg-4">
+                        <label for="input3">User 3</label>
+                        <select ng-options="o for o in votingOptions" ng-model="votes[2]" class="form-control" id="input3"><option></option></select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="w3">Gewicht</label>
+                        <input  ng-disabled="currentMode !== 'Crowd Weighted Vote'" ng-model="weights[2]" ng-init="w3=1" ng-model="votingOptions" class="form-control" id="w3">
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-lg-4">
+                        <label for="input4">User 4</label>
+                        <select ng-options="o for o in votingOptions" ng-model="votes[3]" class="form-control" id="input4"><option></option></select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="w4">Gewicht</label>
+                        <input ng-disabled="currentMode !== 'Crowd Weighted Vote'" ng-model="weights[3]" ng-init="w4=1" class="form-control" id="w4">
+                    </div>
+                    <div class="clearfix"></div>
+                    
+                    <div class="form-group col-lg-12">
+						<button type="button" ng-click="randomizeVote()" class="btn btn-default">Zufällig</button>
+                    </div>
+
+                    <div class="form-group col-lg-12">
+                        <button type="button" ng-click="result()" class="btn btn-primary">Auswerten</button>
+                    </div>
+                    <small><em>Option 1</em></small>
+                    <progressbar max="25" value="dyn1"><span style="color:black; white-space:nowrap;">{{dynamic[0]}} / {{max}}</span></progressbar>
+                    <small><em>Option 2</em></small>
+                    <progressbar max="25" value="dynamic[1]"><span style="color:black; white-space:nowrap;">{{dynamic[1]}} / {{max}}</span></progressbar>
+                    <small><em>Option 3</em></small>
+                    <progressbar max="25" value="dynamic[2]"><span style="color:black; white-space:nowrap;">{{dynamic[2]}} / {{max}}</span></progressbar>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    <!-- /.row -->
+
+</div><!-- /.container -->

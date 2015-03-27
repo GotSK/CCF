@@ -12,14 +12,8 @@ app.config(['$routeProvider', function ($routeProvider) {
     // Home
     .when("/", {templateUrl: "web/partials/home.html" , controller: "PageCtrl"})
     // Pages
-    .when("/about", {templateUrl: "web/partials/about.html", controller: "PageCtrl"})
-    .when("/faq", {templateUrl: "web/partials/faq.html", controller: "PageCtrl"})
-    .when("/pricing", {templateUrl: "web/partials/pricing.html", controller: "PageCtrl"})
-    .when("/services", {templateUrl: "web/partials/services.html", controller: "PageCtrl"})
-    .when("/contact", {templateUrl: "web/partials/contact.html", controller: "PageCtrl"})
+    .when("/simulation", {templateUrl: "web/partials/simulation.html", controller: "PageCtrl"})
     // Blog
-    .when("/blog", {templateUrl: "web/partials/blog.html", controller: "BlogCtrl"})
-    .when("/blog/post", {templateUrl: "web/partials/blog_item.html", controller: "BlogCtrl"})
     // else 404
     .otherwise("/404", {templateUrl: "web/partials/404.html", controller: "PageCtrl"});
 }]);
@@ -502,3 +496,51 @@ app.controller('ProgressDemoCtrl', function ($scope) {
 	          
 
 	});
+
+app.controller('SimulationCtrl', function ($scope, $http, ModalService, UserService) {
+	$scope.votingOptions = ["Option 1", "Option 2", "Option 3"];
+	$scope.modeOptions = ["Mob", "Majority Vote", "Crowd Weighted Vote", "Active", "Leader", "Expertise Weighted Vote", "Proletarian"];
+	$scope.currentMode = null;
+	
+	$scope.votes = [null,null,null,null];
+	$scope.weights = [1,1,1,1];
+
+	$scope.max = 0;
+	$scope.dynamic = [0,0,0];
+	$scope.dyn1 = 0;
+	
+	$scope.submitMode = function(){
+		$scope.currentMode = $scope.userVoted;
+		$scope.weights = [1,1,1,1];
+	};
+	
+	$scope.randomizeVote = function(){
+		for (var i = 0; i < 4; i++){
+			var ran = Math.floor(Math.random()*3);
+			if (ran > 3 ){ ran = 3;}
+			$scope.votes[i] = $scope.votingOptions[ran];
+
+		}
+		if (["Crowd Weighted Vote", "Leader", "Expertise Weighted Vote", "Proletarian"].indexOf($scope.currentMode)>-1){
+			for (var i = 0; i < 4; i++){
+
+				$scope.weights[i] = Math.round((Math.random()*5 + 0.5) * 100) / 100;
+
+			}
+			
+		}
+		
+	};
+	$scope.result = function(){
+		$scope.max = 0;
+		$scope.dynamic = [0,0,0];
+		for (var i = 0; i < 4; i++){
+			console.log($scope.votingOptions.indexOf($scope.votes[i]));
+			$scope.dynamic[$scope.votingOptions.indexOf($scope.votes[i])] = Math.round(($scope.weights[i] + $scope.dynamic[$scope.votingOptions.indexOf($scope.votes[i])] ) * 100)/100; 
+			$scope.max = Math.round(($scope.max + $scope.weights[i]) * 100) /100;
+		}
+		console.log($scope.dynamic);
+		$scope.dyn1 = $scope.dynamic[0];
+	};
+	
+});

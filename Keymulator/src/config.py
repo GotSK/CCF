@@ -5,7 +5,7 @@ Created on 05.01.2015
 '''
 import os
 #GAMIFICATION SWITCH
-gamification = True
+gamification = False
 
 #ITEMS
 maxAgendaDuration = 10000
