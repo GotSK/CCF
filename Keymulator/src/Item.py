@@ -45,8 +45,10 @@ class AgendaItem(Item):
     def useItem(self, dataList):
         if not self.pmt.agendaSet:
             self.pmt.agendaSet = True
+            self.pmt.agendaText = self.description
             agenda = {'success':0, 'fail':0, 'deny':0, 'text':self.description}
             self.pmt.outputQ.put([dataList[1][dataList[0][self.ownerName]], json.dumps({ 'message':json.dumps(agenda), 'author': '[SYSTEM]', 'type':"setAgenda"})] )
         else:
-            #TODO include alert here
+            alert = {'type':'danger', 'msg':'The current agenda is not finished yet!'}
+            self.pmt.outputQ.put([dataList[1][dataList[0][self.ownerName]], json.dumps({ 'message':json.dumps(alert), 'author': '[SYSTEM]', 'type':"userAlert"})] )
             self.pmt.db.userRefund(self.ownerName, self)

@@ -89,9 +89,9 @@ inputMap = {
 toServer = []
 toGameCtl = ['keystroke', 'command', 'chatMsg']
 toPlayerMng = ['newUser', 'changeUser', 'updateRequest', 'upvoteMsg', 'purchase', 'agendaSuccess', 'agendaDeny', 'agendaFail']
-dataAppended = ['purchase', 'agendaSuccess', 'agendaDeny', 'agendaFail']
-toBroadcast = ['commandResult', 'modeResult', 'featureUser', 'updateAll', 'refreshUpvotes', 'setAgenda', 'updateAgenda', 'finishAgenda']
-toClient = ['updateUser']
+dataAppended = ['purchase', 'agendaSuccess', 'agendaDeny', 'agendaFail', 'newUser']
+toBroadcast = ['commandResult', 'modeResult', 'featureUser', 'updateAll', 'refreshUpvotes', 'setAgenda', 'updateAgenda', 'finishAgenda', 'globalAlert']
+toClient = ['updateUser', 'userAlert']
 
 #SHOP
 #deprecated! item objects are generated on demand. this should just be a list for the angular app

@@ -21,6 +21,7 @@ class PlayerManagementThread(threading.Thread):
         
         self.agendaBallot = {'agendaSuccess':0, 'agendaFail':0, 'agendaDeny':0}
         self.agendaSet = False
+        self.agendaText = ''
         #Other class variables
         self.stoprequest = threading.Event()
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
@@ -43,6 +44,8 @@ class PlayerManagementThread(threading.Thread):
                     if not self.db.hasUser(jmessage['author']):
                         self.db.addUser(jmessage['author'])
                     self.sendUserUpdate(authorId, jmessage['author'])
+                    if self.agendaSet:
+                        self.sendAgendaUpdate(authorId, len(dataList[0].keys()))
                 elif jmessage['type'] in ['changeUser']:
                     if not self.db.hasUser(jmessage['message']):
                         self.db.addUser(jmessage['message'])     
@@ -58,22 +61,24 @@ class PlayerManagementThread(threading.Thread):
                 elif jmessage['type'] in ['agendaSuccess', 'agendaDeny', 'agendaFail']:
                     totalUsers = len(dataList[0].keys())
                     self.agendaBallot[jmessage['type']] += 1
-                    agenda= {'success': int((self.agendaBallot['agendaSuccess'] / totalUsers) * 100), 'fail': int((self.agendaBallot['agendaFail'] / totalUsers) * 100), 'deny': int((self.agendaBallot['agendaDeny'] / totalUsers) * 100)}
-                    self.sendAgendaUpdate(id, agenda)
+                    self.sendAgendaUpdate(authorId, totalUsers)
                     
                     #check if agenda is resolved
                     #agenda successful
                     if ( (self.getPositiveAgendaVotes() / totalUsers ) > 0.5):
-                        self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':'Agenda was successful!', 'author':'[SYSTEM]'})])
+                        alert = {'type':'success', 'msg':'Agenda was successful!'}
+                        self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':json.dumps(alert), 'author':'[SYSTEM]'})])
                         self.resetAgendaBallot()
                     #agenda unsuccessful
                     elif ( (self.getNegativeAgendaVotes() / totalUsers ) > 0.5):
-                        self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':'Agenda was not successful!', 'author':'[SYSTEM]'})])
+                        alert = {'type':'danger', 'msg':'Agenda was not successful!'}
+                        self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':json.dumps(alert), 'author':'[SYSTEM]'})])
                         self.resetAgendaBallot()
                     
                     #agenda undecided, but finished    
                     elif ( self.getTotalAgendaVotes() == totalUsers):
-                        self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':'Agenda was undecided!', 'author':'[SYSTEM]'})])
+                        alert = {'type':'warning', 'msg':'Agenda was undecided!'}
+                        self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':json.dumps(alert), 'author':'[SYSTEM]'})])
                         self.resetAgendaBallot()
                         
                 elif jmessage['type'] in ['upvoteMsg']:
@@ -89,7 +94,8 @@ class PlayerManagementThread(threading.Thread):
     def sendUserUpdate(self, id, username):
         self.outputQ.put([id,json.dumps({'type':'updateUser', 'message':'', 'author':'[SYSTEM]', 'reputation':self.db.getReputationByName(username), 'influence':self.db.getInfluenceByName(username)})])
         
-    def sendAgendaUpdate(self, id, agenda):
+    def sendAgendaUpdate(self, id, totalUsers):
+        agenda= {'success': int((self.agendaBallot['agendaSuccess'] / totalUsers) * 100), 'fail': int((self.agendaBallot['agendaFail'] / totalUsers) * 100), 'deny': int((self.agendaBallot['agendaDeny'] / totalUsers) * 100), 'text':self.agendaText}
         self.outputQ.put([id,json.dumps({'type':'updateAgenda', 'message':json.dumps(agenda), 'author':'[SYSTEM]'})])
         
     def resetAgendaBallot(self):

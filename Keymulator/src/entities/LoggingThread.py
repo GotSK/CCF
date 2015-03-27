@@ -21,7 +21,7 @@ class LoggingThread(threading.Thread):
         self.logFile = config.DATA_OUTPUT
         
         with open(self.logFile, 'w') as f:
-            f.write(json.dumps({'type':'initializeLog', 'message':'Log initialized', 'author':'[SYSTEM]', 'time':str(self.currentTimeMillisec())}))
+            f.write(json.dumps({'type':'initializeLog', 'message':'Log initialized', 'author':'[SYSTEM]', 'time':str(self.currentTimeMillisec())}) + '\n')
 
 
     def run(self):

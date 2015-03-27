@@ -55,6 +55,7 @@
                 </div>
             </div>
            	<div class="col-md-4">
+           			<alert ng-show="latestAlert" type="{{latestAlert.type}}" close="dismissAlert()">{{latestAlert.msg}}</alert>
 	                <div class="panel panel-default" ng-show = "gamification">
 	                    <div class="panel-heading">
 	                        <h4><i ng-model="currentMode" class="fa fa-users"></i>  Agenda  </h4>

@@ -112,11 +112,14 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
     	
     	$scope.gamification = false;
     	
-    	$scope.latestAlert = [{ type: 'success', msg: 'Congratulations! You have received your 50th upvote!' }]
-    	$scope.alerts = [
-    	                   { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
-    	                   { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
-    	                 ];
+    	
+    	$scope.latestAlert = null;
+    	$scope.alerts = [];
+    	//$scope.latestAlert = { type: 'success', msg: 'Congratulations! You have received your 50th upvote!' }
+    	//$scope.alerts = [
+    	//                   { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
+    	//                  { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+    	//                 ];
         //console.log("checkin " + $scope.author);
     	
     	 $scope.stacked = [{
@@ -240,7 +243,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
             	      windowClass: 'right-modal',
             	      inputs: {
             	        title: "Recent Notifications",
-            	        items: $scope.alerts
+            	        alerts: $scope.alerts
             	      }
             	    }).then(function(modal) {
             	      modal.element.modal();
@@ -282,6 +285,11 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         };
         
         $scope.updateAgenda = function (agenda){
+        	if (!$scope.agendaSet){
+        		$scope.agendaVoted = false;
+            	$scope.agendaText = agenda.text;
+            	$scope.agendaSet = true;
+        	}
         	$scope.agendaSuccessScore = agenda.success;
         	$scope.agendaFailScore = agenda.fail;
         	$scope.agendaDenyScore = agenda.deny;
@@ -304,14 +312,15 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         
           
         $scope.addAlert = function(alert) {
-        	    $scope.alerts.push({type: alert.type, msg: alert.message});
+        	    $scope.alerts.push(JSON.parse(alert));
+        	    $scope.latestAlert = JSON.parse(alert);
         	  };
 
         $scope.closeAlert = function(index) {
         	    $scope.alerts.splice(index, 1);
         	  };
         $scope.dismissAlert = function(){
-        	$scope.latestAlert = [];
+        	$scope.latestAlert = null;
         }
           
         /** handle incoming messages: add to messages array */
@@ -343,7 +352,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
             	$scope.updateAgenda(JSON.parse(JSON.parse(msg.data).message)) ;}
             else if(JSON.parse(msg.data).type == "finishAgenda"){
             	$scope.finishAgenda() ;
-            	$scope.msgs.push(JSON.parse(msg.data));}        	
+            	$scope.addAlert(JSON.parse(msg.data).message);}        	
         	
             else if(JSON.parse(msg.data).type == "modeResult"){
             	$scope.currentMode = JSON.parse(msg.data).message;}
@@ -353,8 +362,8 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         		UserService.influence = JSON.parse(msg.data).influence;
         		UserService.reputation = JSON.parse(msg.data).reputation;
         	}
-        	else if (JSON.parse(msg.data).type == "alertUser" || JSON.parse(msg.data).type == "alertAll"){
-        		$scope.addAlert(JSON.parse(msg.data));
+        	else if (JSON.parse(msg.data).type == "userAlert" || JSON.parse(msg.data).type == "globalAlert"){
+        		$scope.addAlert(JSON.parse(msg.data).message);
         	}
         	else if (JSON.parse(msg.data).type == "refreshUpvotes"){
         		UserService.upvotesLeft = JSON.parse(msg.data).message;
@@ -427,9 +436,6 @@ app.controller('ShopController', ['$scope', '$element', 'title', 'items', 'influ
                                  		$scope.title = title;
                                  		$scope.influence = influence;
                                  		$scope.chosen = null
-                                        $scope.closeAlert = function(index) {
-                                    	    $scope.alerts.splice(index, 1);
-                                    	  };
                                  		// This close function doesn't need to use jQuery or bootstrap, because
                                  		// the button has the 'data-dismiss' attribute.
                                  		$scope.close = function(item) {
@@ -449,10 +455,16 @@ app.controller('ShopController', ['$scope', '$element', 'title', 'items', 'influ
                                  		};
                                  }]);
 
-app.controller('NotificationController', ['$scope', '$element', 'title', 'items', 'close',
-                               	function($scope, $element, title, items, close) {
-                               		$scope.alerts = items;
+app.controller('NotificationController', ['$scope', '$element', 'title', 'alerts', 'close',
+                               	function($scope, $element, title, alerts, close) {
+                               		$scope.alerts = alerts;
                                		$scope.title = title;
+                                    $scope.closeAlert = function(index) {
+                                	    $scope.alerts.splice(index, 1);
+                                	  };
+                                	$scope.dismissAll = function(){
+                                		$scope.alerts = [];
+                                	}
                                		// This close function doesn't need to use jQuery or bootstrap, because
                                		// the button has the 'data-dismiss' attribute.
                                		$scope.close = function() {
