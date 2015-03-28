@@ -1,2 +1,2 @@
 @start /MIN "" "C:\Program Files (x86)\VideoLAN\VLC\vlc.exe" ^
--vvv screen:// :screen-top=51 :screen-left=7 :screen-width=385 :screen-height=570 :screen-fps=15.000000 :live-caching=300 --sout=#transcode{vcodec=mp4v,vb=800,scale=Automatisch,acodec=none}:http{mux=ts,dst=:8080/} :sout-keep'
+-vvv screen:// :screen-top=30 :screen-left=7 :screen-width=481 :screen-height=435 :screen-fps=15.000000 :live-caching=300 --sout=#transcode{vcodec=mp4v,vb=800,scale=Automatisch,acodec=none}:http{mux=ts,dst=:8080/} :sout-keep'

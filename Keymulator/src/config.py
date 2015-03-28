@@ -13,8 +13,10 @@ agendaFinishQuota = 0.6
 
 #PLAYER INTERACTION
 upvoteModifier = 3
-upvotesPerCycle = 1
-upvoteCycleDuration = 10000
+upvotesPerCycle = 3
+upvoteCycleDuration = 30000
+influencePerCycle = 2 #unused
+agendaParticipationModifier = 1
 
 #GAME MODEs
 votingOptions =["Mob", "Majority Vote", "Crowd Weighted Vote", "Active", "Leader", "Expertise Weighted Vote", "Proletarian"]
@@ -31,14 +33,22 @@ modeTimeValues = {"Mob":mobTimeWindow, "Majority Vote":majorityTimeWindow, "Crow
 #GAME CONTROLS
 import Item
 commands = {
-            '!u':'w',
-            '!l':'a',
-            '!r':'d',
+            '!w':'w',
+            '!a':'a',
+            '!s':'d',
             '!d':'s',
+            '!i':'i',
+            '!j':'j',
+            '!v':'v',
+            '!b':'b',
             '87':'w',
             '65':'a',
             '83':'s',
-            '68':'d'
+            '68':'d',
+            '73':'i',
+            '74':'j',
+            '86':'v',
+            '66':'b'
             }
 
 
@@ -46,7 +56,11 @@ commandsToControl = {
                      'w':'Up',
                      'a':'Left',
                      's':'Down',
-                     'd':'Right'
+                     'd':'Right',
+                     'i':'A',
+                     'j':'B',
+                     'v':'Select',
+                     'b':'Start',
                      
                      }
 
@@ -54,7 +68,11 @@ inputMap = {
             'w': 0x57,
             'd':0x44,
             's':0x53,
-            'a':0x41
+            'a':0x41,
+            'i':0x49,
+            'j':0x4A,
+            'b':0x42,
+            'v':0x56
             }
 
 #JSON IDENTIFIERS

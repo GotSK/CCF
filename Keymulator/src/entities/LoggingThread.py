@@ -25,12 +25,16 @@ class LoggingThread(threading.Thread):
 
 
     def run(self):
-
+        lastMode = ''
         while not self.stoprequest.isSet(): 
             try:
                 message = self.inputQ.get(True)                   
-
-                self.logJsonToFile(message)
+                if json.loads(message[1])['type'] == 'modeResult':
+                    if json.loads(message[1])['message'] != lastMode:
+                        lastMode = json.loads(message[1])['message']
+                        self.logJsonToFile(message)
+                else:
+                    self.logJsonToFile(message)
                                 
             except queue.Empty:
                 continue

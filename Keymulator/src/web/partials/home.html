@@ -4,13 +4,13 @@
     <div class="container">
 
         <div class="row">        
-            <div class="col-md-4">
+            <div class="col-lg-4">
 				<embed
 				    id="tv"
 				    name="tv"
 				    type="application/x-vlc-plugin"
 				    pluginspage="http://www.videolan.org" version="VideoLAN.VLCPlugin.2"
-				    width=386 height=571
+				    width=481 height=435
 				    autoplay="yes"
 				    enablejavascript="true"
 				    target="http://192.168.178.20:8080"
@@ -31,7 +31,7 @@
                			<!--  <div class="form-group col-lg-4"><input type="text" name="author" class="form-control" id="userField" value="Username" ng-model="author" /></div>-->
 	                    <div class="clearfix"></div>
 	                    <div class="panel panel-default" style="min-height: 571px; max-height: 571px;overflow-y: scroll;" scroll-glue>
-		                    <div class="panel-body" ng-repeat="msg in msgs "
+		                    <div class="panel-body" ng-repeat="msg in msgs | limitTo: -35"
 						        ng-class="msg.author !== author ? 'others' : ''"
 						        data-ng-show="hidden == false" data-ng-hide="hidden == true"
 						        data-ng-animate="'fadeIn'" style="padding-left: 15px; padding-right: 5px; padding-top: 2px; padding-bottom: 2px;">

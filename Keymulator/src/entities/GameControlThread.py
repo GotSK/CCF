@@ -55,13 +55,14 @@ class GameControlThread(threading.Thread):
                 #think about message reduction
                 #if ppl participated, broadcast the command vote result + mode vote result, then execute command 
                 if result is not None:
-                    self.outputQ.put([-1,json.dumps({'type':'commandResult', 'message':'vote result is '+ config.commandsToControl[result], 'author':'[SYSTEM]'})])
+                    if self.currentMode != 'Mob':
+                        self.outputQ.put([-1,json.dumps({'type':'commandResult', 'message':'vote result is '+ config.commandsToControl[result], 'author':'[SYSTEM]'})])
                     self.outputQ.put([-1,json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'})])
                     self.executeCommandMessage(result)
                 #else just broadcast mode vote result
                 else:
                     self.outputQ.put([-1,json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'})])
-                    print('No participants in this vote')
+                    #print('No participants in this vote')
                     
                 dueTime = aggregator.getTimeWindow() + self.currentTimeMillisec()
             #there is still time left to vote

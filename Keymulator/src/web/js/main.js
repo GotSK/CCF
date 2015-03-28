@@ -22,8 +22,9 @@ app.factory( 'UserService', function() {
 	//fixed items for testing purposes:
 	var item1 = {
 			name: "Agenda",
-			cost: 1,
-			description:"Type your description here!"
+			cost: 9,
+			description:"Geben Sie hier ihre Beschreibung ein!",
+			pic: "web/pic/dollar-stats-icon.png"
 	};
 	var item2 = {
 			name: "Item2",
@@ -33,12 +34,14 @@ app.factory( 'UserService', function() {
 	var item3 = {
 			name: "Spotlight",
 			cost: 3,
-			description:"Put yourself in the spotlight. On purchase you and your actions will be featured in the 'All Eyes On' window."
+			description:"Erhöht die Chance, im 'All Eyes On' Fenster hervorgehoben zu werden. Jeder weitere Kauf steigert diese Chance.",
+			pic: "web/pic/name-card-icon.png"
 	};
 	var item4 = {
 			name: "Repay",
-			cost: 4,
-			description:"Be generous! \n Share your hard earned influence with the crowd. The cost of this item will be evenly distributed among your fellow gamers."
+			cost: 15,
+			description:"Vermögensabgabe. Die aufgewendeten Influencepunkte werden auf Ihre Mitspieler als Gutschrift verteilt.",
+			pic: "web/pic/dollar-rotation-icon.png"
 	};
 	
 	
@@ -213,7 +216,7 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
       	      controller: "ShopController",
       	      windowClass: 'right-modal',
       	      inputs: {
-      	        title: "Shop 'til you drop!",
+      	        title: "Shop",
       	        items: UserService.availableItems,
       	        influence: UserService.influence
       	      }

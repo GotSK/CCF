@@ -171,7 +171,7 @@ def sendImmediateKeystroke(keystroke):
     l_keys = []
     l_keys.extend(t_stroke)
     
-    s_app_name = "DeSmuME 0.9.10 x86"
+    s_app_name = "bgb - POKEMON RED"
 
     window1 = find_window( s_app_name )
     if window1 == None:

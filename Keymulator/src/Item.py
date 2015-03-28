@@ -37,7 +37,14 @@ class RepayItem(Item):
 class StatusItem(Item):
     
     def useItem(self, dataList):
-        self.pmt.outputQ.put([dataList[1][dataList[0][self.ownerName]], json.dumps({ 'message':self.ownerName, 'author': '[SYSTEM]', 'type':"featureUser"})] )
+        if self.ownerName in self.pmt.spotlightDict.keys():
+            self.pmt.spotlightDict[self.ownerName] += 3
+
+        else:
+            alert = {'type':'danger', 'msg':'Something went wrong'}
+            self.pmt.outputQ.put([dataList[1][dataList[0][self.ownerName]], json.dumps({ 'message':json.dumps(alert), 'author': '[SYSTEM]', 'type':"userAlert"})] )
+            self.pmt.db.userRefund(self.ownerName, self)
+       #self.pmt.outputQ.put([dataList[1][dataList[0][self.ownerName]], json.dumps({ 'message':self.ownerName, 'author': '[SYSTEM]', 'type':"featureUser"})] )
 
 
 class AgendaItem(Item):

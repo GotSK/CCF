@@ -38,6 +38,7 @@ class PlayerManagementThread(threading.Thread):
                 if self.currentTimeMillisec() >= upvoteDueTime:
                     self.outputQ.put([-1,json.dumps({'type':'refreshUpvotes', 'message':config.upvotesPerCycle, 'author':'[SYSTEM]'})])
                     upvoteDueTime = self.currentTimeMillisec() + config.upvoteCycleDuration
+                    self.featureUser()
                               
                 authorId = message[0]
                 jmessage = message[1]
@@ -76,6 +77,13 @@ class PlayerManagementThread(threading.Thread):
                         item.useItem(dataList)
                         self.sendUserUpdate(authorId, jmessage['author'])
                 elif jmessage['type'] in ['agendaSuccess', 'agendaDeny', 'agendaFail']:
+                    
+
+                    if self.db.hasUser(jmessage['author']):
+                        self.db.modifyUserRep(jmessage['author'], config.agendaParticipationModifier)
+                        self.db.modifyUserInf(jmessage['author'], config.agendaParticipationModifier)
+                        self.sendUserUpdate(authorId, jmessage['author'])
+                        
                     totalUsers = len(dataList[0].keys())
                     self.agendaBallot[jmessage['type']] += 1
                     self.sendAgendaUpdate(authorId, totalUsers)
@@ -110,6 +118,7 @@ class PlayerManagementThread(threading.Thread):
                 if self.currentTimeMillisec() >= upvoteDueTime:
                     self.outputQ.put([-1,json.dumps({'type':'refreshUpvotes', 'message':config.upvotesPerCycle, 'author':'[SYSTEM]'})])
                     upvoteDueTime = self.currentTimeMillisec() + config.upvoteCycleDuration
+                    self.featureUser()
                 continue
     def sendUserUpdate(self, id, username):
         self.outputQ.put([id,json.dumps({'type':'updateUser', 'message':'', 'author':'[SYSTEM]', 'reputation':self.db.getReputationByName(username), 'influence':self.db.getInfluenceByName(username)})])
@@ -131,6 +140,15 @@ class PlayerManagementThread(threading.Thread):
         return self.agendaBallot['agendaSuccess']
     def getNegativeAgendaVotes(self):
         return self.agendaBallot['agendaFail'] + self.agendaBallot['agendaDeny']
+    
+    def featureUser(self):
+        randlist = []
+        for user in self.spotlightDict.keys():
+            for t in range(self.spotlightDict[user]):
+                randlist.append(user)
+        if len(randlist) > 0:
+            spot = random.choice(randlist)
+            self.outputQ.put([-1,json.dumps({'type':'featureUser', 'message':spot, 'author':'[SYSTEM]'})])
         
     def join(self, timeout=None):
         self.stoprequest.set()

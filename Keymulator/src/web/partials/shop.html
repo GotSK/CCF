@@ -1,5 +1,5 @@
 <div class="modal fade">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -16,6 +16,7 @@
 		                    <strong>{{item.name}}</strong>
 		                </div>
 		                <div class="panel-body">
+		                <img ng-src="{{item.pic}}" class="img-responsive">
 						{{item.description}}
 		                    
 		                </div>
@@ -26,17 +27,15 @@
 		                    </li>
 		                </ul>
 		            </div>
-		        </div>		
-		    </div>
-		    
-		    <div class="row">
-		
-		        <div class="col-sm-3" ng-repeat="item in items.slice(2,6)" ng-model="item">
+		        
+		        <div ng-repeat="item in items.slice(2,6)" ng-model="item">
 		            <div class="panel panel-default text-center">
 		                <div class="panel-heading">
 		                    <strong>{{item.name}}</strong>
 		                </div>
 		                <div class="panel-body">
+		                <img ng-src="{{item.pic}}" class="img-responsive">
+		                <div class="clearfix"></div>
 		                <textarea class="form-control" rows="3" ng-model="item.description">
 		                </textarea>
        					 
@@ -48,7 +47,13 @@
 		                    </li>
 		                </ul>
 		            </div>
-		        </div>	
+		        </div>
+		        </div>			
+		    </div>
+		    
+		    <div class="row">
+		
+
 		
 		</div>
 <!-- /.container -->

@@ -99,6 +99,7 @@ class Database():
         
     def modifyUserInf(self, username, mod):
         self.__getUserByName__(username).modifyInfluence(mod)
+        
     
     def setUserRep(self, username, val):
         self.__getUserByName__(username).setReputation(val)
@@ -121,7 +122,15 @@ class Database():
     def setUsersInf(self, usernames, val):
         for name in usernames:
             self.setUserInf(name, val)
-    
+
+    def modifyAllUsersInf(self, mod):
+        for user in self.users:
+            user.modifyInfluence(mod)
+
+    def modifyAllUsersRep(self, mod):
+        for user in self.users:
+            user.modifyReputation(mod)
+        
     def __getUserByName__(self, username):
         try:
             name = self.userByName[username]

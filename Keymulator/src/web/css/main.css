@@ -21,6 +21,7 @@ body {
 .fadeIn { transition: 1s ease-in-out opacity; opacity: 1; overflow: hidden; height: auto }
 .fadeIn.hidden { opacity: 0; height: 0; overflow: hidden }
 
+.img-responsive {margin:0 auto;}
 
 .dropdown {
     cursor:pointer;

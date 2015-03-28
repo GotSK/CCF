@@ -116,6 +116,8 @@ class ActiveAggregator(BasicCrowdAggregator):
         if username not in self.activeUsers:
             self.activeUsers.append(username)
         BasicCrowdAggregator.addVote(self, vote, username)
+        if self.leader is None:
+            self.setNewRandomLeader()
     
     def getVoteResult(self):
         result = None
