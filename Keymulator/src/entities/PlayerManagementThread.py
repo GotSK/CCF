@@ -19,19 +19,26 @@ class PlayerManagementThread(threading.Thread):
         self.outputQ = outputQ
         self.db = db
         
+        #Control variables
         self.agendaBallot = {'agendaSuccess':0, 'agendaFail':0, 'agendaDeny':0}
         self.agendaSet = False
         self.agendaText = ''
+        self.spotlightDict = {}
+        
         #Other class variables
         self.stoprequest = threading.Event()
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
 
 
     def run(self):
-
+        upvoteDueTime = self.currentTimeMillisec() + config.upvoteCycleDuration
         while not self.stoprequest.isSet(): 
             try:
-                message = self.inputQ.get(True)                   
+                message = self.inputQ.get(True, max(float((upvoteDueTime - self.currentTimeMillisec())/1000), 0.001))       
+                if self.currentTimeMillisec() >= upvoteDueTime:
+                    self.outputQ.put([-1,json.dumps({'type':'refreshUpvotes', 'message':config.upvotesPerCycle, 'author':'[SYSTEM]'})])
+                    upvoteDueTime = self.currentTimeMillisec() + config.upvoteCycleDuration
+                              
                 authorId = message[0]
                 jmessage = message[1]
                 dataList = [] # dataList: clientByUsername, idByClient
@@ -43,12 +50,22 @@ class PlayerManagementThread(threading.Thread):
                 elif jmessage['type'] in ['newUser']:
                     if not self.db.hasUser(jmessage['author']):
                         self.db.addUser(jmessage['author'])
+                    if not jmessage['author'] in self.spotlightDict.keys():
+                        self.spotlightDict[jmessage['author']] = 1
                     self.sendUserUpdate(authorId, jmessage['author'])
                     if self.agendaSet:
                         self.sendAgendaUpdate(authorId, len(dataList[0].keys()))
                 elif jmessage['type'] in ['changeUser']:
                     if not self.db.hasUser(jmessage['message']):
-                        self.db.addUser(jmessage['message'])     
+                        self.db.addUser(jmessage['message'])
+                    
+                    if jmessage['author'] in self.spotlightDict.keys():
+                        self.spotlightDict[jmessage['message']] = self.spotlightDict[jmessage['author']]
+                        try:
+                            del self.spotlightDict[jmessage['author']]
+                        except KeyError:
+                            pass
+                         
                     self.sendUserUpdate(authorId, jmessage['message'])                    
                 elif jmessage['type'] in ['purchase']:
                     if self.db.hasUser(jmessage['author']):
@@ -90,6 +107,9 @@ class PlayerManagementThread(threading.Thread):
                     print("ERROR: No such message type provided") 
                                 
             except queue.Empty:
+                if self.currentTimeMillisec() >= upvoteDueTime:
+                    self.outputQ.put([-1,json.dumps({'type':'refreshUpvotes', 'message':config.upvotesPerCycle, 'author':'[SYSTEM]'})])
+                    upvoteDueTime = self.currentTimeMillisec() + config.upvoteCycleDuration
                 continue
     def sendUserUpdate(self, id, username):
         self.outputQ.put([id,json.dumps({'type':'updateUser', 'message':'', 'author':'[SYSTEM]', 'reputation':self.db.getReputationByName(username), 'influence':self.db.getInfluenceByName(username)})])

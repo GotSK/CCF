@@ -5,15 +5,16 @@ Created on 05.01.2015
 '''
 import os
 #GAMIFICATION SWITCH
-gamification = False
+gamification = True
 
 #ITEMS
 maxAgendaDuration = 10000
 agendaFinishQuota = 0.6
 
 #PLAYER INTERACTION
-upvoteModifier = 5
+upvoteModifier = 3
 upvotesPerCycle = 1
+upvoteCycleDuration = 10000
 
 #GAME MODEs
 votingOptions =["Mob", "Majority Vote", "Crowd Weighted Vote", "Active", "Leader", "Expertise Weighted Vote", "Proletarian"]
@@ -98,6 +99,7 @@ toClient = ['updateUser', 'userAlert']
 #availableItems = [Item.Item("Item1",1),Item.Item("Item2",2),Item.Item("Item3",3),Item.Item("Item4",4)]
 #-----------------
 availableItems = []
+
 itemObjectDict = {'Repay':Item.RepayItem, 'Spotlight':Item.StatusItem, 'Agenda':Item.AgendaItem}
 
 

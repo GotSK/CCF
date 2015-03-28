@@ -501,17 +501,21 @@ app.controller('SimulationCtrl', function ($scope, $http, ModalService, UserServ
 	$scope.votingOptions = ["Option 1", "Option 2", "Option 3"];
 	$scope.modeOptions = ["Mob", "Majority Vote", "Crowd Weighted Vote", "Active", "Leader", "Expertise Weighted Vote", "Proletarian"];
 	$scope.currentMode = null;
-	
-	$scope.votes = [null,null,null,null];
+	$scope.explain = null;
+	$scope.users = ["User 1", "User 2", "User 3", "User 4"]
+	$scope.votes = ["Option 1","Option 1","Option 1","Option 1"];
 	$scope.weights = [1,1,1,1];
-
+	$scope.leader = "User 1";
 	$scope.max = 0;
 	$scope.dynamic = [0,0,0];
-	$scope.dyn1 = 0;
+	$scope.resulttext = null;
 	
 	$scope.submitMode = function(){
 		$scope.currentMode = $scope.userVoted;
 		$scope.weights = [1,1,1,1];
+		$scope.resulttext = null;
+		$scope.dynamic = [0,0,0];
+		$scope.explain = $scope.explainText[$scope.modeOptions.indexOf($scope.currentMode)];
 	};
 	
 	$scope.randomizeVote = function(){
@@ -531,16 +535,108 @@ app.controller('SimulationCtrl', function ($scope, $http, ModalService, UserServ
 		}
 		
 	};
-	$scope.result = function(){
+	$scope.getMaximumOption = function(){
+		var opt = $scope.votingOptions[0];
+		var high = $scope.dynamic[0]
+		
+		for (var i = 1; i < 3; i++){
+			if ($scope.dynamic[i] > high){
+				high = $scope.dynamic[i];
+				opt = $scope.votingOptions[i];
+			}
+		}
+		return {option:opt, maximum:high};
+	}
+
+	$scope.getResults = function(){
 		$scope.max = 0;
 		$scope.dynamic = [0,0,0];
 		for (var i = 0; i < 4; i++){
-			console.log($scope.votingOptions.indexOf($scope.votes[i]));
 			$scope.dynamic[$scope.votingOptions.indexOf($scope.votes[i])] = Math.round(($scope.weights[i] + $scope.dynamic[$scope.votingOptions.indexOf($scope.votes[i])] ) * 100)/100; 
 			$scope.max = Math.round(($scope.max + $scope.weights[i]) * 100) /100;
 		}
-		console.log($scope.dynamic);
-		$scope.dyn1 = $scope.dynamic[0];
+	}
+	$scope.result = function(){
+		if ($scope.modeOptions.indexOf($scope.currentMode) < 0){
+			return;
+		}
+		if ($scope.currentMode == "Mob"){
+			$scope.resulttext = "Alle angegebenen Optionen werden in ihrer zeitlichen Reihenfolge übertragen. ";
+		}
+		else if ($scope.currentMode == "Majority Vote"){
+			$scope.getResults();
+			$scope.resulttext = "Die " + $scope.getMaximumOption().option  + " gewinnt und wird übertragen."
+		}
+		else if ($scope.currentMode == "Crowd Weighted Vote"){
+			$scope.getResults();
+			$scope.resulttext = "Die " + $scope.getMaximumOption().option  + " gewinnt und wird übertragen. Die Gewichte der Beteiligten werden angepasst."
+			
+			for (var i = 0; i < 4; i++){
+				if ($scope.getMaximumOption().option == $scope.votes[i]){
+					//winner
+					$scope.weights[i] = Math.min(5, Math.round( ($scope.weights[i] + (Math.round(($scope.getMaximumOption().maximum /$scope.max) *100) / 100)) *100 )/100);
+				} else {  //loser
+					$scope.weights[i] =Math.max(0.5, Math.round( ($scope.weights[i] - (Math.round(($scope.getMaximumOption().maximum /$scope.max) *100) / 100) - (Math.round(($scope.dynamic[$scope.votingOptions.indexOf($scope.votes[i])] /$scope.max) *100) / 100) )*100 )/100);
+				}
+				
+			}
+		}
+		else if ($scope.currentMode == "Active"){
+			$scope.resulttext = "Da " + $scope.leader + " der Anführer ist, gewinnt " + $scope.votes[$scope.users.indexOf($scope.leader)]  + " und wird übertragen."
+		}
+		else if ($scope.currentMode == "Leader"){
+			$scope.leader = $scope.users[$scope.weights.indexOf(Math.max.apply(window,$scope.weights))];
+			var oldLeader = $scope.leader;
+			$scope.getResults();
+			var unw = [0,0,0,0];
+			for (var i = 0; i < 4; i++){
+				unw[$scope.votingOptions.indexOf($scope.votes[i])] = Math.round((1 + unw[$scope.votingOptions.indexOf($scope.votes[i])] ) * 100)/100; 
+			}
+			var opt = $scope.votingOptions[0];
+			var high = unw[0];
+			
+			for (var i = 1; i < 3; i++){
+				if (unw[i] > high){
+					high = unw[i];
+					opt = $scope.votingOptions[i];
+				}
+			}
+			for (var i = 0; i < 4; i++){
+				if (opt == $scope.votes[i]){
+					//winner
+					$scope.weights[i] = Math.min(5, Math.round( ($scope.weights[i] + (Math.round((high /4) *100) / 100)) *100 )/100);
+				} else {  //loser
+					$scope.weights[i] =Math.max(0.5, Math.round( ($scope.weights[i] - (Math.round((high /4) *100) / 100) - (Math.round((unw[($scope.votingOptions.indexOf($scope.votes[i]))] /4) *100) / 100) )*100 )/100);
+				}
+				
+			}
+			$scope.leader = $scope.users[$scope.weights.indexOf(Math.max.apply(window,$scope.weights))];
+			$scope.resulttext = "Da " + oldLeader + " der Anführer ist, gewinnt " + $scope.votes[$scope.users.indexOf(oldLeader)]  + " und wird übertragen. Die Gewichte werden angepasst, wonach " + $scope.leader+ " in der nächsten Runde der Anführer sein wird."
+		}
+		else if ($scope.currentMode == "Expertise Weighted Vote"){
+			$scope.getResults();
+			$scope.resulttext = "Die " + $scope.getMaximumOption().option  + " gewinnt und wird übertragen."
+		}
+		else if ($scope.currentMode == "Proletarian"){
+			$scope.max = 0;
+			$scope.dynamic = [0,0,0];
+			for (var i = 0; i < 4; i++){
+				$scope.dynamic[$scope.votingOptions.indexOf($scope.votes[i])] = Math.round((Math.min(0.5,5 - $scope.weights[i]) + $scope.dynamic[$scope.votingOptions.indexOf($scope.votes[i])] ) * 100)/100; 
+				$scope.max = Math.round(($scope.max + Math.min(0.5,5 - $scope.weights[i])) * 100) /100;
+			}
+			$scope.resulttext = "Die " + $scope.getMaximumOption().option  + " gewinnt und wird übertragen."
+		}
+		
 	};
+	
+	$scope.explainText =["Bei diesem Modus handelt es sich um keine wirkliche Abstimmung, da jede Eingabe direkt und ungefiltert an das Spiel übertragen wird. Pro halber Sekunde kann der Emulator jedoch nur einen Befehl umsetzen, weshalb alle zusätzlichen Kommandos innerhalb dieses Zeitraums wirkungslos verfallen.", 
+	                     "Dieser Modus ist eine einfache, ungewichtete Abstimmung. Das Kommando, welches innerhalb der Abstimmungszeit die meisten stimmen erhält, wird an das Spiel weitergeleitet. Gleichstände werden zufällig entschieden.",
+	                     "Dieser Modus ist eine gewichtete Abstimmung, wobei jeder Nutzer ein Gewicht besitzt, welches am Ende einer Abstimmung neu angepasst wird. Übereinstimmung mit der Gruppenentscheidung erhöht dieses, während Abweichungen von der Gruppe es senken. Gleichstände werden zufällig entschieden.", 
+	                     "Dieser Modus wählt zufällig bestimmt einen Anführer aus, dessen Kommandos als einzige an das Spiel übertragen werden. Dabei bleibt dieser Nutzer so lange Anführer, bis er/sie keine Eingaben mehr tätigt. Der einzige Zweck der Abstimmung besteht darin, sich durch Teilnahme als aktiver Nutzer zu zeigen und somit einen potentiellen Anführer darzustellen.", 
+	                     "Dieser Modus ist eine Variation des 'Crowd Weighted Vote'. Das Kommando des höchst gewichteten Nutzers wird ungefiltert an das Spiel übertragen, während die Abstimmung dazu dient, die Gewichte anzupassen. Gleichstände werden zufällig entschieden.", 
+	                     "Dieser Modus ist eine gewichtete Abstimmung, wobei sich das Gewicht nicht durch das Abstimmungsverhalten des Nutzers ändert, sondern durch äußere Faktoren bestimmt wird. Expertise Weighted Vote wird in einer späteren Phase des Experiments verfügbar sein.", 
+	                     "Dieser Modus ist eine invers gewichtete Abstimmung, bei der die Nutzer mit dem niedrigsten Gewicht die höchste Auswirkung auf das Abstimmungsergebnis haben. Das Gewicht ändert sich nicht durch das Abstimmungsverhalten des Nutzers, sondern wird durch äußere Faktoren bestimmt.  Proletarian wird in einer späteren Phase des Experiments verfügbar sein."]
+			
+	
 	
 });
