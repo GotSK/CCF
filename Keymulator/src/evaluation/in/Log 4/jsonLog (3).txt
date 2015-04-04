@@ -1,0 +1,813 @@
+{"message": "Log initialized", "time": "1427557890694", "type": "initializeLog", "author": "[SYSTEM]"}
+{"message": "Majority Vote", "time": "1427557893695", "type": "modeResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Petra", "time": "1427557902798", "type": "newUser", "authorId": "1", "author": "Petra"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "1", "reputation": 90, "time": "1427557902799", "message": "", "type": "updateUser"}
+{"message": "Renate", "time": "1427557903422", "type": "newUser", "authorId": "0", "author": "Renate"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "0", "reputation": 90, "time": "1427557903423", "message": "", "type": "updateUser"}
+{"message": "Susanne", "time": "1427557904237", "type": "newUser", "authorId": "2", "author": "Susanne"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "2", "reputation": 90, "time": "1427557904237", "message": "", "type": "updateUser"}
+{"message": "73", "time": "1427557904640", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "Josef", "time": "1427557905480", "type": "newUser", "authorId": "3", "author": "Josef"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "3", "reputation": 90, "time": "1427557905481", "message": "", "type": "updateUser"}
+{"message": "vote result is A", "time": "1427557905701", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Wolfgang", "time": "1427557905818", "type": "newUser", "authorId": "4", "author": "Wolfgang"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "4", "reputation": 90, "time": "1427557905818", "message": "", "type": "updateUser"}
+{"message": "Elisabeth", "time": "1427557907943", "type": "newUser", "authorId": "5", "author": "Elisabeth"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "5", "reputation": 90, "time": "1427557907943", "message": "", "type": "updateUser"}
+{"message": "83", "time": "1427557908097", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Down", "time": "1427557909302", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Proletarian", "time": "1427557909716", "type": "modeVote", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427557910035", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "73", "time": "1427557910192", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557910505", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "68", "time": "1427557911870", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "Ingrid", "time": "1427557912179", "type": "newUser", "authorId": "8", "author": "Ingrid"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "8", "reputation": 90, "time": "1427557912180", "message": "", "type": "updateUser"}
+{"message": "83", "time": "1427557912751", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "New game Mode beginning next round: Proletarian", "time": "1427557912904", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "vote result is Down", "time": "1427557912906", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Proletarian", "time": "1427557912908", "type": "modeResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557913782", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "73", "time": "1427557913984", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "73", "time": "1427557914485", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557915074", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "83", "time": "1427557915820", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427557916054", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557916106", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557916397", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is Down", "time": "1427557916507", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Frank", "time": "1427557916592", "type": "newUser", "authorId": "7", "author": "Frank"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "7", "reputation": 90, "time": "1427557916593", "message": "", "type": "updateUser"}
+{"message": "83", "time": "1427557916625", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557916725", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557916915", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557917749", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427557917770", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557917771", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557917772", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557917774", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557917775", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557917915", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557918071", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557918232", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557918393", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557919080", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557919081", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557919082", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557919083", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557919138", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "68", "time": "1427557919217", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557919385", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557919539", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557919655", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "68", "time": "1427557919696", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557919823", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Down", "time": "1427557920109", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": 3, "time": "1427557920694", "type": "refreshUpvotes", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Josef", "time": "1427557920695", "type": "featureUser", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "68", "time": "1427557920875", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "Mob", "time": "1427557920905", "type": "modeVote", "authorId": "5", "author": "Elisabeth"}
+{"message": "68", "time": "1427557921014", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "68", "time": "1427557922856", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "Expertise Weighted Vote", "time": "1427557922968", "type": "modeVote", "authorId": "3", "author": "Josef"}
+{"message": "Expertise Weighted Vote", "time": "1427557923641", "type": "modeVote", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is Right", "time": "1427557923713", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "68", "time": "1427557924297", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "68", "time": "1427557925135", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "68", "time": "1427557926825", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "68", "time": "1427557927053", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Right", "time": "1427557927316", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "haben wir sogar vlt den key schon?", "time": "1427557927544", "type": "chatMsg", "authorId": "1", "author": "Petra"}
+{"message": "68", "time": "1427557928120", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "68", "time": "1427557928766", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557928918", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557929098", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557929267", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557929454", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557929661", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557929841", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557930011", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557930175", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557930487", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "68", "time": "1427557930850", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557930851", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557930852", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557930898", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "New game Mode beginning next round: Expertise Weighted Vote", "time": "1427557930918", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "vote result is Right", "time": "1427557930920", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Expertise Weighted Vote", "time": "1427557930922", "type": "modeResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "68", "time": "1427557930997", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "68", "time": "1427557931063", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557932019", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557932994", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557932996", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557932998", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557932998", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557933001", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "68", "time": "1427557933016", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557933192", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427557933391", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557933941", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "83", "time": "1427557934376", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Right", "time": "1427557934521", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557934818", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557935021", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557935231", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557935399", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "66", "time": "1427557935403", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427557935583", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557935796", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557936406", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557936559", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557936561", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557936562", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557936617", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557936797", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557936949", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557937147", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557937321", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557937983", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557937984", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557937984", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557938031", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is Down", "time": "1427557938122", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557938205", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557938439", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557938766", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "men\u00fc nachsehen?", "time": "1427557938774", "type": "chatMsg", "authorId": "2", "author": "Susanne"}
+{"message": "schau mal **schnell jmd nach...", "time": "1427557939709", "type": "chatMsg", "authorId": "1", "author": "Petra"}
+{"message": "Ingrid", "time": "1427557939870", "type": "newUser", "authorId": "9", "author": "Ingrid"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "9", "reputation": 90, "time": "1427557939871", "message": "", "type": "updateUser"}
+{"message": "83", "time": "1427557939986", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557939987", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557939989", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557939991", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557939991", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557939992", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557939992", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557939993", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557939993", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557939993", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557940119", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557940283", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557940456", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557940668", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557940801", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557940972", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557941470", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Down", "time": "1427557941724", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557941769", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557941769", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557941770", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557941770", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557941775", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "83", "time": "1427557941920", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557942619", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557942620", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "66", "time": "1427557943340", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "66", "time": "1427557944753", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427557945202", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557945238", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "vote result is Down", "time": "1427557945326", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "66", "time": "1427557946491", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557948388", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557948523", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427557948905", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "vote result is Start", "time": "1427557948928", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Susanne", "time": "1427557949289", "type": "upvoteMsg", "authorId": "5", "author": "Elisabeth"}
+{"author": "[SYSTEM]", "influence": 12, "authorId": "2", "reputation": 93, "time": "1427557949290", "message": "", "type": "updateUser"}
+{"message": "Petra", "time": "1427557949971", "type": "upvoteMsg", "authorId": "5", "author": "Elisabeth"}
+{"author": "[SYSTEM]", "influence": 12, "authorId": "1", "reputation": 93, "time": "1427557949972", "message": "", "type": "updateUser"}
+{"message": 3, "time": "1427557950695", "type": "refreshUpvotes", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Petra", "time": "1427557950696", "type": "featureUser", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557951005", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "66", "time": "1427557951818", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Down", "time": "1427557952532", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557952661", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557952886", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557954071", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "Frank", "time": "1427557956033", "type": "newUser", "authorId": "10", "author": "Frank"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "10", "reputation": 90, "time": "1427557956034", "message": "", "type": "updateUser"}
+{"message": "vote result is Down", "time": "1427557956133", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "73", "time": "1427557956702", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "73", "time": "1427557958563", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "83", "time": "1427557959020", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427557959021", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "73", "time": "1427557959023", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is A", "time": "1427557959735", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "73", "time": "1427557959772", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "da is die t\u00fcr zum fahrstuhl auf jednefall", "time": "1427557962888", "type": "chatMsg", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427557962923", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557963232", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is Down", "time": "1427557963339", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557963401", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427557963436", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427557963475", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557963717", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557963820", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557964587", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557964588", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557964589", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557964665", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557964793", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557964964", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557965116", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557965284", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557965454", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557965634", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557965771", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "83", "time": "1427557965795", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557965899", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427557965958", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557966122", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557966127", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427557966274", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557966437", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557966625", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557966799", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is Down", "time": "1427557966941", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557966965", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557967133", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557967329", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "73", "time": "1427557967478", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427557967525", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557967712", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "73", "time": "1427557967800", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427557967879", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557967962", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557968055", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557968274", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557968447", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557968594", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "83", "time": "1427557968640", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557968810", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427557968978", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427557969032", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557969158", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427557969223", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557969410", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557969550", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557969552", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557969695", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427557969773", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557969956", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557970190", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557970373", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557970433", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "vote result is Down", "time": "1427557970544", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557970589", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557970798", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557971000", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557971230", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427557971259", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427557971858", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557971859", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557971860", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557971861", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557971982", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557972165", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557972328", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557972500", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557972667", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557972868", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427557972990", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427557973303", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "83", "time": "1427557973385", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557973387", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557973388", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557973455", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557973666", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557973876", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557973879", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557974072", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427557974073", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is Down", "time": "1427557974147", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557974283", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557974526", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557974719", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557974926", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557975008", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427557975113", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557975307", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557976627", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "83", "time": "1427557977355", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Down", "time": "1427557977749", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557977956", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427557977982", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427557978190", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557978190", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427557978192", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "Mob", "time": "1427557978800", "type": "modeVote", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427557980419", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": 3, "time": "1427557980695", "type": "refreshUpvotes", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Ingrid", "time": "1427557980696", "type": "featureUser", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557980815", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Down", "time": "1427557981349", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557983938", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "vote result is Down", "time": "1427557984952", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557985226", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "73", "time": "1427557986961", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427557987719", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "73", "time": "1427557988470", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "vote result is Down", "time": "1427557988552", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "73", "time": "1427557989679", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "73", "time": "1427557989679", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427557989875", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "73", "time": "1427557990232", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "73", "time": "1427557990787", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "haben wir ein helix fossil? :P", "time": "1427557991011", "type": "chatMsg", "authorId": "2", "author": "Susanne"}
+{"message": "Wer hat den  da den Rad coupon nicht eingel\u00f6st", "time": "1427557991228", "type": "chatMsg", "authorId": "0", "author": "Renate"}
+{"message": "wtf wir haben das rad noch nich abgeholt.. was f\u00fcr bobs..", "time": "1427557991531", "type": "chatMsg", "authorId": "1", "author": "Petra"}
+{"message": "73", "time": "1427557991737", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "vote result is A", "time": "1427557992154", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "73", "time": "1427557992779", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427557993652", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "hm, schreibt jemand mit, was wir haben?", "time": "1427557994415", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "83", "time": "1427557994612", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "73", "time": "1427557995271", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "vote result is Down", "time": "1427557995757", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427557997551", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "74", "time": "1427557998418", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "74", "time": "1427557998818", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "Petra", "time": "1427557999249", "type": "upvoteMsg", "authorId": "0", "author": "Renate"}
+{"author": "[SYSTEM]", "influence": 15, "authorId": "1", "reputation": 96, "time": "1427557999250", "message": "", "type": "updateUser"}
+{"message": "vote result is B", "time": "1427557999360", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "74", "time": "1427557999556", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "74", "time": "1427558001725", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427558001820", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427558002079", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is B", "time": "1427558002962", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427558003146", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427558003809", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "n\u00f6", "time": "1427558004544", "type": "chatMsg", "authorId": "5", "author": "Elisabeth"}
+{"message": "83", "time": "1427558005938", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "danke :)", "time": "1427558006244", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "73", "time": "1427558006334", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "73", "time": "1427558006457", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is Down", "time": "1427558006565", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "73", "time": "1427558006847", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "73", "time": "1427558008111", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558009702", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is A", "time": "1427558010166", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": 3, "time": "1427558010696", "type": "refreshUpvotes", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Frank", "time": "1427558010698", "type": "featureUser", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "74", "time": "1427558011503", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "73", "time": "1427558012028", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "{\"name\":\"Agenda\",\"cost\":9,\"description\":\"Das rad abhoolen?\",\"pic\":\"web/pic/dollar-stats-icon.png\",\"$$hashKey\":\"object:103\"}", "time": "1427558012342", "type": "purchase", "authorId": "1", "author": "Petra"}
+{"message": "{\"fail\": 0, \"text\": \"Das rad abhoolen?\", \"deny\": 0, \"success\": 0}", "time": "1427558012343", "type": "setAgenda", "authorId": "1", "author": "[SYSTEM]"}
+{"author": "[SYSTEM]", "influence": 6, "authorId": "1", "reputation": 96, "time": "1427558012344", "message": "", "type": "updateUser"}
+{"message": "vote result is A", "time": "1427558013768", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "oder auch nicht...", "time": "1427558014516", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "74", "time": "1427558014736", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "74", "time": "1427558014747", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558015147", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "agendaSuccess", "time": "1427558016699", "type": "agendaSuccess", "authorId": "0", "author": "Renate"}
+{"author": "[SYSTEM]", "influence": 10, "authorId": "0", "reputation": 91, "time": "1427558016700", "message": "", "type": "updateUser"}
+{"message": "{\"fail\": 0, \"text\": \"Das rad abhoolen?\", \"deny\": 0, \"success\": 12}", "time": "1427558016700", "type": "updateAgenda", "authorId": "0", "author": "[SYSTEM]"}
+{"message": "vote result is B", "time": "1427558017371", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "agendaSuccess", "time": "1427558017443", "type": "agendaSuccess", "authorId": "1", "author": "Petra"}
+{"author": "[SYSTEM]", "influence": 7, "authorId": "1", "reputation": 97, "time": "1427558017445", "message": "", "type": "updateUser"}
+{"message": "{\"fail\": 0, \"text\": \"Das rad abhoolen?\", \"deny\": 0, \"success\": 25}", "time": "1427558017445", "type": "updateAgenda", "authorId": "1", "author": "[SYSTEM]"}
+{"message": "wir sind Ash, genau", "time": "1427558017591", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "73", "time": "1427558018764", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "Ingrid", "time": "1427558019709", "type": "upvoteMsg", "authorId": "5", "author": "Elisabeth"}
+{"author": "[SYSTEM]", "influence": 12, "authorId": "9", "reputation": 93, "time": "1427558019709", "message": "", "type": "updateUser"}
+{"message": "agendaFail", "time": "1427558020851", "type": "agendaFail", "authorId": "9", "author": "Ingrid"}
+{"author": "[SYSTEM]", "influence": 13, "authorId": "9", "reputation": 94, "time": "1427558020851", "message": "", "type": "updateUser"}
+{"message": "{\"fail\": 12, \"text\": \"Das rad abhoolen?\", \"deny\": 0, \"success\": 25}", "time": "1427558020852", "type": "updateAgenda", "authorId": "9", "author": "[SYSTEM]"}
+{"message": "vote result is A", "time": "1427558020972", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "66", "time": "1427558021747", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "agendaFail", "time": "1427558021871", "type": "agendaFail", "authorId": "5", "author": "Elisabeth"}
+{"author": "[SYSTEM]", "influence": 10, "authorId": "5", "reputation": 91, "time": "1427558021873", "message": "", "type": "updateUser"}
+{"message": "{\"fail\": 25, \"text\": \"Das rad abhoolen?\", \"deny\": 0, \"success\": 25}", "time": "1427558021873", "type": "updateAgenda", "authorId": "5", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558022838", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "74", "time": "1427558022855", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "66", "time": "1427558023233", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558024202", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "65", "time": "1427558024381", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "vote result is Start", "time": "1427558024575", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558025647", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558025882", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "65", "time": "1427558026041", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427558027589", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is Left", "time": "1427558028176", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427558028442", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558029130", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "73", "time": "1427558029140", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "87", "time": "1427558030227", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558030380", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is A", "time": "1427558031779", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "im pdf stand doch unser ziel", "time": "1427558031879", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558032817", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "agendaFail", "time": "1427558033699", "type": "agendaFail", "authorId": "10", "author": "Frank"}
+{"author": "[SYSTEM]", "influence": 10, "authorId": "10", "reputation": 91, "time": "1427558033700", "message": "", "type": "updateUser"}
+{"message": "{\"fail\": 37, \"text\": \"Das rad abhoolen?\", \"deny\": 0, \"success\": 25}", "time": "1427558033701", "type": "updateAgenda", "authorId": "10", "author": "[SYSTEM]"}
+{"message": "74", "time": "1427558034071", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "74", "time": "1427558034601", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is B", "time": "1427558035381", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558036132", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "also, weiter da hin", "time": "1427558036212", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "87", "time": "1427558038894", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Up", "time": "1427558038984", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "ja wir m\u00fcssen durch dier t\u00fcr", "time": "1427558040345", "type": "chatMsg", "authorId": "1", "author": "Petra"}
+{"message": 3, "time": "1427558040696", "type": "refreshUpvotes", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Elisabeth", "time": "1427558040699", "type": "featureUser", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "73", "time": "1427558041070", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "Ingrid", "time": "1427558041612", "type": "upvoteMsg", "authorId": "5", "author": "Elisabeth"}
+{"author": "[SYSTEM]", "influence": 16, "authorId": "9", "reputation": 97, "time": "1427558041613", "message": "", "type": "updateUser"}
+{"message": "73", "time": "1427558041831", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is A", "time": "1427558042585", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "wir machen unsere eigenen ziele", "time": "1427558042630", "type": "chatMsg", "authorId": "4", "author": "Wolfgang"}
+{"message": "83", "time": "1427558045820", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Down", "time": "1427558046188", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558046637", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "Petra", "time": "1427558047002", "type": "upvoteMsg", "authorId": "5", "author": "Elisabeth"}
+{"author": "[SYSTEM]", "influence": 10, "authorId": "1", "reputation": 100, "time": "1427558047002", "message": "", "type": "updateUser"}
+{"message": "83", "time": "1427558047336", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427558048092", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427558048425", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "was sollen wir denn mit dem rad?", "time": "1427558048441", "type": "chatMsg", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427558049458", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "ich lasse mir von niemandem etwas vorschreiben", "time": "1427558049569", "type": "chatMsg", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is Down", "time": "1427558049790", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427558050008", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "und dann ist links der fahrstuhl", "time": "1427558050173", "type": "chatMsg", "authorId": "1", "author": "Petra"}
+{"message": "wir k\u00f6nnen ja ein andermal einen auf Completionist machen ;)", "time": "1427558050196", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "Petra", "time": "1427558052293", "type": "upvoteMsg", "authorId": "4", "author": "Wolfgang"}
+{"author": "[SYSTEM]", "influence": 13, "authorId": "1", "reputation": 103, "time": "1427558052293", "message": "", "type": "updateUser"}
+{"message": "83", "time": "1427558052369", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427558052868", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Down", "time": "1427558053391", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558054557", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427558054767", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427558056925", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Down", "time": "1427558056993", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558057292", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427558057668", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "Ingrid", "time": "1427558058629", "type": "upvoteMsg", "authorId": "4", "author": "Wolfgang"}
+{"author": "[SYSTEM]", "influence": 19, "authorId": "9", "reputation": 100, "time": "1427558058629", "message": "", "type": "updateUser"}
+{"message": "65", "time": "1427558059131", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427558060441", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Down", "time": "1427558060596", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558061567", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427558061858", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "83", "time": "1427558063587", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "83", "time": "1427558063596", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427558063608", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Down", "time": "1427558064198", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427558064411", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427558065025", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "83", "time": "1427558066571", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427558066785", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558067179", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "Ingrid", "time": "1427558067399", "type": "upvoteMsg", "authorId": "10", "author": "Frank"}
+{"author": "[SYSTEM]", "influence": 22, "authorId": "9", "reputation": 103, "time": "1427558067400", "message": "", "type": "updateUser"}
+{"message": "vote result is Down", "time": "1427558067802", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "eine milde spende an rep?", "time": "1427558068669", "type": "chatMsg", "authorId": "4", "author": "Wolfgang"}
+{"message": 3, "time": "1427558070698", "type": "refreshUpvotes", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Ingrid", "time": "1427558070699", "type": "featureUser", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "NEEEEIN ): kein helix", "time": "1427558071318", "type": "chatMsg", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427558074212", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Down", "time": "1427558074405", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "schl\u00fcssel finden", "time": "1427558074454", "type": "chatMsg", "authorId": "1", "author": "Petra"}
+{"message": "66", "time": "1427558074899", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427558075823", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558077003", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "vote result is Start", "time": "1427558078009", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427558078213", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "immer down voten und dann schauen ob es dabei war", "time": "1427558079028", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558079231", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "66", "time": "1427558079401", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "83", "time": "1427558079669", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "Petra", "time": "1427558080115", "type": "upvoteMsg", "authorId": "5", "author": "Elisabeth"}
+{"author": "[SYSTEM]", "influence": 16, "authorId": "1", "reputation": 106, "time": "1427558080116", "message": "", "type": "updateUser"}
+{"message": "vote result is Start", "time": "1427558081611", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427558081841", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "83", "time": "1427558082220", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558082397", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "87", "time": "1427558083846", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "wir schmeissen das Sommersemster und zocken das so durch", "time": "1427558083922", "type": "chatMsg", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427558083955", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427558084762", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427558085185", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Down", "time": "1427558085212", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427558085951", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427558086420", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "83", "time": "1427558088181", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427558088476", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Down", "time": "1427558088815", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Renate", "time": "1427558089495", "type": "upvoteMsg", "authorId": "5", "author": "Elisabeth"}
+{"author": "[SYSTEM]", "influence": 13, "authorId": "0", "reputation": 94, "time": "1427558089496", "message": "", "type": "updateUser"}
+{"message": "83", "time": "1427558091292", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "83", "time": "1427558091392", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "vote result is Down", "time": "1427558092417", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427558093207", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "Renate", "time": "1427558093418", "type": "upvoteMsg", "authorId": "4", "author": "Wolfgang"}
+{"author": "[SYSTEM]", "influence": 16, "authorId": "0", "reputation": 97, "time": "1427558093419", "message": "", "type": "updateUser"}
+{"message": "sieht nicht gut aus", "time": "1427558094254", "type": "chatMsg", "authorId": "2", "author": "Susanne"}
+{"message": "83", "time": "1427558094951", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "+0", "time": "1427558095190", "type": "chatMsg", "authorId": "10", "author": "Frank"}
+{"message": "vote result is Down", "time": "1427558096019", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427558096941", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "kein schl\u00fcssel -> suchen gehen", "time": "1427558097200", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "vote result is Down", "time": "1427558099621", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "74", "time": "1427558100168", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": 3, "time": "1427558100698", "type": "refreshUpvotes", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Wolfgang", "time": "1427558100699", "type": "featureUser", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Ingrid", "time": "1427558101012", "type": "upvoteMsg", "authorId": "3", "author": "Josef"}
+{"author": "[SYSTEM]", "influence": 25, "authorId": "9", "reputation": 106, "time": "1427558101012", "message": "", "type": "updateUser"}
+{"message": "Fuck", "time": "1427558102327", "type": "chatMsg", "authorId": "0", "author": "Renate"}
+{"message": "sommersemester halte ich f\u00fcr optimistisch", "time": "1427558102470", "type": "chatMsg", "authorId": "4", "author": "Wolfgang"}
+{"message": "66", "time": "1427558102600", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "74", "time": "1427558102625", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "vote result is B", "time": "1427558103223", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Wolfgang", "time": "1427558104972", "type": "upvoteMsg", "authorId": "0", "author": "Renate"}
+{"author": "[SYSTEM]", "influence": 12, "authorId": "4", "reputation": 93, "time": "1427558104973", "message": "", "type": "updateUser"}
+{"message": "agendaFail", "time": "1427558105246", "type": "agendaFail", "authorId": "4", "author": "Wolfgang"}
+{"author": "[SYSTEM]", "influence": 13, "authorId": "4", "reputation": 94, "time": "1427558105247", "message": "", "type": "updateUser"}
+{"message": "{\"fail\": 50, \"text\": \"Das rad abhoolen?\", \"deny\": 0, \"success\": 25}", "time": "1427558105248", "type": "updateAgenda", "authorId": "4", "author": "[SYSTEM]"}
+{"message": "mach mal das men\u00fc zu", "time": "1427558105280", "type": "chatMsg", "authorId": "5", "author": "Elisabeth"}
+{"message": "74", "time": "1427558105441", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "74", "time": "1427558106257", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "vote result is B", "time": "1427558106827", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "fuck...", "time": "1427558106861", "type": "chatMsg", "authorId": "1", "author": "Petra"}
+{"message": "74", "time": "1427558107656", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558109532", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Left", "time": "1427558110428", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558111552", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "eeh", "time": "1427558112643", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558112980", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "87", "time": "1427558113407", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "68", "time": "1427558113990", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Up", "time": "1427558114031", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558114220", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "68", "time": "1427558114617", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "68", "time": "1427558114978", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "jmd ne ahnung wo der key is?", "time": "1427558115745", "type": "chatMsg", "authorId": "1", "author": "Petra"}
+{"message": "vote result is Right", "time": "1427558117632", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "68", "time": "1427558117654", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "68", "time": "1427558118489", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "hier k\u00f6nnten kinder anwesend seind", "time": "1427558119155", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558120037", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "65", "time": "1427558120324", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "87", "time": "1427558120495", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558120898", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Left", "time": "1427558121234", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558122953", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "68", "time": "1427558123885", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "87", "time": "1427558124060", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "hat irgendjemadn eigentlich geschaut ob wir den schl\u00fcssel haben?", "time": "1427558124199", "type": "chatMsg", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558124652", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "vote result is Up", "time": "1427558124835", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558124891", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "oben raus, dann links rum mal schauen", "time": "1427558124899", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "87", "time": "1427558124919", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "87", "time": "1427558126695", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "vote result is Left", "time": "1427558128437", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "68", "time": "1427558128995", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "68", "time": "1427558129153", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "Ingrid", "time": "1427558129610", "type": "upvoteMsg", "authorId": "5", "author": "Elisabeth"}
+{"author": "[SYSTEM]", "influence": 28, "authorId": "9", "reputation": 109, "time": "1427558129610", "message": "", "type": "updateUser"}
+{"message": "Wolfgang", "time": "1427558129958", "type": "upvoteMsg", "authorId": "2", "author": "Susanne"}
+{"author": "[SYSTEM]", "influence": 16, "authorId": "4", "reputation": 97, "time": "1427558129959", "message": "", "type": "updateUser"}
+{"message": "Nein k\u00f6nnten sie ncith", "time": "1427558130010", "type": "chatMsg", "authorId": "0", "author": "Renate"}
+{"message": "wird ja nicht sooo weit sein", "time": "1427558130050", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": 3, "time": "1427558130698", "type": "refreshUpvotes", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Elisabeth", "time": "1427558130699", "type": "featureUser", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "ich frag ja nur so", "time": "1427558131573", "type": "chatMsg", "authorId": "4", "author": "Wolfgang"}
+{"message": "Proletarian", "time": "1427558131914", "type": "modeVote", "authorId": "1", "author": "Petra"}
+{"message": "68", "time": "1427558131972", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Right", "time": "1427558132039", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558132460", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "68", "time": "1427558134059", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558134352", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558134547", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "cheaten ist nicht!", "time": "1427558134598", "type": "chatMsg", "authorId": "2", "author": "Susanne"}
+{"message": "68", "time": "1427558134769", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558134892", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558135119", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "Active", "time": "1427558135218", "type": "modeVote", "authorId": "5", "author": "Elisabeth"}
+{"message": "68", "time": "1427558135253", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558135492", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558135524", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Right", "time": "1427558135641", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "68", "time": "1427558135654", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558135836", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558136019", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "Wolfgang", "time": "1427558136510", "type": "upvoteMsg", "authorId": "1", "author": "Petra"}
+{"author": "[SYSTEM]", "influence": 19, "authorId": "4", "reputation": 100, "time": "1427558136511", "message": "", "type": "updateUser"}
+{"message": "68", "time": "1427558136590", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558136592", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558136593", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558136758", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558136932", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "68", "time": "1427558137549", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558137551", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558137551", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558137562", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558137763", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558137945", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558138148", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558138190", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "68", "time": "1427558138330", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558138383", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "87", "time": "1427558138671", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558138869", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558139072", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558139243", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "vote result is Right", "time": "1427558139244", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558139418", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558139542", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558139583", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558139745", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558139904", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558139947", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558140096", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558140270", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558140445", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558140595", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558140792", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558141089", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "68", "time": "1427558141488", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "87", "time": "1427558141590", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558141592", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558141592", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558141593", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558141786", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558141960", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "68", "time": "1427558142692", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "vote result is Up", "time": "1427558142845", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558143114", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "87", "time": "1427558143180", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "87", "time": "1427558143221", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "Ingrid", "time": "1427558144644", "type": "upvoteMsg", "authorId": "1", "author": "Petra"}
+{"author": "[SYSTEM]", "influence": 31, "authorId": "9", "reputation": 112, "time": "1427558144644", "message": "", "type": "updateUser"}
+{"message": "87", "time": "1427558145471", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558146372", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "vote result is Up", "time": "1427558146447", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558148657", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "87", "time": "1427558149048", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Up", "time": "1427558150050", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558150259", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "mehr metagaming! wuhu!", "time": "1427558150449", "type": "chatMsg", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558150943", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558151079", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "Susanne", "time": "1427558151659", "type": "upvoteMsg", "authorId": "1", "author": "Petra"}
+{"author": "[SYSTEM]", "influence": 15, "authorId": "2", "reputation": 96, "time": "1427558151660", "message": "", "type": "updateUser"}
+{"message": "lass mal im inventar gucken xD", "time": "1427558152912", "type": "chatMsg", "authorId": "10", "author": "Frank"}
+{"message": "87", "time": "1427558153326", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558153612", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "vote result is Up", "time": "1427558153652", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "ja, wir haben keinen schl\u00fcssel", "time": "1427558153943", "type": "chatMsg", "authorId": "2", "author": "Susanne"}
+{"message": "87", "time": "1427558155869", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558156200", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "65", "time": "1427558156201", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558156940", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "vote result is Up", "time": "1427558157253", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558157716", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "87", "time": "1427558157778", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558158091", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558158093", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558158096", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558158097", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558158098", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558158098", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558158098", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558158099", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558158191", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558159560", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "65", "time": "1427558160284", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558160357", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "65", "time": "1427558160547", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": 3, "time": "1427558160699", "type": "refreshUpvotes", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "Elisabeth", "time": "1427558160699", "type": "featureUser", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "vote result is Left", "time": "1427558160857", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558161046", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558161404", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558162119", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558162121", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558162122", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558162123", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558162240", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558162387", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558162534", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558162664", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558163385", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "65", "time": "1427558163591", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558163592", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558163594", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558163595", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558163596", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558163596", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558163628", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "65", "time": "1427558163808", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558164083", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "65", "time": "1427558164090", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Left", "time": "1427558164457", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558165963", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "Susanne", "time": "1427558166033", "type": "upvoteMsg", "authorId": "10", "author": "Frank"}
+{"author": "[SYSTEM]", "influence": 18, "authorId": "2", "reputation": 99, "time": "1427558166034", "message": "", "type": "updateUser"}
+{"message": "65", "time": "1427558166725", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "65", "time": "1427558167099", "type": "keystroke", "authorId": "1", "author": "Petra"}
+{"message": "65", "time": "1427558167507", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558167604", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "vote result is Left", "time": "1427558168059", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558168090", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558168592", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "Wolfgang", "time": "1427558168742", "type": "upvoteMsg", "authorId": "10", "author": "Frank"}
+{"author": "[SYSTEM]", "influence": 22, "authorId": "4", "reputation": 103, "time": "1427558168742", "message": "", "type": "updateUser"}
+{"message": "87", "time": "1427558168944", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "87", "time": "1427558169139", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "87", "time": "1427558169313", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "87", "time": "1427558170306", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558171029", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "87", "time": "1427558171194", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558171321", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Up", "time": "1427558171662", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558172775", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "Ingrid", "time": "1427558172794", "type": "upvoteMsg", "authorId": "10", "author": "Frank"}
+{"author": "[SYSTEM]", "influence": 34, "authorId": "9", "reputation": 115, "time": "1427558172796", "message": "", "type": "updateUser"}
+{"message": "65", "time": "1427558174161", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "87", "time": "1427558174409", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558174458", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "87", "time": "1427558174828", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "vote result is Up", "time": "1427558175264", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "87", "time": "1427558176522", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558176751", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "87", "time": "1427558177266", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "65", "time": "1427558178132", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558178206", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558178331", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "65", "time": "1427558178452", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Up", "time": "1427558178866", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "petra", "time": "1427558180077", "type": "newUser", "authorId": "11", "author": "petra"}
+{"author": "[SYSTEM]", "influence": 9, "authorId": "11", "reputation": 90, "time": "1427558180078", "message": "", "type": "updateUser"}
+{"message": "{\"fail\": 44, \"text\": \"Das rad abhoolen?\", \"deny\": 0, \"success\": 22}", "time": "1427558180079", "type": "updateAgenda", "authorId": "11", "author": "[SYSTEM]"}
+{"message": "wow, getroffen, gut gemacht, team :)", "time": "1427558180322", "type": "chatMsg", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558181285", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558181297", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "87", "time": "1427558181989", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "87", "time": "1427558182211", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "vote result is Left", "time": "1427558182468", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558182700", "type": "keystroke", "authorId": "11", "author": "petra"}
+{"message": "65", "time": "1427558183040", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558183728", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558183881", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558184009", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558185139", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "vote result is Left", "time": "1427558186071", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558186119", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558186205", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "65", "time": "1427558186402", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558186486", "type": "keystroke", "authorId": "11", "author": "petra"}
+{"message": "87", "time": "1427558187042", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "65", "time": "1427558187322", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558187732", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558188160", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558189530", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "65", "time": "1427558189606", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "vote result is Left", "time": "1427558189673", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558189903", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558190309", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558190373", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558190608", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": 3, "time": "1427558190700", "type": "refreshUpvotes", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "petra", "time": "1427558190701", "type": "featureUser", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558191688", "type": "keystroke", "authorId": "11", "author": "petra"}
+{"message": "87", "time": "1427558191831", "type": "keystroke", "authorId": "10", "author": "Frank"}
+{"message": "65", "time": "1427558192296", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "87", "time": "1427558192796", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "vote result is Left", "time": "1427558193276", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558193791", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558193904", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558194421", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558196605", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "65", "time": "1427558196656", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558196657", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "vote result is Left", "time": "1427558196877", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "65", "time": "1427558196906", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "87", "time": "1427558196964", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "65", "time": "1427558198350", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558198687", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "65", "time": "1427558199368", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "65", "time": "1427558200012", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558200099", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "65", "time": "1427558200140", "type": "keystroke", "authorId": "5", "author": "Elisabeth"}
+{"message": "65", "time": "1427558200207", "type": "keystroke", "authorId": "9", "author": "Ingrid"}
+{"message": "vote result is Left", "time": "1427558200479", "type": "commandResult", "authorId": "-1", "author": "[SYSTEM]"}
+{"message": "83", "time": "1427558201610", "type": "keystroke", "authorId": "2", "author": "Susanne"}
+{"message": "65", "time": "1427558202170", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558202171", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558202172", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "87", "time": "1427558203058", "type": "keystroke", "authorId": "3", "author": "Josef"}
+{"message": "65", "time": "1427558203323", "type": "keystroke", "authorId": "4", "author": "Wolfgang"}
+{"message": "65", "time": "1427558203581", "type": "keystroke", "authorId": "0", "author": "Renate"}
+{"message": "{\"name\":\"Repay\",\"cost\":15,\"description\":\"Verm\u00f6gensabgabe. Die aufgewendeten Influencepunkte werden auf Ihre Mitspieler als Gutschrift verteilt.\",\"pic\":\"web/pic/dollar-rotation-icon.png\",\"$$hashKey\":\"object:264\"}", "time": "1427558203623", "type": "purchase", "authorId": "9", "author": "Ingrid"}
+{"author": "[SYSTEM]", "influence": 24, "authorId": "4", "reputation": 105, "time": "1427558203624", "message": "", "type": "updateUser"}
+{"author": "[SYSTEM]", "influence": 17, "authorId": "0", "reputation": 98, "time": "1427558203625", "message": "", "type": "updateUser"}
+{"author": "[SYSTEM]", "influence": 11, "authorId": "3", "reputation": 92, "time": "1427558203626", "message": "", "type": "updateUser"}
+{"author": "[SYSTEM]", "influence": 12, "authorId": "5", "reputation": 93, "time": "1427558203627", "message": "", "type": "updateUser"}
+{"author": "[SYSTEM]", "influence": 11, "authorId": "11", "reputation": 92, "time": "1427558203627", "message": "", "type": "updateUser"}
+{"author": "[SYSTEM]", "influence": 12, "authorId": "10", "reputation": 93, "time": "1427558203628", "message": "", "type": "updateUser"}
+{"author": "[SYSTEM]", "influence": 20, "authorId": "2", "reputation": 101, "time": "1427558203629", "message": "", "type": "updateUser"}
+{"author": "[SYSTEM]", "influence": 18, "authorId": "1", "reputation": 108, "time": "1427558203629", "message": "", "type": "updateUser"}

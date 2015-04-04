@@ -158,8 +158,12 @@ class LeaderAggregator(CrowdWeightedVoteAggregator):
             if self.leader in self.usersVoted.keys():
                 result = self.usersVoted[self.leader]
             else:
-                self.activeUsers.remove(self.leader)
-                self.setNewRandomLeader()
+                try:
+                    self.activeUsers.remove(self.leader)
+                    self.setNewRandomLeader()
+                except ValueError:
+                    self.setNewRandomLeader()
+                    return None 
         
         percentages = {k: round(float(self.ballot[k]/sum(list(self.ballot.values()))),3) for k in self.ballot.keys()}
         resultlist = [x for x in self.ballot.keys() if self.test(x, self.ballot)]
@@ -172,7 +176,8 @@ class LeaderAggregator(CrowdWeightedVoteAggregator):
     def setNewRandomLeader(self):
         if self.activeUsers:
             leaderCandidates = [x for x in self.activeUsers if self.test(x, self.weightByUsername)]
-            self.leader = random.choice(leaderCandidates)
+            if leaderCandidates:
+                self.leader = random.choice(leaderCandidates)
         else:
             self.leader = None
 #TODO: add db synchronization
