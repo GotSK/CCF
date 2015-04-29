@@ -88,6 +88,7 @@ class CrowdWeightedVoteAggregator(BasicCrowdAggregator):
         
         percentages = {k: round(float(self.ballot[k]/sum(list(self.ballot.values()))),3) for k in self.ballot.keys()}
         
+        resultlist = [x for x in self.ballot.keys() if self.test(x,self.ballot)]
         self.updateWeights(percentages, resultlist)
         self.reset()
         
