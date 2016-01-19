@@ -60,7 +60,7 @@ logging = entities.LoggingThread.LoggingThread(loggingInputQueue, loggingOutputQ
 
 simulatedPlayers = []
 simCount = 0
-maxSimCount = 10
+maxSimCount = 0
 for name in config.randomNames:
     if simCount >= maxSimCount:
         break
