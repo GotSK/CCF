@@ -57,6 +57,8 @@ class GameControlThread(threading.Thread):
                 if result is not None:
                     if self.currentMode != 'Mob':
                         self.outputQ.put([-1,json.dumps({'type':'commandResult', 'message':'vote result is '+ config.commandsToControl[result], 'author':'[SYSTEM]'})])
+                    else:
+                        self.outputQ.put([-1,json.dumps({'type':'commandResult', 'message':'!noShow', 'author':'[SYSTEM]'})])
                     self.outputQ.put([-1,json.dumps({'type':'modeResult', 'message':self.currentMode, 'author':'[SYSTEM]'})])
                     self.executeCommandMessage(result)
                 #else just broadcast mode vote result

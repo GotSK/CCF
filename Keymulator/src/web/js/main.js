@@ -325,7 +325,10 @@ app.controller('ChatCtrl', function ($scope, $http, ModalService, UserService) {
         	$scope.$apply(function (){
         		//console.log(msg);
         	if (JSON.parse(msg.data).type == "chatMsg" || JSON.parse(msg.data).type == "commandResult" ){
-        		$scope.msgs.push(JSON.parse(msg.data));
+        		if (!(JSON.parse(msg.data).message == '!noShow')){
+        			$scope.msgs.push(JSON.parse(msg.data));
+        		}
+        		
         		if(JSON.parse(msg.data).author == UserService.userFeatured){
         			$scope.featuredmsg = JSON.parse(msg.data);
         		}
