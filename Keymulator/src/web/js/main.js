@@ -52,7 +52,7 @@ app.factory( 'UserService', function() {
 	  		influence: 0,
 	  		reputation: 0,
 	  		achievements: [],
-	  		availableItems:[item3, item4, item1] ,
+	  		availableItems:[item3, item4, item1, item2] ,
 	  		boughtItems:[],
 	  		userFeatured: null,
 	  		ws: new WebSocket("ws://" + window.location.host + "/ws?Id=123456789"),

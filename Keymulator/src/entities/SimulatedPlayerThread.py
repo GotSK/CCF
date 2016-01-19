@@ -48,7 +48,20 @@ class SimulatedPlayerThread(threading.Thread):
                 dueTime = random.randrange(1000,20000,4000) + self.currentTimeMillisec()
                 
                 if self.events:
-                    pass
+                    choice = random.randrange(80)
+                    if choice < 50:
+                        message = ''
+                        if choice < 10:
+                            message =  'agendaFail'
+                        elif choice > 10 and choice < 30:
+                            message = 'agendaDeny'
+                        else:
+                            message = 'agendaSuccess'
+                        self.outputQ.put([0,json.dumps({'type':message, 'message':message, 'author': self.name})])
+                    elif choice > 50 and choice < 75:
+                        message = 'silverkey'
+                        self.outputQ.put([0,json.dumps({'type':'upvoteMsg', 'message':message, 'author': self.name})])
+
                 else:
                     choice = random.randrange(100)
                     if choice < 50:

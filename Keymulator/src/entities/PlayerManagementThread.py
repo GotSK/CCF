@@ -78,33 +78,38 @@ class PlayerManagementThread(threading.Thread):
                         self.sendUserUpdate(authorId, jmessage['author'])
                 elif jmessage['type'] in ['agendaSuccess', 'agendaDeny', 'agendaFail']:
                     
+                    if self.agendaSet:
 
-                    if self.db.hasUser(jmessage['author']):
-                        self.db.modifyUserRep(jmessage['author'], config.agendaParticipationModifier)
-                        self.db.modifyUserInf(jmessage['author'], config.agendaParticipationModifier)
-                        self.sendUserUpdate(authorId, jmessage['author'])
+                        if self.db.hasUser(jmessage['author']):
+                            self.db.modifyUserRep(jmessage['author'], config.agendaParticipationModifier)
+                            self.db.modifyUserInf(jmessage['author'], config.agendaParticipationModifier)
+                            self.sendUserUpdate(authorId, jmessage['author'])
+                            
+                        totalUsers = len(dataList[0].keys())
+                        #TODO: REMOVE THIS AFTER SIMULATION
+                        totalUsers = 10
+                        #--------------------
                         
-                    totalUsers = len(dataList[0].keys())
-                    self.agendaBallot[jmessage['type']] += 1
-                    self.sendAgendaUpdate(authorId, totalUsers)
-                    
-                    #check if agenda is resolved
-                    #agenda successful
-                    if ( (self.getPositiveAgendaVotes() / totalUsers ) > 0.5):
-                        alert = {'type':'success', 'msg':'Agenda was successful!'}
-                        self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':json.dumps(alert), 'author':'[SYSTEM]'})])
-                        self.resetAgendaBallot()
-                    #agenda unsuccessful
-                    elif ( (self.getNegativeAgendaVotes() / totalUsers ) > 0.5):
-                        alert = {'type':'danger', 'msg':'Agenda was not successful!'}
-                        self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':json.dumps(alert), 'author':'[SYSTEM]'})])
-                        self.resetAgendaBallot()
-                    
-                    #agenda undecided, but finished    
-                    elif ( self.getTotalAgendaVotes() == totalUsers):
-                        alert = {'type':'warning', 'msg':'Agenda was undecided!'}
-                        self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':json.dumps(alert), 'author':'[SYSTEM]'})])
-                        self.resetAgendaBallot()
+                        self.agendaBallot[jmessage['type']] += 1
+                        self.sendAgendaUpdate(authorId, totalUsers)
+                        
+                        #check if agenda is resolved
+                        #agenda successful
+                        if ( (self.getPositiveAgendaVotes() / totalUsers ) > 0.5):
+                            alert = {'type':'success', 'msg':'Agenda was successful!'}
+                            self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':json.dumps(alert), 'author':'[SYSTEM]'})])
+                            self.resetAgendaBallot()
+                        #agenda unsuccessful
+                        elif ( (self.getNegativeAgendaVotes() / totalUsers ) > 0.5):
+                            alert = {'type':'danger', 'msg':'Agenda was not successful!'}
+                            self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':json.dumps(alert), 'author':'[SYSTEM]'})])
+                            self.resetAgendaBallot()
+                        
+                        #agenda undecided, but finished    
+                        elif ( self.getTotalAgendaVotes() == totalUsers):
+                            alert = {'type':'warning', 'msg':'Agenda was undecided!'}
+                            self.outputQ.put([id,json.dumps({'type':'finishAgenda', 'message':json.dumps(alert), 'author':'[SYSTEM]'})])
+                            self.resetAgendaBallot()
                         
                 elif jmessage['type'] in ['upvoteMsg']:
                     if self.db.hasUser(jmessage['message']):

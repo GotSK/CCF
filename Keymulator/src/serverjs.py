@@ -62,11 +62,11 @@ simulatedPlayers = []
 simCount = 0
 maxSimCount = 10
 for name in config.randomNames:
-    simulatedPlayers.append(entities.SimulatedPlayerThread.SimulatedPlayerThread(communicationInputQueue, name, events = False))
     if simCount >= maxSimCount:
         break
+    simulatedPlayers.append(entities.SimulatedPlayerThread.SimulatedPlayerThread(communicationInputQueue, name, events = False))
     simCount +=1
-
+simulatedPlayers.append(entities.SimulatedPlayerThread.SimulatedPlayerThread(communicationInputQueue, 'eventManager', True))
 gameControl.start()
 communication.start()
 playerManagement.start()
