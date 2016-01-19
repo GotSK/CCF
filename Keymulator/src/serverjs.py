@@ -18,6 +18,7 @@ import entities.CommunicationThread
 import entities.GameControlThread
 import entities.PlayerManagementThread
 import entities.LoggingThread
+import entities.SimulatedPlayerThread
 import CrowdAggregator
 from threading import Thread
 from CrowdAggregator import MajorityVoteCrowdAggregator,\
@@ -57,10 +58,22 @@ gameControl = entities.GameControlThread.GameControlThread(controlInputQueue, co
 playerManagement = entities.PlayerManagementThread.PlayerManagementThread(pManagementInputQueue, pManagementOutputQueue, db)
 logging = entities.LoggingThread.LoggingThread(loggingInputQueue, loggingOutputQueue)
 
+simulatedPlayers = []
+simCount = 0
+maxSimCount = 10
+for name in config.randomNames:
+    simulatedPlayers.append(entities.SimulatedPlayerThread.SimulatedPlayerThread(communicationInputQueue, name, events = False))
+    if simCount >= maxSimCount:
+        break
+    simCount +=1
+
 gameControl.start()
 communication.start()
 playerManagement.start()
 logging.start()
+
+for simulator in simulatedPlayers:
+    simulator.start()
 
 def updateClientsGameControl():
     clientUpdateQueue.put([clients, clientById, idByClient])
@@ -115,10 +128,11 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
         #print ('Communication thread:', message)
         communicationInputQueue.put([idByClient[self],message])
     
+    """
     if json.loads(message)['type']=='chatMsg':
         for client in clients:
             client.write_message(message)
-          
+    """      
         
   def on_close(self):
       clients.remove(self)

@@ -89,6 +89,10 @@ class CommunicationThread(threading.Thread):
                         self.getModeVotingWinner()
                 else:
                     print("ERROR: No such message type provided") 
+                    
+                if jmessage['type']=='chatMsg':
+                    for client in self.clients:
+                        client.write_message(jmessage)
                                 
             except queue.Empty:
                 continue
