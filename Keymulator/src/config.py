@@ -22,12 +22,12 @@ agendaParticipationModifier = 1
 votingOptions =["Mob", "Majority Vote", "Crowd Weighted Vote", "Active", "Leader", "Expertise Weighted Vote", "Proletarian"]
 
 mobTimeWindow = 0
-majorityTimeWindow = 10000
-cwvTimeWindow = 10000
-actTimeWindow = 5000
-leadTimeWindow = 5000
-ewvTimeWindow = 10000
-prolTimeWindow = 10000
+majorityTimeWindow = 3000
+cwvTimeWindow = 3000
+actTimeWindow = 3000
+leadTimeWindow = 3000
+ewvTimeWindow = 3000
+prolTimeWindow = 3000
 modeTimeValues = {"Mob":mobTimeWindow, "Majority Vote":majorityTimeWindow, "Crowd Weighted Vote":cwvTimeWindow, "Active":actTimeWindow, "Leader":leadTimeWindow, "Expertise Weighted Vote":ewvTimeWindow, "Proletarian":prolTimeWindow}
 
 #GAME CONTROLS
@@ -35,8 +35,8 @@ import Item
 commands = {
             '!w':'w',
             '!a':'a',
-            '!s':'d',
-            '!d':'s',
+            '!s':'s',
+            '!d':'d',
             '!i':'i',
             '!j':'j',
             '!v':'v',
