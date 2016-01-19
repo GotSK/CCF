@@ -1,3 +1,4 @@
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 '''
@@ -47,26 +48,37 @@ loggingOutputQueue = communicationInputQueue
 modeVotingQueue = queue.Queue()
 controlInputQueue = queue.Queue()
 controlOutputQueue = communicationInputQueue
+
+simulationQueues = []
+
 #initialize database
 
 #modified start values for rep and influence for testing purposes
 db = Database(90, 9)
 
 #initialize and start thread entities
-communication = entities.CommunicationThread.CommunicationThread(communicationInputQueue, communicationOutputQueue, clientUpdateQueue, controlInputQueue, pManagementInputQueue, loggingInputQueue, modeVotingQueue)
+simulatedPlayers = []
+simCount = 0
+maxSimCount = 10
+for name in config.randomNames:
+    if simCount >= maxSimCount:
+        break
+    tqueue = queue.Queue()
+    simulatedPlayers.append(entities.SimulatedPlayerThread.SimulatedPlayerThread(communicationInputQueue, name, False, tqueue))
+    simulationQueues.append(tqueue)
+    simCount +=1
+if maxSimCount > 0 :
+    tqueue = queue.Queue()
+    simulationQueues.append(tqueue)
+    simulatedPlayers.append(entities.SimulatedPlayerThread.SimulatedPlayerThread(communicationInputQueue, 'eventManager', True, tqueue))
+    
+communication = entities.CommunicationThread.CommunicationThread(communicationInputQueue, communicationOutputQueue, clientUpdateQueue, controlInputQueue, pManagementInputQueue, loggingInputQueue, modeVotingQueue, simulationQueues)
 gameControl = entities.GameControlThread.GameControlThread(controlInputQueue, controlOutputQueue, modeVotingQueue, modeClasses, db)
 playerManagement = entities.PlayerManagementThread.PlayerManagementThread(pManagementInputQueue, pManagementOutputQueue, db)
 logging = entities.LoggingThread.LoggingThread(loggingInputQueue, loggingOutputQueue)
 
-simulatedPlayers = []
-simCount = 0
-maxSimCount = 0
-for name in config.randomNames:
-    if simCount >= maxSimCount:
-        break
-    simulatedPlayers.append(entities.SimulatedPlayerThread.SimulatedPlayerThread(communicationInputQueue, name, events = False))
-    simCount +=1
-simulatedPlayers.append(entities.SimulatedPlayerThread.SimulatedPlayerThread(communicationInputQueue, 'eventManager', True))
+
+    
 gameControl.start()
 communication.start()
 playerManagement.start()
@@ -156,3 +168,4 @@ app = tornado.web.Application([
       
 app.listen(options.port)
 tornado.ioloop.IOLoop.instance().start()
+

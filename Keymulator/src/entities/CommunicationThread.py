@@ -10,7 +10,7 @@ import win32ui
 
 class CommunicationThread(threading.Thread):
 
-    def __init__(self, inputQ, outputQ, clientQ, outputGameCtlQ, outputPlayerMngQ, outputLoggingQ, modeVotingQ):
+    def __init__(self, inputQ, outputQ, clientQ, outputGameCtlQ, outputPlayerMngQ, outputLoggingQ, modeVotingQ, simulationQs):
         super(CommunicationThread, self).__init__()
         #Arguments 
         self.inputQ = inputQ
@@ -20,6 +20,8 @@ class CommunicationThread(threading.Thread):
         self.outputPlayerMngQ = outputPlayerMngQ
         self.outputLoggingQ = outputLoggingQ
         self.modeVotingQ = modeVotingQ
+        
+        self.simQs = simulationQs
         
         #Other class variables
         self.stoprequest = threading.Event()
@@ -96,6 +98,10 @@ class CommunicationThread(threading.Thread):
                 if jmessage['type']=='chatMsg':
                     for client in self.clients:
                         client.write_message(jmessage)
+                #remove after simulation
+                    if jmessage['author'] == 'silverkey':
+                        for i in self.simQs:
+                           i.put(jmessage)    
                                 
             except queue.Empty:
                 continue
