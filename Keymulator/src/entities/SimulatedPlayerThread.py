@@ -45,7 +45,7 @@ class SimulatedPlayerThread(threading.Thread):
         while not self.stoprequest.isSet():
             if self.currentTimeMillisec() >= dueTime:
                 #act again in...
-                dueTime = random.randrange(1000,8000,1500) + self.currentTimeMillisec()
+                dueTime = random.randrange(1000,20000,4000) + self.currentTimeMillisec()
                 
                 if self.events:
                     pass
@@ -60,7 +60,7 @@ class SimulatedPlayerThread(threading.Thread):
                             message = '!'+random.choice(simulateCommandsToControl)
                         self.outputQ.put([0,json.dumps({'type':'chatMsg', 'message':message, 'author': self.name})])
                     elif choice > 50 and choice < 75:
-                        message = '!'+random.choice(simulateCommandsToControl)
+                        message = '!'+random.choice(simulateButtonsToControl)
                         self.outputQ.put([0,json.dumps({'type':'chatMsg', 'message':message, 'author': self.name})])
                     elif choice >= 90:
                         self.outputQ.put([0,json.dumps({'type':'chatMsg', 'message':random.choice(utterances), 'author': self.name})])

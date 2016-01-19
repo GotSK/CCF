@@ -146,6 +146,9 @@ class PlayerManagementThread(threading.Thread):
         for user in self.spotlightDict.keys():
             for t in range(self.spotlightDict[user]):
                 randlist.append(user)
+            #### TODO: REMOVE THIS AFTER SIMULATION
+            for i in range(0,10):
+                randlist.append(config.randomNames[i])    
         if len(randlist) > 0:
             spot = random.choice(randlist)
             self.outputQ.put([-1,json.dumps({'type':'featureUser', 'message':spot, 'author':'[SYSTEM]'})])

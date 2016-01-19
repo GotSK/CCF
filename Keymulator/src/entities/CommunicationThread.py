@@ -64,7 +64,10 @@ class CommunicationThread(threading.Thread):
                         self.clientByUsername[jmessage['message']] = self.clientById[authorId]
                     elif jmessage['type'] in ['upvoteMsg']:
                         #replace the original author id with the upvote-target id
-                        authorId = self.idByClient[self.clientByUsername[jmessage['message']]]
+                        try:
+                           authorId = self.idByClient[self.clientByUsername[jmessage['message']]] #TODO REMOVE THIS TRYCATCH AFTER SIMULATION 
+                        except KeyError:
+                            pass
                     
                     if jmessage['type'] not in config.dataAppended:
                         self.outputPlayerMngQ.put([authorId, jmessage])
