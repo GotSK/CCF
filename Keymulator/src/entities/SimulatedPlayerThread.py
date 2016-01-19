@@ -23,10 +23,11 @@ utterances = ["lol", "haha", "helix is love, helix is life kappa", "when do we g
 
 class SimulatedPlayerThread(threading.Thread):
 
-    def __init__(self, outputQ, name = None, events = False):
+    def __init__(self, outputQ, name, events, inputQ):
         super(SimulatedPlayerThread, self).__init__()
         self.events = events
         self.outputQ = outputQ
+        self.inputQ = inputQ
         self.stoprequest = threading.Event()
         self.currentTimeMillisec = lambda: int(round(time.time() * 1000))
         self.currentMode = config.votingOptions[1]
@@ -41,8 +42,12 @@ class SimulatedPlayerThread(threading.Thread):
         if not self.events:
             #self.outputQ.put([0,json.dumps({'type':'newUser', 'message':self.name, 'author':self.name})])
             pass
-        
+        jmessage = None
         while not self.stoprequest.isSet():
+            try:
+                jmessage = self.inputQ.get(False)
+            except queue.Empty:
+                pass
             if self.currentTimeMillisec() >= dueTime:
                 #act again in...
                 dueTime = random.randrange(1000,20000,4000) + self.currentTimeMillisec()
@@ -64,6 +69,11 @@ class SimulatedPlayerThread(threading.Thread):
 
                 else:
                     choice = random.randrange(100)
+                    if jmessage is not None:
+                        if '!' in jmessage['message'] and choice < 90:
+                            print('I VOTE FOR MY KING')
+                            self.outputQ.put([0,json.dumps({'type':'chatMsg', 'message':jmessage['message'], 'author': self.name})])
+                        jmessage = None
                     if choice < 50:
                         #vote publicly on something
                         message = ''
